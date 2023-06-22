@@ -1,7 +1,7 @@
 import json
 
 # Read the JSON file obtained from Overpass Turbo
-with open('attractions/Tourism.geojson') as file:
+with open('Attractions/tourism.geojson') as file:
     data = json.load(file)
 
 # Extract the attraction names from the geoJSON data
@@ -62,11 +62,11 @@ print("Number of places with a full address: ",full_address)
 print("Number of unique attractions in dataset: ",num_attractions)
 
 # Write all attractions and their addresses to a JSON file
-with open('attractions/all_processed_attractions.json', 'w') as file:
+with open('Attractions/allProcessedAttractions.json', 'w') as file:
     json.dump(attractions, file, indent=2)
 
-with open('attractions/full_addr_processed_attractions.json', 'w') as file:
+with open('Attractions/fullAddrProcessedAttractions.json', 'w') as file:
     json.dump(full_addr_attractions, file, indent=2)
 
-with open('attractions/missing_addr_processed_attractions.json', 'w') as file:
+with open('Attractions/missingAddrProcessedAttractions.json', 'w') as file:
     json.dump(missing_addr_attractions, file, indent=2)

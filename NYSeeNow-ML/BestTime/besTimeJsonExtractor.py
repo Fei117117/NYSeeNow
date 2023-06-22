@@ -1,7 +1,7 @@
 import json
 
 #read the JSON file with the best time data
-with open('best_time/full_addr_1_10.json') as file:
+with open('BestTime/fullAddr_1_10.json') as file:
     data = json.load(file)
 
 #separate the data based on status and write to respective files
@@ -15,10 +15,10 @@ for item in data:
         error_data.append(item)
 
 # Write the OK data to a new JSON file
-with open('best_time/ok_full_addr_1_10.json', 'w') as file:
+with open('BestTime/okFullAddr_1_10.json', 'w') as file:
     json.dump(ok_data, file)
 
 # Write the Error data to a new JSON file
-with open('best_time/error_full_addr_1_10.json', 'w') as file:
+with open('BestTime/errorFullAddr_1_10.json', 'w') as file:
     json.dump(error_data, file)
 

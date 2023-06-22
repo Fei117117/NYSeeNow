@@ -1,6 +1,6 @@
 #This file will make a call to open weather api
 #run this script for 9 days and should reach the full year for NYC
-import ow_login
+import owLogin
 import requests
 import json
 import time

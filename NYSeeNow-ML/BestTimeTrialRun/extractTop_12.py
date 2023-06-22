@@ -1,7 +1,7 @@
 import json
 
 # Read the JSON file obtained from Overpass Turbo
-with open('attractions/attractions.geojson') as file:
+with open('Attractions/attractions.geojson') as file:
     data = json.load(file)
 
 # Extract the attraction names from the geoJSON data
@@ -39,5 +39,5 @@ for feature in data['features']:
         print("--------------")
 
 # Write all attractions and their addresses to a JSON file
-with open('attractions/processed_attractions.json', 'w') as file:
+with open('Attractions/allProcessedAttractions.json', 'w') as file:
     json.dump(attractions, file, indent=2)
