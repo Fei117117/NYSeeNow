@@ -13,11 +13,12 @@ hour=3600
 #end time is 1/1/2020
 end_time=1577836800
 
+start_time=0
 
 #keeps calls to 960 per day
-for j in range(0,16):
+for j in range(1,17):
 
-    for i in range(0*j,60*j):
+    for i in range((j-1)*(61*j),61*j):
         current_time=start_time+hour*i
         print(current_time)
         # Connect to OpenWeather API
@@ -29,6 +30,7 @@ for j in range(0,16):
           #  data = r.json()
 
             # Extract the information for the current weather
-        
+    if j==3:
+        break
     #wait for 61 seconds before repeating, keeps limit to 60 calls per second
-    #time.sleep(61)
+    #time.sleep()
