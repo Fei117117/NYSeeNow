@@ -15,22 +15,20 @@ export const Login = (props) => {
     const data = {
       username: username,
       password: pass,
+      remember: remember,
     };
 
     const url = "api/auth/login";
 
     post(url, data, (message, status) => {
-      // Success callback function
       console.log("Success:", message);
       console.log("Status:", status);
       setMessage("Login successful!");
     }, (message, status) => {
-      // Failure callback function
       console.log("Failure:", message);
       console.log("Status:", status);
       setMessage("Login failed. Please try again.");
     }, (error) => {
-      // Error callback function
       console.error("Error:", error);
       setMessage("An error occurred. Please try again later.");
     });
