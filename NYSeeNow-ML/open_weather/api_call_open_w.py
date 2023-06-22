@@ -17,7 +17,7 @@ start_time=0
 
 #keeps calls to 960 per day
 for j in range(1,17):
-
+    start_time=start_time+hour*61*(j-1)
     for i in range((j-1)*(61*j),61*j):
         current_time=start_time+hour*i
         print(current_time)
@@ -30,7 +30,7 @@ for j in range(1,17):
           #  data = r.json()
 
             # Extract the information for the current weather
-    if j==3:
+    if j==4:
         break
     #wait for 61 seconds before repeating, keeps limit to 60 calls per second
     #time.sleep()
