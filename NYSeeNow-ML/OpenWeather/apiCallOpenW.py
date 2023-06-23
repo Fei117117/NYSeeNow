@@ -8,29 +8,32 @@ import time
 #start the time on the 1/1/2019
 #make sure to start from the most recent day called
 start_time=1546300800
+#each_day adds 3456000 seconds to the start time
 #one hour in unix time is 3600 sec
 hour=3600
 #end time is 1/1/2020
 end_time=1577836800
 
-start_time=0
 
 #keeps calls to 960 per day
 for j in range(1,17):
-    start_time=start_time+hour*61*(j-1)
-    for i in range((j-1)*(61*j),61*j):
+    start_time=start_time + hour*60*(j-1)
+
+    for i in range(0,61):
         current_time=start_time+hour*i
         print(current_time)
         # Connect to OpenWeather API
-        #r = requests.get(ow_login.owUrl, params={'lat': ow_login.owLat, 'lon': ow_login.owLon, 'dt': time 'appid': login.owKey})
+        r = requests.get(owLogin.owUrl, params={'lat': owLogin.owLat, 'lon': owLogin.owLon, 'dt': current_time, 'appid': owLogin.owKey })
 
-        #if r.status_code == 200:
+        if r.status_code == 200:
             # If connection successful:
-        #    print('Connection to OpenWeather Map successful!')
-          #  data = r.json()
+            print('Connection to OpenWeather Map successful!')
+            data = r.json()
 
-            # Extract the information for the current weather
-    if j==4:
-        break
+            #send data to a json file
+            with open('OpenWeather/weatherData.json', 'a') as file:
+                json.dump(data, file)
+                            
+        
     #wait for 61 seconds before repeating, keeps limit to 60 calls per second
-    #time.sleep()
+    time.sleep(61)
