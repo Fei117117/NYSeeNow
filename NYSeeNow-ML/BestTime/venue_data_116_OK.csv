@@ -1,0 +1,117 @@
+Venue Name,Venue Address,Venue Coordinates,Venue Types,Average Dwell Time
+The New York Stock Exchange (NYSE),"11 Wall St New York, NY 10005 United States",40.706877 -74.0112654,"stock_broker, financial_institution, tourist_attraction",20
+Bryant Park,"New York, NY 10018 United States",40.7535965 -73.9832326,"park, tourist_attraction",30
+Central Park Carousel,"1802 E 65th St New York, NY 10065 United States",40.7699272 -73.9752549,"amusement_park_ride, historical_landmark, tourist_attraction",20
+Empire State Building,"20 W 34th St. New York, NY 10001 United States",40.7484405 -73.98566439999999,"tourist_attraction, historical_landmark, historical_place_museum",0
+Chelsea Market,"75 9th Ave New York, NY 10011 United States",40.7424396 -74.0061439,market,0
+New-York Historical Society,"170 Central Park West New York, NY 10024 United States",40.7793487 -73.9739079,"museum, art_museum, historical_society, history_museum, library, local_history_museum, tourist_attraction",75
+The Cathedral Church of St. John the Divine,"1047 Amsterdam Ave New York, NY 10025 United States",40.8038356 -73.9618754,"episcopal_church, cathedral, church, tourist_attraction",0
+The Met Cloisters,"99 Margaret Corbin Dr New York, NY 10040 United States",40.8648628 -73.9317274,"art_museum, museum, tourist_attraction",60
+Marianna Kistler Beach Museum of Art,"701 Beach Ln Manhattan, KS 66506 United States",39.1867908 -96.5787854,"art_museum, tourist_attraction",0
+Sunset Zoo,"2333 Oak St Manhattan, KS 66502 United States",39.1772817 -96.5950725,"zoo, after_school_program, event_venue, park, tourist_attraction",90
+Flint Hills Discovery Center,"315 S 3rd St Manhattan, KS 66502 United States",39.176578 -96.5599852,"museum, childrens_museum, event_venue, heritage_museum, history_museum, learning_center, science_museum",60
+The Paley Center For Media NYC,"25 W 52nd St New York, NY 10019 United States",40.7605642 -73.9775578,"museum, archive, media_company, non_profit_organization, tourist_attraction",90
+Solomon R. Guggenheim Museum,"1071 5th Ave New York, NY 10128 United States",40.7829796 -73.9589706,"modern_art_museum, art_museum, museum, tourist_attraction",0
+The Ukrainian Museum,"222 E 6th St New York, NY 10003 United States",40.7276674 -73.9897653,art_museum,0
+Eden Gallery,"470 Broome St New York, NY 10013 United States",40.722695099999996 -74.0014386,"art_gallery, art_center, art_dealer",0
+New Museum,"235 Bowery New York, NY 10002 United States",40.722337599999996 -73.9928905,"art_museum, tourist_attraction",60
+The Drawing Center,"35 Wooster St New York, NY 10013 United States",40.7224094 -74.0028554,"museum, non_profit_organization, tourist_attraction",30
+New York City Fire Museum,"278 Spring St New York, NY 10013 United States",40.7255556 -74.0069444,"museum, event_venue, gift_shop, history_museum, tourist_attraction",0
+Museum at Eldridge Street,"12 Eldridge St New York, NY 10002 United States",40.7147484 -73.99355609999999,"history_museum, heritage_museum, museum, tourist_attraction",45
+New York Public Library - Stephen A. Schwarzman Building,"476 5th Ave New York, NY 10018 United States",40.7531823 -73.98225339999999,public_library,30
+"Intrepid Sea, Air & Space Museum","Pier 86 W 46th St New York, NY 10036 United States",40.764526599999996 -73.99960759999999,"museum, historic_site, historical_landmark, tourist_attraction",90
+Vanderbilt YMCA,"224 E 47th St New York, NY 10017 United States",40.753282999999996 -73.97105549999999,"fitness_center, after_school_program, basketball_court, camp, day_care_center, gym, hostel, non_profit_organization, swimming_pool",0
+Japan Society,"333 E 47th St New York, NY 10017 United States",40.75251 -73.968287,"cultural_center, association_or_organization, event_venue, japanese_language_instructor, language_school, museum, non_profit_organization, tourist_attraction",0
+The Jewish Museum,"1109 5th Ave & E 92nd St New York, 10128 United States",40.785334 -73.957351,"art_museum, gift_shop, museum, performing_arts_theater",60
+The San Remo,"145-146 Central Park West New York, NY 10023 United States",40.777782699999996 -73.97497299999999,historical_landmark,0
+Children's Museum Of Manhattan,"212 W 83rd St New York, NY 10024 United States",40.785877 -73.977283,"childrens_museum, museum, tourist_attraction",75
+Nicholas Roerich Museum,"319 W 107th St New York, NY 10025 United States",40.802938999999995 -73.969002,"museum, tourist_attraction",0
+Museum of the City of New York,"1220 5th Ave New York, NY 10029 United States",40.7924939 -73.95190889999999,"local_history_museum, history_museum, museum, tourist_attraction",75
+Hamilton Grange National Memorial,"414 W 141st St New York, NY 10031 United States",40.8213605 -73.9473024,"historic_site, historical_landmark, museum, tourist_attraction",30
+St. Paul's Chapel,"209 Broadway New York, NY 10007 United States",40.711328099999996 -74.0091831,"church, episcopal_church, place_of_worship, tourist_attraction",0
+9/11 Memorial & Museum,"180 Greenwich St New York, NY 10007 United States",40.7115776 -74.0133362,"historical_place_museum, memorial_park, museum",75
+Blackwell House,"500 Main St New York, NY 10044 United States",40.7603529 -73.9511041,historical_landmark,0
+Whitney Museum of American Art,"99 Gansevoort St New York, NY 10014 United States",40.7395877 -74.0088629,"modern_art_museum, art_museum, museum, tourist_attraction",60
+The Stonewall Inn,"53 Christopher St New York, NY 10014 United States",40.7338326 -74.00216259999999,"gay_bar, bar, tourist_attraction",0
+Paula Cooper Gallery,"521 W 21st St New York, NY 10011 United States",40.7471599 -74.0063746,art_gallery,0
+Fraunces Tavern Museum,"54 Pearl St 2nd floor New York, NY 10004 United States",40.703404 -74.011297,"museum, historical_landmark, history_museum, local_history_museum, tourist_attraction",45
+American Museum of Natural History,"200 Central Park West New York, NY 10024 United States",40.7813241 -73.9739882,"natural_history_museum, historical_landmark, planetarium, research_institute, science_museum, tourist_attraction",105
+Madame Tussauds New York,"234 W 42nd St New York, NY 10036 United States",40.7564269 -73.9888338,"wax_museum, tourist_attraction",75
+Rockefeller Center,"45 Rockefeller Plaza New York, NY 10111 United States",40.7587402 -73.9786736,"historical_landmark, tourist_attraction",45
+Poster House,"119 W 23rd St New York, NY 10011 United States",40.7435919 -73.9933284,"museum, art_museum",0
+Rubin Museum of Art,"150 W 17th St New York, NY 10011 United States",40.7400671 -73.9977244,"art_museum, cafe, performing_arts_theater, store",75
+Andrew Kreps Gallery,"22 Cortlandt Alley New York, NY 10013 United States",40.7182043 -74.002025,art_gallery,0
+Fotografiska Museum NYC,"281 Park Ave S New York, NY 10010 United States",40.7392209 -73.98672189999999,"museum, tourist_attraction",0
+Refinery Rooftop,"63 W 38th St New York, NY 10018 United States",40.7522605 -73.985361,restaurant,90
+Café Carlyle,"35 E 76th St New York, NY 10075 United States",40.7743101 -73.9630723,"cafe, american_restaurant, bar, french_restaurant, jazz_club",105
+Supermud Pottery,"2744 Broadway New York, NY 10025 United States",40.8006442 -73.9676089,pottery_store,0
+City Sightseeing New York,"455 12th Ave New York, NY 10018 United States",40.759658099999996 -74.0002611,"sightseeing_tour_agency, boat_tour_agency, cruise_line, tour_operator, tourist_attraction",0
+The Skyscraper Museum,"39 Battery Pl New York, NY 10280 United States",40.7057375 -74.017749,"museum, history_museum, tourist_attraction",45
+Hall des Lumières,"49 Chambers St New York, NY 10007 United States",40.7140282 -74.00509079999999,art_museum,45
+South Street Seaport Museum,"12 Fulton St New York, NY 10038 United States",40.706497899999995 -74.0036463,"maritime_museum, cultural_center, education_center, event_venue, historical_landmark, historical_place_museum, history_museum, tourist_attraction",0
+Little Owl,"90 Bedford St New York, NY 10014 United States",40.732397999999996 -74.005318,"new_us_american_restaurant, american_restaurant, mediterranean_restaurant",90
+Museum of Sex,"233 5th Ave New York, NY 10016 United States",40.7440291 -73.9872529,"museum, adult_entertainment_store, bar, event_venue, exhibit, gift_shop, tourist_attraction",0
+National Museum of Mathematics,"11 E 26th St New York, NY 10010 United States",40.7435349 -73.987093,"national_museum, museum, tourist_attraction",75
+Gladstone Gallery,"515 W 24th St New York, NY 10011 United States",40.7489324 -74.0044772,art_gallery,0
+The Morgan Library & Museum,"225 Madison Ave New York, NY 10016 United States",40.7492258 -73.9813971,"museum, art_museum, library, tourist_attraction",0
+Rachel Uffner,"170 Suffolk St New York, NY 10002 United States",40.7209654 -73.9849766,art_gallery,0
+Hayden Planetarium,"200 Central Park West New York, NY 10024 United States",40.781265399999995 -73.9738201,"planetarium, museum_of_space_history, tourist_attraction",0
+Michael Altman Fine Art & Advisory Services,"33 E 68th St New York, NY 10065 United States",40.769149299999995 -73.9668563,art_gallery,0
+WESTWOOD GALLERY NYC,"262 Bowery New York, NY 10012 United States",40.7233574 -73.9932855,art_gallery,0
+Eric Firestone Gallery,"40 Great Jones St New York, NY 10012 United States",40.726956699999995 -73.9926674,art_gallery,0
+Color Factory - NYC Interactive Art Museum,"251 Spring St New York, NY 10013 United States",40.725773 -74.0053337,"art_museum, amusement_center, amusement_park, children_amusement_center, childrens_museum, event_venue, exhibit, museum, theme_park, tourist_attraction",60
+PERROTIN NEW YORK,"130 Orchard St New York, NY 10002 United States",40.7195864 -73.9892543,art_gallery,30
+David Zwirner,"525 W 19th St New York, NY 10011 United States",40.745866 -74.006985,"art_gallery, museum, tourist_attraction",45
+La MaMa Galleria,"47 Great Jones St New York, NY 10012 United States",40.726516499999995 -73.9926187,"art_gallery, non_profit_organization",0
+Society of Illustrators,"128 E 63rd St New York, NY 10065 United States",40.7648331 -73.96683349999999,"museum, art_museum, non_profit_organization, tourist_attraction",0
+Anya and Andrew Shiva Gallery,"11th Ave New York, NY 10019 United States",40.771377 -73.9903652,art_museum,0
+303 Gallery,"555 W 21st St New York, NY 10011 United States",40.7475016 -74.0074398,art_gallery,0
+AMANITA,"313 Bowery New York, NY 10003 United States",40.7251244 -73.99186399999999,art_gallery,0
+The Malcolm X & Dr. Betty Shabazz Memorial and Educational Center,"Lasker Biomedical Research Building 3940 Broadway New York, NY 10032 United States",40.8392663 -73.9406723,"cultural_center, museum, tourist_attraction",105
+Leslie-Lohman Museum of Art,"26 Wooster St New York, NY 10013 United States",40.721669 -74.00309,"art_museum, art_gallery, arts_organization, gay_and_lesbian_organization, museum",0
+Miguel Abreu Gallery,"88 Eldridge Street & 36 Orchard St New York, NY 10002 United States",40.7172002 -73.99216799999999,art_gallery,0
+Equinox Hudson Yards,"35 Hudson Yards 32 Hudson Yards New York, NY 10001 United States",40.7546234 -74.0022048,"gym, sports_club",105
+Pace Gallery,"540 W 25th St New York, NY 10001 United States",40.749637299999996 -74.00504719999999,art_gallery,45
+The New York Earth Room,"141 Wooster St New York, NY 10012 United States",40.726038599999995 -73.9999441,art_gallery,0
+The FRIENDS™ Experience: The One in New York City,"The Friends Experience 130 E 23rd St New York, NY 10010 United States",40.7394044 -73.98516699999999,"exhibit, museum",60
+Jackie Robinson Museum,"75 Varick St New York, NY 10013 United States",40.7234621 -74.0068304,museum,60
+Frick Madison,"945 Madison Ave New York, NY 10021 United States",40.7735041 -73.96399149999999,art_museum,60
+Nohra Haime Gallery,"500 W 21st St New York, NY 10011 United States",40.7463438 -74.00548839999999,art_gallery,0
+Mitchell-Innes & Nash,"534 W 26th St New York, NY 10001 United States",40.7501611 -74.004435,art_gallery,0
+Galerie Lelong & Co.,"528 W 26th St New York, NY 10001 United States",40.750085 -74.004434,"art_gallery, tourist_attraction",0
+Berry Campbell,"524 W 26th St New York, NY 10001 United States",40.7500545 -74.004138,art_gallery,0
+Caelum Gallery,"526 W 26th St #315 New York, NY 10001 United States",40.7498474 -74.0037765,"art_gallery, event_venue",0
+Greene Naftali,"508 W 26th St New York, NY 10001 United States",40.749778 -74.003659,art_gallery,0
+Marlborough,"545 W 25th St New York, NY 10001 United States",40.749841499999995 -74.0049934,art_gallery,0
+Gallery Henoch,"555 W 25th St New York, NY 10001 United States",40.750036699999995 -74.0054529,art_gallery,0
+Petzel Gallery,"520 W 25th St New York, NY 10001 United States",40.749229799999995 -74.0044496,art_gallery,0
+Marianne Boesky Gallery,"507 W 24th St New York, NY 10011 United States",40.7488824 -74.00430899999999,art_gallery,0
+Print Center New York,"535 W 24th St New York, NY 10011 United States",40.7491925 -74.0052759,"museum, art_gallery, arts_organization, non_profit_organization, tourist_attraction",0
+C24 Gallery,"560 W 24th St New York, NY 10011 United States",40.7492488 -74.0061751,"art_gallery, museum, tourist_attraction",0
+Lisson Gallery,"508 W 24th St New York, NY 10011 United States",40.748487 -74.004583,art_gallery,0
+Fremin Gallery,"520 W 23rd St New York, NY 10011 United States",40.7479179 -74.00506229999999,art_gallery,0
+Malin Gallery,"515 West 29th St Street Level Entrance New York, NY 10001 United States",40.7520016 -74.0022443,art_gallery,0
+Bowery Gallery,"547 W 27th St #508 New York, NY 10001 United States",40.7513256 -74.0043755,art_gallery,0
+The Painting Center,"547 W 27th St Suite 500, 5th Floor New York, NY 10001 United States",40.751259 -74.00434609999999,"art_gallery, artist",0
+Kasmin Gallery,"509 W 27th St New York, NY 10001 United States",40.750659 -74.002997,art_gallery,0
+Templon,"293 10th Ave New York, NY 10001 United States",40.7502196 -74.0026963,art_gallery,0
+Hollis Taggart,"521 W 26th St New York, NY 10001 United States",40.7502048 -74.003717,art_gallery,0
+Friedman Benda,"515 W 26th St 1st Floor New York, NY 10001 United States",40.7501015 -74.0035333,art_gallery,0
+RYAN LEE,"515 W 26th St floor 3 New York, NY 10001 United States",40.7500935 -74.0036112,art_gallery,0
+HESSE FLATOW,"508 W 26th St # 5g New York, NY 10001 United States",40.74975 -74.00374099999999,art_gallery,0
+Yancey Richardson,"525 W 22nd St New York, NY 10011 United States",40.7475392 -74.0055951,"art_gallery, museum",0
+DC Moore Gallery,"535 W 22nd St 2nd Floor New York, NY 10011 United States",40.747820399999995 -74.0060608,art_gallery,0
+Dia Chelsea,"537 W 22nd St New York, NY 10011 United States",40.747817999999995 -74.006299,art_gallery,0
+Hauser & Wirth,"542 W 22nd St New York, NY 10011 United States",40.7476497 -74.0067358,art_gallery,30
+Harper's Chelsea,"534 W 22nd St New York, NY 10011 United States",40.7476328 -74.0064163,art_gallery,0
+Sikkema Jenkins & Co,"530 W 22nd St New York, NY 10011 United States",40.747450199999996 -74.00609589999999,art_gallery,0
+Nara Roesler New York,"511 W 21st St New York, NY 10011 United States",40.7468122 -74.0057387,art_gallery,0
+Tina Kim Gallery,"525 W 21st St New York, NY 10011 United States",40.7470056 -74.00623139999999,art_gallery,0
+Tanya Bonakdar Gallery,"521 W 21st St #1 New York, NY 10011 United States",40.747122 -74.006193,"art_gallery, tourist_attraction",0
+Hales Gallery,"547 W 20th St New York, NY 10011 United States",40.7468965 -74.0076313,"art_gallery, artist",0
+Jack Shainman Gallery,"513 W 20th St New York, NY 10011 United States",40.746367899999996 -74.006261,art_gallery,0
+ACA Galleries,"529 W 20th St #5E New York, NY 10011 United States",40.7465864 -74.0068842,art_gallery,0
+kurimanzutto New York,"520 W 20th St New York, NY 10011 United States",40.7462932 -74.00691069999999,art_gallery,0
+David Kordansky Gallery,"520 W 20th St New York, NY 10011 United States",40.7462119 -74.0069429,art_gallery,0
+Michael Rosenfeld Gallery,"100 11th Ave New York, NY 10011 United States",40.746126499999995 -74.0076644,art_gallery,0
+Ethan Cohen Gallery,"251 W 19th St New York, NY 10011 United States",40.7426069 -73.99912929999999,art_gallery,0
