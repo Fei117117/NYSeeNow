@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://nyseenow.cbqpbir87k5q.eu-west-1.rds.amazonaws.com:5432/UserAccount
+    username: fei
+    password: 22200125
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
