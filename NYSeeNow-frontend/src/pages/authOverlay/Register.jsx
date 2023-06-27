@@ -1,35 +1,35 @@
-import React, { useState } from "react";
-import "./Login.css";
-import {post} from "../net/net";
+import React, { useState } from 'react'
+import './Login.css'
 
 export const Register = (props) => {
-  const [username, setUsername] = useState("");
-  const [pass, setPass] = useState("");
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState('')
+  const [pass, setPass] = useState('')
+  const [email, setEmail] = useState('')
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     const userData = {
       username: username,
       password: pass,
       email: email
-    };
+    }
 
-    post("/api/auth/register", userData,
-        (message, status) => {
-          // Handle success
-          console.log("Registration successful:", message, status);
-          // Set the state to indicate that the user is logged in
-        },
-        (message, status) => {
-          // Handle failure
-          console.error("Registration error:", message, status);
-          // Display an error message to the user
-        }
-    );
-  };
-
+    post(
+      '/api/auth/register',
+      userData,
+      (message, status) => {
+        // Handle success
+        console.log('Registration successful:', message, status)
+        // Set the state to indicate that the user is logged in
+      },
+      (message, status) => {
+        // Handle failure
+        console.error('Registration error:', message, status)
+        // Display an error message to the user
+      }
+    )
+  }
 
   return (
     <div className="auth-form-container">
@@ -60,9 +60,9 @@ export const Register = (props) => {
         />
         <button>Create Account</button>
       </form>
-      <button onClick={() => props.onFormSwitch("login")}>
-        Already have an account? Login here.{" "}
+      <button onClick={() => props.onFormSwitch('login')}>
+        Already have an account? Login here.{' '}
       </button>
     </div>
-  );
-};
+  )
+}
