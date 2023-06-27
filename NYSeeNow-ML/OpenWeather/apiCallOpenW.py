@@ -8,7 +8,7 @@ import time
 #start the time on the 1/1/2019
 #make sure to start from the most recent day called
 start_time=1546300800
-p=1
+p=0
 start_time=start_time+3456000*p
 #each_day adds 3456000 seconds to the start time
 #one hour in unix time is 3600 sec
@@ -19,10 +19,10 @@ end_time=1577836800
 
 #keeps calls to 960 per day
 for j in range(1,17):
-    start_time=start_time + hour*60*(j-1)
+    start=start_time + hour*60*(j-1)
 
-    for i in range(0,61):
-        current_time=start_time+hour*i
+    for i in range(0,60):
+        current_time=start+hour*i
         print(current_time)
         # Connect to OpenWeather API
         r = requests.get(owLogin.owUrl, params={'lat': owLogin.owLat, 'lon': owLogin.owLon, 'dt': current_time, 'appid': owLogin.owKey })
