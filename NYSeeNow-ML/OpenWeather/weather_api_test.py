@@ -15,27 +15,23 @@ start_time=start_time+3456000*p
 hour=3600
 #end time is 1/1/2020
 end_time=1577836800
+counter=0
 
 
 #keeps calls to 960 per day
 for j in range(1,17):
     start=start_time + hour*60*(j-1)
+    print("Start time for new 60 requests: "+str(start))
 
     for i in range(0,60):
         current_time=start+hour*i
-        print(current_time)
-        # Connect to OpenWeather API
-        r = requests.get(owLogin.owUrl, params={'lat': owLogin.owLat, 'lon': owLogin.owLon, 'dt': current_time, 'appid': owLogin.owKey })
+        print("time in loop incrementing by 3600 "+str(current_time))
+        counter+=1
+        
 
-        if r.status_code == 200:
-            # If connection successful:
-            print('Connection to OpenWeather Map successful!')
-            data = r.json()
-
-            #send data to a json file
-            with open('OpenWeather/weatherData_2.json', 'a') as file:
-                json.dump(data, file)
-                            
+    print("After each 60 requests "+str(current_time)) 
         
     #wait for 61 seconds before repeating, keeps limit to 60 calls per second
-    time.sleep(61)
+    time.sleep(0.05)
+
+print("Total number of requests: "+str(counter))
