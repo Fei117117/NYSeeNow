@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <AuthProvider>
-        <NavBar>Something else</NavBar>
+        <NavBar></NavBar>
         <div className="route-container">
           <Routes>
             <Route path="/" element={<HomePage />}></Route>
