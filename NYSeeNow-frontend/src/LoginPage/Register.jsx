@@ -1,21 +1,40 @@
 import React, { useState } from "react";
 import "./Login.css";
+import {post} from "../net/net";
 
 export const Register = (props) => {
   const [username, setUsername] = useState("");
   const [pass, setPass] = useState("");
   const [email, setEmail] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    //send data to the backend
-    //if success set the state to logged in
+
+    const userData = {
+      username: username,
+      password: pass,
+      email: email
+    };
+
+    post("/api/auth/register", userData,
+        (message, status) => {
+          // Handle success
+          console.log("Registration successful:", message, status);
+          // Set the state to indicate that the user is logged in
+        },
+        (message, status) => {
+          // Handle failure
+          console.error("Registration error:", message, status);
+          // Display an error message to the user
+        }
+    );
   };
+
 
   return (
     <div className="auth-form-container">
       <form onSubmit={handleSubmit} className="auth-form">
-        <label htmlFor="email">Username</label>
+        <label htmlFor="email">Email</label>
         <input
           value={email}
           onChange={(e) => setEmail(e.target.value)}
