@@ -6,7 +6,7 @@ export const NavBar = () => {
         <li>||||</li>
         <li>
           <Link to="/" className="site-title">
-            NySee Now
+            NySeeNow
           </Link>
         </li>
       </ul>
