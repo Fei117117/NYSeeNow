@@ -1,5 +1,6 @@
 import './App.css'
 import { NavBar } from './components/NavBar'
+import { SideBar } from './components/SideBar'
 import { Route, Routes } from 'react-router-dom'
 import { HomePage } from './pages/homePage/HomePage'
 import { MyItineraries } from './pages/savedItinerariesPage/MyItineraries'
@@ -11,6 +12,7 @@ function App() {
     <>
       <AuthProvider>
         <NavBar></NavBar>
+        <SideBar></SideBar>
         <div className="route-container">
           <Routes>
             <Route path="/" element={<HomePage />}></Route>
