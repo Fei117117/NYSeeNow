@@ -70,7 +70,7 @@ aside.side-bar.open {
 aside.side-bar ul {
   padding: 0;
   margin: 0;
-  list-style: none; /* removes bullet points */
+  list-style: none; 
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -81,14 +81,14 @@ aside.side-bar ul {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   padding-left: 0;
   transition: padding-left 0.3s ease;
 }
 
 .side-bar.open .sidebar-content {
-  padding-left: 98%; /* adjust as needed */
+  padding-left: 98%; 
 }
 
 .hamburger-icon {
@@ -97,17 +97,35 @@ aside.side-bar ul {
 }
 
 .side-bar.open .hamburger-icon {
-  padding-left: 98%; /* adjust as needed */
+  padding-left: 98%; 
 }
 
 .sidebar-icons li {
-  margin-top: 0px; /* adjust value as needed */
+  margin-top: 0px; 
 }
 
 .calendar-icon {
-  margin-top: -200px; /* adjust as needed */
+  margin-top: -200px; 
 }
 
 .marker-icon {
-  margin-top: 50px; /* adjust as needed */
+  margin-top: 50px; 
+}
+
+.question-mark-icon {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: auto; /* Push to the bottom */
+  padding-left: 0;
+  transition: padding-left 0.3s ease;
+}
+
+.side-bar.open .question-mark-icon {
+  padding-left: 98%; /* adjust as needed */
+}
+
+.question-mark-icon img {
+  width: 30px; /* Adjust as needed */
+  height: 30px; /* Adjust as needed */
 }
