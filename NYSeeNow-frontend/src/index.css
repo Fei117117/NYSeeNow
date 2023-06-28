@@ -6,10 +6,6 @@ body {
   box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
-
 nav {
   background-color: black;
   color: white;
@@ -55,8 +51,8 @@ aside.side-bar {
   color: white;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
+  justify-content: space-between; /* distribute space evenly */
+  align-items: center; /* center items horizontally */
   gap: 4rem;
   padding: 1rem 1rem;
   height: 100vh; /* full height */
@@ -64,13 +60,54 @@ aside.side-bar {
   position: fixed; /* fixed position */
   left: 0; /* stick to the left */
   z-index: 2; /* higher z-index */
+  transition: width 0.3s ease; /* animate the change */
+}
+
+aside.side-bar.open {
+  width: 50%; /* "open" width */
 }
 
 aside.side-bar ul {
   padding: 0;
   margin: 0;
-  list-style: none;
+  list-style: none; /* removes bullet points */
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+
+
+.side-bar .sidebar-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 0;
+  transition: padding-left 0.3s ease;
+}
+
+.side-bar.open .sidebar-content {
+  padding-left: 98%; /* adjust as needed */
+}
+
+.hamburger-icon {
+  padding-left: 0;
+  transition: padding-left 0.3s ease;
+}
+
+.side-bar.open .hamburger-icon {
+  padding-left: 98%; /* adjust as needed */
+}
+
+.sidebar-icons li {
+  margin-top: 0px; /* adjust value as needed */
+}
+
+.calendar-icon {
+  margin-top: -200px; /* adjust as needed */
+}
+
+.marker-icon {
+  margin-top: 50px; /* adjust as needed */
 }

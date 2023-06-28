@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom'
-export const NavBar = () => {
+export const NavBar = ({ isOpen }) => {
+  const navStyle = {
+    marginLeft: isOpen ? '50%' : '0', // position of sidebar extended
+    transition: 'margin-left 0.3s ease', // transition animation
+  };
   return (
-    <nav className="main-header">
+    <nav className="main-header" style={navStyle}>
       <ul>
         <li></li>
         <li>
