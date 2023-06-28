@@ -23,26 +23,13 @@ export const Login = (props) => {
 
     const url = 'api/auth/login'
 
-    post(
-      url,
-      data,
-      (message, status) => {
-        console.log('Success:', message)
-        console.log('Status:', status)
-        setMessage('Login successful!')
-        setAuthUser(username)
-        setIsLoggedIn(true)
-      },
-      (message, status) => {
-        console.log('Failure:', message)
-        console.log('Status:', status)
-        setMessage('Login failed. Please try again.')
-      },
-      (error) => {
-        console.error('Error:', error)
-        setMessage('An error occurred. Please try again later.')
-      }
-    )
+    post(url, data, (message, status) => {
+        console.log('Message:', message);
+        console.log('Status:', status);
+        setMessage('Login failed. Please try again.');
+    });
+
+
   }
 
   return (

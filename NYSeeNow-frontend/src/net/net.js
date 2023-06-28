@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 const defaultError = () => toast.error('Error!')
 const defaultFailure = (message) => toast.warning(message)
 
-function post(url, data, success, failure = defaultFailure, error = defaultError) {
+function post(url, data, failure = defaultFailure, error = defaultError) {
   axios
     .post(url, data, {
       headers: {
