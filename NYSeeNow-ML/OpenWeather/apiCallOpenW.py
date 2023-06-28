@@ -8,6 +8,7 @@ import time
 #start the time on the 1/1/2019
 #make sure to start from the most recent day called
 start_time=1546300800
+start_time=1549130400+3600
 p=0
 start_time=start_time+3456000*p
 #each_day adds 3456000 seconds to the start time
