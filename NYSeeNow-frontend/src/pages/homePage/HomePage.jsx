@@ -56,21 +56,3 @@ export const HomePage = () => {
     )
   }
 }
-
-function Map() {
-  const fetched_positions_array = fetch_marker_data()
-
-  const center_point = useMemo(() => ({ lat: 40.7484, lng: -73.9857 }), [])
-  return (
-    <GoogleMap
-      mapContainerClassName="map-container"
-      mapTypeId="roadmap"
-      zoom={15}
-      center={center_point}
-    >
-      {fetched_positions_array.map((point, index) => (
-        <Marker key={index} position={point} />
-      ))}
-    </GoogleMap>
-  )
-}
