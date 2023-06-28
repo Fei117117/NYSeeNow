@@ -8,6 +8,7 @@ export const SideBar = () => {
     <div>
       <aside className={`side-bar ${isOpen ? 'open' : ''}`}>
         <ul>
+        <li>|||</li>
         </ul>
         <ul>
           <li>
