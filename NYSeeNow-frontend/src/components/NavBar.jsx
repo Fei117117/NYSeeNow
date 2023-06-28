@@ -3,7 +3,7 @@ export const NavBar = () => {
   return (
     <nav className="main-header">
       <ul>
-        <li>||||</li>
+        <li></li>
         <li>
           <Link to="/" className="site-title">
             NySeeNow
