@@ -11,8 +11,8 @@ function App() {
   return (
     <>
       <AuthProvider>
-        <NavBar></NavBar>
         <SideBar></SideBar>
+        <NavBar></NavBar>
         <div className="route-container">
           <Routes>
             <Route path="/" element={<HomePage />}></Route>

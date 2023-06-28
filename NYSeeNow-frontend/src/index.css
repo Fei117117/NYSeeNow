@@ -18,6 +18,7 @@ nav {
   align-items: stretch;
   gap: 2rem;
   padding: 0 1rem;
+  z-index: 1; /* lower z-index */
 }
 
 nav a {
@@ -56,14 +57,14 @@ aside.side-bar {
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
-  gap: 2rem;
-  padding: 0 1rem;
+  gap: 4rem;
+  padding: 1rem 1rem;
   height: 100vh; /* full height */
   width: 54px; /* adjust width as needed */
   position: fixed; /* fixed position */
   left: 0; /* stick to the left */
+  z-index: 2; /* higher z-index */
 }
-
 
 aside.side-bar ul {
   padding: 0;
@@ -73,4 +74,3 @@ aside.side-bar ul {
   flex-direction: column;
   gap: 2rem;
 }
-
