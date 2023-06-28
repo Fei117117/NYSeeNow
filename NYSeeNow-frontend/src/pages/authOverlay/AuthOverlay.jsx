@@ -9,9 +9,9 @@ export const AuthOverlay = (props) => {
   }
 
   return currentForm === 'login' ? (
-      // Passing functions as props
-      <Login onFormSwitch={toggleForm} />
+    // Passing functions as props
+    <Login onFormSwitch={toggleForm} />
   ) : (
-      <Register onFormSwitch={toggleForm} />
+    <Register onFormSwitch={toggleForm} />
   )
 }
