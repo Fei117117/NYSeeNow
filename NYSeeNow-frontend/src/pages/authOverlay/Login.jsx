@@ -60,17 +60,6 @@ export const Login = (props) => {
         />
         <button>Login</button>
         <button onClick={() => props.onFormSwitch('reset')}>Forgot password or username?</button>
-        <div className="remember-checkbox">
-          {' '}
-          {/* checkbox container */}
-          <input
-            type="checkbox"
-            checked={remember}
-            onChange={(e) => setRemember(e.target.checked)}
-            id="remember"
-          />
-          <label htmlFor="remember">Remember</label>
-        </div>
         {message && <p className="message">{message}</p>} {/* Display message if it exists */}
       </form>
       <button onClick={() => props.onFormSwitch('register')}>
