@@ -6,6 +6,7 @@ import { MyItineraries } from './pages/savedItinerariesPage/MyItineraries'
 import { UserProfile } from './pages/userProfilePage/UserProfile'
 import { AuthProvider, useAuth } from './context/AuthContext'
 import { Login } from './pages/authOverlay/Login'
+import { Forget } from './pages/authOverlay/Reset'
 function App() {
   return (
     <>

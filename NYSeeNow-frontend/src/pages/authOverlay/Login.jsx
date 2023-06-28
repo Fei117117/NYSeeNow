@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import './Login.css'
-import fetch from 'isomorphic-fetch'
 import { post } from '../../net/net'
 import { useAuth } from '../../context/AuthContext'
 
@@ -60,6 +59,7 @@ export const Login = (props) => {
           onChange={(e) => setPass(e.target.value)}
         />
         <button>Login</button>
+        <button onClick={() => props.onFormSwitch('reset')}>Forgot password or username?</button>
         <div className="remember-checkbox">
           {' '}
           {/* checkbox container */}
