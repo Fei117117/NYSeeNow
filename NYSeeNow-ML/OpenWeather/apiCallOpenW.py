@@ -9,8 +9,7 @@ import time
 #make sure to start from the most recent day called
 start_time=1546300800
 #edit below with last time called in weather_data2 file
-start_time=1552629600+3600
-#each_day adds 3456000 seconds to the start time
+start_time=1556085600+3600
 #one hour in unix time is 3600 sec
 hour=3600
 #end time is 1/1/2020
