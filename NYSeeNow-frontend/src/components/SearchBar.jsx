@@ -1,5 +1,6 @@
 import { Autocomplete } from '@react-google-maps/api'
 import { useRef } from 'react'
+import styles from './SearchBar.module.css'
 
 export const SearchBar = (props) => {
   const autocompleteRef = useRef(null)
@@ -15,13 +16,17 @@ export const SearchBar = (props) => {
     }
   }
   return (
-    <Autocomplete
-      onLoad={(autocomplete) => {
-        autocompleteRef.current = autocomplete
-      }}
-      onPlaceChanged={handlePlaceChanged}
-    >
-      <input type="text" placeholder="Search for a location" />
-    </Autocomplete>
+    <div className={styles.searchBox}>
+      <Autocomplete
+        onLoad={(autocomplete) => {
+          autocompleteRef.current = autocomplete
+        }}
+        onPlaceChanged={handlePlaceChanged}
+      >
+        <div className={styles.searchContainer}>
+          <input type="text" placeholder="Search for a location" />
+        </div>
+      </Autocomplete>
+    </div>
   )
 }

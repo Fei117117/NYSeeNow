@@ -1,16 +1,19 @@
 import { Link } from 'react-router-dom'
 import { SearchBar } from './SearchBar'
+import CategoryDropDown from './CategoriesDropDown'
+import styles from './NavBar.module.css'
+
 export const NavBar = ({ isOpen, set_map_center }) => {
   const navStyle = {
     marginLeft: isOpen ? '50%' : '0', // position of sidebar extended
     transition: 'margin-left 0.3s ease' // transition animation
   }
   return (
-    <nav className="main-header" style={navStyle}>
+    <nav style={navStyle}>
       <ul>
         <li></li>
         <li>
-          <Link to="/" className="site-title">
+          <Link to="/" className={styles.siteTitle}>
             NySeeNow
           </Link>
         </li>
@@ -22,7 +25,7 @@ export const NavBar = ({ isOpen, set_map_center }) => {
       </ul>
       <ul>
         <li>
-          <a>Categories</a>
+          <CategoryDropDown></CategoryDropDown>
         </li>
         <li>
           <Link to="/itineraries">Itineraries</Link>

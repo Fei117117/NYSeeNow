@@ -24,7 +24,8 @@ function fetch_marker_data() {
 
 export const HomePageMap = (props) => {
   // fetch_marker_data will be turned into a function call that can get all the attractions from the backend.
-  const fetched_markers = fetch_marker_data()
+
+  const [fetched_markers, setFetchedMarkers] = useState(fetch_marker_data())
 
   const [zoomLevel, setZoomLevel] = useState(13) // Initial zoom level
 

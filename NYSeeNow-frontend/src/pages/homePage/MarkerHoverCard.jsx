@@ -17,7 +17,7 @@ export const MarkerHoverCard = (props) => {
 
   return (
     <>
-      <div className="hover-card-containter">
+      <div className="hover-card-containter" onMouseLeave={props.onClose}>
         <h3>{props.place_name}</h3>
         <button onClick={add_attraction}>Add to itenerary</button>
         <button onClick={props.onClose}>Close</button>
