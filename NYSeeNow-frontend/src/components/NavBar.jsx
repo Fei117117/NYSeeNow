@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
-export const NavBar = ({ isOpen }) => {
+import { SearchBar } from './SearchBar'
+export const NavBar = ({ isOpen, set_map_center }) => {
   const navStyle = {
     marginLeft: isOpen ? '50%' : '0', // position of sidebar extended
-    transition: 'margin-left 0.3s ease', // transition animation
-  };
+    transition: 'margin-left 0.3s ease' // transition animation
+  }
   return (
     <nav className="main-header" style={navStyle}>
       <ul>
@@ -16,7 +17,7 @@ export const NavBar = ({ isOpen }) => {
       </ul>
       <ul>
         <li>
-          <a>Search</a>
+          <SearchBar set_map_center={set_map_center}></SearchBar>
         </li>
       </ul>
       <ul>

@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useState, useMemo, useRef } from 'react'
 import markerData from '../../assets/best_time_ok_data.json'
 import { GoogleMap, MarkerF } from '@react-google-maps/api'
 import { HomePageMarker } from './HomePageMarker'
@@ -22,24 +22,33 @@ function fetch_marker_data() {
   return coordinate_json
 }
 
-export const HomePageMap = () => {
+export const HomePageMap = (props) => {
   // fetch_marker_data will be turned into a function call that can get all the attractions from the backend.
   const fetched_markers = fetch_marker_data()
 
-  const center_point = useMemo(() => ({ lat: 40.7484, lng: -73.9857 }), [])
+  const [zoomLevel, setZoomLevel] = useState(13) // Initial zoom level
+
+  const mapRef = useRef(null)
 
   const [mapLoaded, setMapLoaded] = useState(false)
 
   const handleMapLoading = () => {
     setMapLoaded(true)
   }
+
+  const handleCenterChange = () => {
+    setZoomLevel(25)
+  }
+
   return (
     <GoogleMap
       mapContainerClassName="map-container"
+      ref={mapRef}
       mapTypeId="roadmap"
-      zoom={13}
-      center={center_point}
+      zoom={zoomLevel}
+      center={props.map_center}
       onLoad={handleMapLoading}
+      onCenterChanged={handleCenterChange}
     >
       {mapLoaded &&
         fetched_markers.map((marker_details, index) => (
