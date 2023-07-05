@@ -52,6 +52,7 @@ nav li.active {
   width: 100%;
   height: 90vh;
 }
+
 aside.side-bar {
   background-color: black;
   color: white;
@@ -76,12 +77,11 @@ aside.side-bar.open {
 aside.side-bar ul {
   padding: 0;
   margin: 0;
-  list-style: none; 
+  list-style: none;
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
-
 
 .side-bar .sidebar-content {
   height: 100%;
@@ -94,7 +94,7 @@ aside.side-bar ul {
 }
 
 .side-bar.open .sidebar-content {
-  padding-left: 98%; 
+  padding-left: 98%;
 }
 
 .hamburger-icon {
@@ -103,19 +103,19 @@ aside.side-bar ul {
 }
 
 .side-bar.open .hamburger-icon {
-  padding-left: 98%; 
+  padding-left: 98%;
 }
 
 .sidebar-icons li {
-  margin-top: 0px; 
+  margin-top: 0px;
 }
 
 .calendar-icon {
-  margin-top: -200px; 
+  margin-top: -200px;
 }
 
 .marker-icon {
-  margin-top: 50px; 
+  margin-top: 50px;
 }
 
 .question-mark-icon {
@@ -134,4 +134,9 @@ aside.side-bar ul {
 .question-mark-icon img {
   width: 30px; /* Adjust as needed */
   height: 30px; /* Adjust as needed */
+}
+.hover-card-containter {
+  background-color: white;
+  color: black;
+  padding: 12;
 }
