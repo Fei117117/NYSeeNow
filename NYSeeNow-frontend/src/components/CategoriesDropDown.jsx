@@ -2,16 +2,13 @@ import React, { useState } from 'react'
 
 import styles from './CategoriesDropDown.module.css'
 
-const CategoryDropDown = () => {
-  const options = [
-    { id: 1, label: 'Mainstream' },
-    { id: 2, label: 'Parks' },
-    { id: 3, label: 'Theatres' },
-    { id: 4, label: 'Option 4' }
-  ]
+import options from '../assets/attraction_options.json'
 
+import { useCategories } from '../context/CategoriesContext'
+
+const CategoryDropDown = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const [selectedOptions, setSelectedOptions] = useState([])
+  const { selectedOptions, setSelectedOptions } = useCategories()
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen)
@@ -25,7 +22,6 @@ const CategoryDropDown = () => {
     } else {
       setSelectedOptions([...selectedOptions, optionId])
     }
-    toggleDropdown
   }
 
   return (
