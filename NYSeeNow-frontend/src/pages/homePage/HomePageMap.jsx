@@ -1,5 +1,7 @@
 import { useEffect, useState, useMemo, useRef } from 'react'
+
 import attractions_data from '../../assets/cleaned_attracions.json'
+
 import { GoogleMap, MarkerF } from '@react-google-maps/api'
 import { HomePageMarker } from './HomePageMarker'
 import { useCategories } from '../../context/CategoriesContext'
@@ -53,7 +55,9 @@ export const HomePageMap = (props) => {
     setFetchedMarkers(fetch_marker_data())
   }, [selectedOptions])
 
+
   const [zoomLevel, setZoomLevel] = useState(13) // Initial zoom level
+
 
   const mapRef = useRef(null)
 

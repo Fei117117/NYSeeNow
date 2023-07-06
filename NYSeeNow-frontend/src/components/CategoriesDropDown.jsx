@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import styles from './CategoriesDropDown.module.css'
 
+
 import options from '../assets/attraction_options.json'
 
 import { useCategories } from '../context/CategoriesContext'
@@ -9,6 +10,7 @@ import { useCategories } from '../context/CategoriesContext'
 const CategoryDropDown = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { selectedOptions, setSelectedOptions } = useCategories()
+
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen)
@@ -22,6 +24,7 @@ const CategoryDropDown = () => {
     } else {
       setSelectedOptions([...selectedOptions, optionId])
     }
+
   }
 
   return (
