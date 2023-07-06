@@ -13,16 +13,17 @@ import { SelectionProvider } from './context/SelectionContext'
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
+  const [center, setMapCenter] = useState({ lat: 40.7484, lng: -73.9857 })
 
   return (
     <>
       <AuthProvider>
         <SelectionProvider>
           <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />
-          <NavBar isOpen={isOpen} />
+          <NavBar isOpen={isOpen} set_map_center={setMapCenter} />
           <div className="route-container">
             <Routes>
-              <Route path="/" element={<HomePage />}></Route>
+              <Route path="/" element={<HomePage map_center={center} />}></Route>
               <Route path="/itineraries" element={<MyItineraries />}></Route>
               <Route path="/userprofile" element={<UserProfile />}></Route>
             </Routes>

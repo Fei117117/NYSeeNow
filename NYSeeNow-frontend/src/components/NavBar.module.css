@@ -1,0 +1,39 @@
+nav {
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 2rem;
+  padding: 0 1rem;
+  z-index: 1; /* lower z-index */
+}
+
+nav a {
+  color: inherit;
+  text-decoration: none;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.25rem;
+}
+
+.siteTitle {
+  font-size: 2rem;
+}
+
+nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+nav li:hover {
+  background: rgb(255, 255, 255, 0.6);
+}
+
+nav li.active {
+  background-color: lightgray;
+}
