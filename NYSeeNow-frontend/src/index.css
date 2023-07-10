@@ -28,6 +28,18 @@ nav a {
   padding: 0.25rem;
 }
 
+.NYSEENOW-LOGO {
+  display: flex;
+  align-items: center;
+  height: 100%; /* Set the height of the container to 100% of the parent element */
+}
+
+.NYSEENOW-LOGO img {
+  max-height: 100%; /* Limit the height of the logo image to 100% of the container */
+  width: auto; /* Allow the width to adjust automatically to maintain aspect ratio */
+}
+
+
 .site-title {
   font-size: 2rem;
 }
