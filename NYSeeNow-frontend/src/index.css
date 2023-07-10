@@ -8,6 +8,46 @@ body {
   box-sizing: border-box;
 }
 
+nav {
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 2rem;
+  padding: 0 1rem;
+  z-index: 1;
+}
+
+nav a {
+  color: inherit;
+  text-decoration: none;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.25rem;
+}
+
+.site-title {
+  font-size: 2rem;
+}
+
+nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+nav li:hover {
+  background-color: pink;
+}
+
+nav li.active {
+  background-color: lightgray;
+}
+
 .map-container {
   width: 100%;
   height: 90vh;
@@ -16,87 +56,135 @@ body {
 aside.side-bar {
   background-color: black;
   color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* distribute space evenly */
-  align-items: center; /* center items horizontally */
-  gap: 4rem;
-  padding: 1rem 1rem;
-  height: 100vh; /* full height */
-  width: 54px; /* adjust width as needed */
-  position: fixed; /* fixed position */
-  left: 0; /* stick to the left */
-  z-index: 2; /* higher z-index */
-  transition: width 0.3s ease; /* animate the change */
+  display: grid;  /* Change display to grid */
+  grid-template-columns: 1fr auto; /* Two columns: content and icons */
+  height: 100vh;
+  width: 54px;
+  position: fixed;
+  left: 0;
+  grid-template-columns: 1fr auto;
+  z-index: 2;
+  transition: width 0.3s ease;
+  overflow: hidden; /* Hide the overflow */
 }
 
 aside.side-bar.open {
-  width: 50%; /* "open" width */
+  width: 50%;
+  overflow-y: auto; /* Show scrollbar when open */
+  grid-template-columns: 1fr 54px; 
 }
 
-aside.side-bar ul {
-  padding: 0;
-  margin: 0;
-  list-style: none;
+.sidebar-content-icons-container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-}
-
-.side-bar .sidebar-content {
+  align-items: flex-end;
   height: 100%;
+  width: 100%;
+  overflow-y: auto; /* Enable scrolling */
+}
+
+.side-bar.open .sidebar-icons {
+  width: 0%;
+}
+
+.sidebar-icons img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.sidebar-content {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: flex-start;
-  padding-left: 0;
-  transition: padding-left 0.3s ease;
+  justify-content: flex-start;
+  height: 100%;
+  width: 100%;
+  padding: 1rem 1rem;
 }
+
+.sidebar-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center; /* Add this line */
+  gap: 3rem; /* Adjust the gap value as needed */
+  margin-left: -0.5rem; /* Adjust the margin-left value as needed */
+  order: 2;
+  height: 100%;
+  align-items: center;
+  margin-top: 0.7rem; /* Adjust the margin-top value as needed */
+}
+
 
 .side-bar.open .sidebar-content {
-  padding-left: 98%;
+  opacity: 1;
 }
 
-.hamburger-icon {
-  padding-left: 0;
-  transition: padding-left 0.3s ease;
-}
-
-.side-bar.open .hamburger-icon {
-  padding-left: 98%;
-}
-
-.sidebar-icons li {
-  margin-top: 0px;
-}
-
-.calendar-icon {
-  margin-top: -200px;
-}
-
-.marker-icon {
-  margin-top: 50px;
-}
 
 .question-mark-icon {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: auto; /* Push to the bottom */
-  padding-left: 0;
-  transition: padding-left 0.3s ease;
-}
-
-.side-bar.open .question-mark-icon {
-  padding-left: 98%; /* adjust as needed */
+  margin-top: auto;
 }
 
 .question-mark-icon img {
-  width: 30px; /* Adjust as needed */
-  height: 30px; /* Adjust as needed */
+  width: 30px;
+  height: 30px;
 }
+
 .hover-card-containter {
   background-color: white;
   color: black;
   padding: 12;
+}
+
+
+.attraction-card {
+  border: 1px solid gray;
+  padding: 30px; 
+  margin: 10px 0;
+  position: relative;
+  max-width: 530px; 
+}
+
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-delete-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.card-content {
+  margin-top: 10px;
+}
+
+/* Scroller Bar Webkit like Chrome */
+.sidebar-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 4px;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Firefox */
+.sidebar-content {
+  scrollbar-width: thin; 
+  scrollbar-color: #888 #000; 
+  order: 1; /* Make sure content is displayed before the icons */
+  overflow-y: auto; /* Enable scrolling */
 }
