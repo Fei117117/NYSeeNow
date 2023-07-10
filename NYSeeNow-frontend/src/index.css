@@ -161,6 +161,23 @@ aside.side-bar.open {
   max-width: 530px; 
 }
 
+.attraction-counter {
+  position: absolute;
+  bottom: 10px;
+  left: 60px; /* This may need to be adjusted */
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: black;
+  font-size: 18px;
+  z-index: 3; /* This ensures the counter is visible on top of other elements */
+}
+
+
 
 .card-header {
   display: flex;

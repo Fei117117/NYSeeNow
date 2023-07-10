@@ -1,4 +1,6 @@
+import React from 'react';
 import SidebarContent from './SidebarContent';
+import AttractionCounter from './AttractionCounter'; // import the counter
 
 export const SideBar = ({ isOpen, setIsOpen }) => {
   return (
@@ -16,6 +18,7 @@ export const SideBar = ({ isOpen, setIsOpen }) => {
       <div className="sidebar-content">
         {isOpen && <SidebarContent />} {/* Includes the SidebarContent component */}
       </div>
+      <AttractionCounter /> {/* Add the AttractionCounter component here */}
     </aside>
   );
 };
