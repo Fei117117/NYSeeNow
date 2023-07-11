@@ -9,7 +9,7 @@ import time
 #make sure to start from the most recent day called
 start_time=1546300800
 #edit below with last time called in weather_data2 file
-start_time=1575108000+3600
+start_time=1577268000+3600
 #one hour in unix time is 3600 sec
 hour=3600
 #end time is 1/1/2020
