@@ -162,9 +162,9 @@ aside.side-bar.open {
 }
 
 .attraction-counter {
-  position: absolute;
+  position: fixed;
   bottom: 10px;
-  left: 60px; /* This may need to be adjusted */
+  left: 60px;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -172,10 +172,12 @@ aside.side-bar.open {
   align-items: center;
   justify-content: center;
   background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   color: black;
   font-size: 18px;
-  z-index: 3; /* This ensures the counter is visible on top of other elements */
+  z-index: 3;
 }
+
 
 
 
