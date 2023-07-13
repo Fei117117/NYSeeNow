@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import './Login.css'
-import fetch from 'isomorphic-fetch'
 import { post } from '../../net/net'
 import { useAuth } from '../../context/AuthContext'
 
@@ -23,26 +22,21 @@ export const Login = (props) => {
 
     const url = 'api/auth/login'
 
-    post(
-      url,
-      data,
-      (message, status) => {
-        console.log('Success:', message)
-        console.log('Status:', status)
-        setMessage('Login successful!')
-        setAuthUser(username)
-        setIsLoggedIn(true)
-      },
-      (message, status) => {
-        console.log('Failure:', message)
-        console.log('Status:', status)
-        setMessage('Login failed. Please try again.')
-      },
-      (error) => {
-        console.error('Error:', error)
-        setMessage('An error occurred. Please try again later.')
-      }
-    )
+    post(url, data,
+        (message, status) => {
+          console.log('Failure:', message);
+          console.log('Status:', status);
+          setMessage('Logged in.');
+        },
+        (message, status) => {
+          console.log('Failure:', message);
+          console.log('Status:', status);
+          setMessage('Login failed. Please try again.');
+        }
+    );
+
+
+
   }
 
   return (
@@ -65,17 +59,7 @@ export const Login = (props) => {
           onChange={(e) => setPass(e.target.value)}
         />
         <button>Login</button>
-        <div className="remember-checkbox">
-          {' '}
-          {/* checkbox container */}
-          <input
-            type="checkbox"
-            checked={remember}
-            onChange={(e) => setRemember(e.target.checked)}
-            id="remember"
-          />
-          <label htmlFor="remember">Remember</label>
-        </div>
+        <button onClick={() => props.onFormSwitch('reset')}>Forgot password or username?</button>
         {message && <p className="message">{message}</p>} {/* Display message if it exists */}
       </form>
       <button onClick={() => props.onFormSwitch('register')}>

@@ -1,13 +1,11 @@
 body {
   margin: 0;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial,
+    sans-serif;
 }
 
 * {
   box-sizing: border-box;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 nav {
@@ -18,6 +16,7 @@ nav {
   align-items: stretch;
   gap: 2rem;
   padding: 0 1rem;
+  z-index: 1;
 }
 
 nav a {
@@ -28,6 +27,18 @@ nav a {
   align-items: center;
   padding: 0.25rem;
 }
+
+.NYSEENOW-LOGO {
+  display: flex;
+  align-items: center;
+  height: 100%; /* Set the height of the container to 100% of the parent element */
+}
+
+.NYSEENOW-LOGO img {
+  max-height: 100%; /* Limit the height of the logo image to 100% of the container */
+  width: auto; /* Allow the width to adjust automatically to maintain aspect ratio */
+}
+
 
 .site-title {
   font-size: 2rem;
@@ -47,4 +58,164 @@ nav li:hover {
 
 nav li.active {
   background-color: lightgray;
+}
+
+.map-container {
+  width: 100%;
+  height: 90vh;
+}
+
+aside.side-bar {
+  background-color: black;
+  color: white;
+  display: grid;  /* Change display to grid */
+  grid-template-columns: 1fr auto; /* Two columns: content and icons */
+  height: 100vh;
+  width: 54px;
+  position: fixed;
+  left: 0;
+  grid-template-columns: 1fr auto;
+  z-index: 2;
+  transition: width 0.3s ease;
+  overflow: hidden; /* Hide the overflow */
+}
+
+aside.side-bar.open {
+  width: 50%;
+  overflow-y: auto; /* Show scrollbar when open */
+  grid-template-columns: 1fr 54px; 
+}
+
+.sidebar-content-icons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto; /* Enable scrolling */
+}
+
+.side-bar.open .sidebar-icons {
+  width: 0%;
+}
+
+.sidebar-icons img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 100%;
+  width: 100%;
+  padding: 1rem 1rem;
+}
+
+.sidebar-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center; /* Add this line */
+  gap: 3rem; /* Adjust the gap value as needed */
+  margin-left: -0.5rem; /* Adjust the margin-left value as needed */
+  order: 2;
+  height: 100%;
+  align-items: center;
+  margin-top: 0.7rem; /* Adjust the margin-top value as needed */
+}
+
+
+.side-bar.open .sidebar-content {
+  opacity: 1;
+}
+
+
+.question-mark-icon {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+}
+
+.question-mark-icon img {
+  width: 30px;
+  height: 30px;
+}
+
+.hover-card-containter {
+  background-color: white;
+  color: black;
+  padding: 12;
+}
+
+
+.attraction-card {
+  border: 1px solid gray;
+  padding: 30px; 
+  margin: 10px 0;
+  position: relative;
+  max-width: 530px; 
+}
+
+.attraction-counter {
+  position: fixed;
+  bottom: 10px;
+  left: 60px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  color: black;
+  font-size: 18px;
+  z-index: 3;
+}
+
+
+
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-delete-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.card-content {
+  margin-top: 10px;
+}
+
+/* Scroller Bar Webkit like Chrome */
+.sidebar-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 4px;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Firefox */
+.sidebar-content {
+  scrollbar-width: thin; 
+  scrollbar-color: #888 #000; 
+  order: 1; /* Make sure content is displayed before the icons */
+  overflow-y: auto; /* Enable scrolling */
 }
