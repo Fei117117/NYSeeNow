@@ -29,7 +29,6 @@ export const HomePageMarker = (props) => {
       <MarkerF
         position={props.markerDetails['position']}
         onMouseOver={handleMarkerHoveredIn}
-        onMouseUp={handleMarkerHoveredOut}
         onClick={handleLocationClick}
       ></MarkerF>
       {hovered && (
@@ -37,6 +36,7 @@ export const HomePageMarker = (props) => {
           <MarkerHoverCard
             place_name={props.markerDetails['name']}
             onClose={handleMarkerHoveredOut}
+            markerInfo={props.markerDetails}
           ></MarkerHoverCard>
         </InfoBox>
       )}

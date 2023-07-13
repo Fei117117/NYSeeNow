@@ -39,7 +39,6 @@ nav a {
   width: auto; /* Allow the width to adjust automatically to maintain aspect ratio */
 }
 
-
 .site-title {
   font-size: 2rem;
 }
@@ -68,7 +67,7 @@ nav li.active {
 aside.side-bar {
   background-color: black;
   color: white;
-  display: grid;  /* Change display to grid */
+  display: grid; /* Change display to grid */
   grid-template-columns: 1fr auto; /* Two columns: content and icons */
   height: 100vh;
   width: 54px;
@@ -83,7 +82,7 @@ aside.side-bar {
 aside.side-bar.open {
   width: 50%;
   overflow-y: auto; /* Show scrollbar when open */
-  grid-template-columns: 1fr 54px; 
+  grid-template-columns: 1fr 54px;
 }
 
 .sidebar-content-icons-container {
@@ -110,16 +109,22 @@ aside.side-bar.open {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  vertical-align: middle;
   height: 100%;
   width: 100%;
   padding: 1rem 1rem;
 }
 
+.sidebar-content.closed {
+  display: none;
+}
+
 .sidebar-icons {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center; /* Add this line */
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
   gap: 3rem; /* Adjust the gap value as needed */
   margin-left: -0.5rem; /* Adjust the margin-left value as needed */
   order: 2;
@@ -128,11 +133,9 @@ aside.side-bar.open {
   margin-top: 0.7rem; /* Adjust the margin-top value as needed */
 }
 
-
 .side-bar.open .sidebar-content {
   opacity: 1;
 }
-
 
 .question-mark-icon {
   width: 100%;
@@ -152,13 +155,12 @@ aside.side-bar.open {
   padding: 12;
 }
 
-
 .attraction-card {
   border: 1px solid gray;
-  padding: 30px; 
+  padding: 30px;
   margin: 10px 0;
   position: relative;
-  max-width: 530px; 
+  max-width: 530px;
 }
 
 .attraction-counter {
@@ -177,9 +179,6 @@ aside.side-bar.open {
   font-size: 18px;
   z-index: 3;
 }
-
-
-
 
 .card-header {
   display: flex;
@@ -204,7 +203,7 @@ aside.side-bar.open {
 }
 
 .sidebar-content::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
   border-radius: 4px;
 }
 
@@ -214,8 +213,8 @@ aside.side-bar.open {
 
 /* Firefox */
 .sidebar-content {
-  scrollbar-width: thin; 
-  scrollbar-color: #888 #000; 
+  scrollbar-width: thin;
+  scrollbar-color: #888 #000;
   order: 1; /* Make sure content is displayed before the icons */
   overflow-y: auto; /* Enable scrolling */
 }

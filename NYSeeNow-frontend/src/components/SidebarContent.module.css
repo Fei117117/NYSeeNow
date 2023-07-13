@@ -1,0 +1,17 @@
+.buttonContainer {
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  position: relative;
+  background: transparent;
+  width: 100%;
+}
+
+.buttonContainer button {
+  background: rgb(255, 255, 255, 0.6);
+  color: black;
+  outline: none;
+  border: 0;
+  width: 88%;
+  padding: 10px 20px;
+}
