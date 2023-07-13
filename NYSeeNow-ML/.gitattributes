@@ -1,0 +1,2 @@
+SubwayData/cleaned_turnstile_data.csv filter=lfs diff=lfs merge=lfs -text
+SubwayData/turnstile.csv filter=lfs diff=lfs merge=lfs -text
