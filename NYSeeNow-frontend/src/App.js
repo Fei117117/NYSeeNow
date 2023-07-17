@@ -11,6 +11,7 @@ import { Login } from './pages/authOverlay/Login'
 import { Forget } from './pages/authOverlay/Reset'
 import { SelectionProvider } from './context/SelectionContext'
 import { CategoriesProvider } from './context/CategoriesContext'
+import { ItineraryBuilder } from './pages/itineraryBuilderPage/ItineraryBuilder'
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -27,6 +28,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<HomePage map_center={center} />}></Route>
                 <Route path="/itineraries" element={<MyItineraries />}></Route>
+                <Route path="/itinerary-builder" element={<ItineraryBuilder />}></Route>
                 <Route path="/userprofile" element={<UserProfile />}></Route>
               </Routes>
             </div>

@@ -15,17 +15,8 @@ const SidebarContent = ({
   const { selectedList, setSelectedList } = useSelection()
 
   const handleDelete = (attractionName) => {
-    setSelectedList(selectedList.filter((attraction) => attraction !== attractionName))
+    setSelectedList(selectedList.filter((attraction) => attraction['name'] !== attractionName))
   }
-
-  // // If selectedList is null or empty, display a default message
-  // if (!selectedList || selectedList.length === 0) {
-  //   return (
-  //     <div className="sidebar-content">
-  //       <SideBarDate></SideBarDate>
-  //     </div>
-  //   )
-  // }
 
   // Iterate over the selectedList and create a div for each attraction
   return (
@@ -40,7 +31,7 @@ const SidebarContent = ({
         selectedList.map((attraction, index) => (
           <AttractionCard
             key={index}
-            attraction={{ name: attraction }}
+            attraction={attraction}
             onDelete={handleDelete}
             startDate={currStartDate}
             endDate={currEndDate}
@@ -48,7 +39,7 @@ const SidebarContent = ({
         ))}
       {selectedList && (
         <div className={styles.buttonContainer}>
-          <button onClick={submitHandler(selectedList)}>Plan Trip</button>
+          <button onClick={submitHandler}>Plan Trip</button>
         </div>
       )}
     </div>

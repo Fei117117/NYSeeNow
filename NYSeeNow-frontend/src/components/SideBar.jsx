@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import SidebarContent from './SidebarContent'
 import AttractionCounter from './AttractionCounter'
 import { Link } from 'react-router-dom'
+import { useSelection } from '../context/SelectionContext'
+import { useNavigate } from 'react-router-dom'
 
 export const SideBar = ({ isOpen, setIsOpen }) => {
   // State for holding the left position of AttractionCounter
@@ -9,12 +11,31 @@ export const SideBar = ({ isOpen, setIsOpen }) => {
 
   const [startDate, setStartDate] = useState()
   const [endDate, setEndDate] = useState()
+  const [attractionListToSend, setAttractionListToSend] = useState([])
+  const [requestSendFlag, setRequestSendFlag] = useState(false)
 
-  const handleSubmitButton = (attractionList) => {
-    console.log(attractionList)
-    console.log(startDate)
-    console.log(endDate)
+  const { selectedList, setSelectedList } = useSelection()
+
+  const handleSubmitButton = () => {
+    setRequestSendFlag(true)
   }
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (requestSendFlag) {
+      console.log('SENDING REQUEST')
+      console.log(selectedList)
+      console.log(startDate)
+      console.log(endDate)
+      //Get all the current data to itinerary builder
+
+      const content = 'Hello, world!'
+
+      navigate('/itinerary-builder')
+      setIsOpen(false)
+    }
+  }, [requestSendFlag])
 
   useEffect(() => {
     setCounterLeft(isOpen ? 'calc(50% + 60px)' : '60px') // update the position according to sidebar's state

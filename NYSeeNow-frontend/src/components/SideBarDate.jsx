@@ -13,6 +13,7 @@ const SideBarDate = ({ startDateSetter, endDateSetter }) => {
           id="startDate"
           placeholder="dd/mm/yyyy"
           type="date"
+          min={new Date().toISOString().split('T')[0]}
           onChange={(event) => {
             startDateSetter(event.target.value)
           }}
@@ -20,9 +21,10 @@ const SideBarDate = ({ startDateSetter, endDateSetter }) => {
         <p>|</p>
         <label htmlFor="endDate">End Date:</label>
         <input
-          id="startDate"
+          id="endDate"
           placeholder="dd/mm/yyyy"
           type="date"
+          min={new Date().toISOString().split('T')[0]}
           onChange={(event) => {
             endDateSetter(event.target.value)
           }}

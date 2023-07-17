@@ -28,7 +28,7 @@ const AttractionCard = ({ attraction, onDelete, startDate, endDate }) => {
   return (
     <div className="attraction-card">
       <div className="card-header">
-        <h2>{attraction.name}</h2>
+        <h2>{attraction['name']}</h2>
         <button className="card-delete-button" onClick={() => onDelete(attraction.name)}>
           X
         </button>
@@ -40,6 +40,7 @@ const AttractionCard = ({ attraction, onDelete, startDate, endDate }) => {
       <div className={styles['day-selector']}>
         <label htmlFor="visitDay">Select the day:</label>
         <select name="day" id="visitDay" onChange={handleDayChange}>
+          <option value={null}>Not Selected</option>
           {days &&
             days.map((day, index) => (
               <option key={index} value={day}>

@@ -5,17 +5,16 @@ export const MarkerHoverCard = (props) => {
 
   const add_attraction = () => {
     if (selectedList == null) {
-      setSelectedList([props.place_name])
+      setSelectedList([props.place])
     } else {
-      setSelectedList([...selectedList, props.place_name])
+      setSelectedList([...selectedList, props.place])
     }
-    console.log(selectedList)
   }
 
   return (
     <>
       <div className="hover-card-containter" onMouseLeave={props.onClose}>
-        <h3>{props.place_name}</h3>
+        <h3>{props.place['name']}</h3>
         <button onClick={add_attraction}>Add to itenerary</button>
         <button onClick={props.onClose}>Close</button>
       </div>
