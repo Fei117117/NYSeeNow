@@ -72,6 +72,7 @@ export const HomePageMap = (props) => {
   return (
     <GoogleMap
       mapContainerClassName="map-container"
+      
       ref={mapRef}
       mapTypeId="roadmap"
       zoom={zoomLevel}
