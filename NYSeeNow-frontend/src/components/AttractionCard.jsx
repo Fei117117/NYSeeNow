@@ -32,7 +32,7 @@ const AttractionCard = ({ attraction, onDelete, startDate, endDate }) => {
         <button className="card-delete-button" onClick={() => onDelete(attraction.name)}>
           X
         </button>
-      </div>
+        </div>
       <p className="card-content">
         This is a placeholder for your attraction details. Replace this text with the actual
         details.
@@ -40,6 +40,7 @@ const AttractionCard = ({ attraction, onDelete, startDate, endDate }) => {
       <div className={styles['day-selector']}>
         <label htmlFor="visitDay">Select the day:</label>
         <select name="day" id="visitDay" onChange={handleDayChange}>
+          <option value={null}>Not Selected</option>
           {days &&
             days.map((day, index) => (
               <option key={index} value={day}>

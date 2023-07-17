@@ -1,0 +1,9 @@
+.carouselCard {
+  border: 1px solid black;
+  padding: 1rem;
+  margin: auto;
+  position: relative;
+  max-width: 50rem;
+  width: 20rem;
+  background-color: gray;
+}

@@ -29,7 +29,6 @@ export const HomePageMap = (props) => {
   }
 
   function fetch_marker_data() {
-    console.log('fetch_marker_data called')
     let filtered_types = getSelectedTypes()
     let attraction_list = attractions_data['features']
 
@@ -41,7 +40,8 @@ export const HomePageMap = (props) => {
         let marker_coordinates = {
           position: { lat: position_cords[1], lng: position_cords[0] },
           name: attraction_details['properties']['name'],
-          type: attraction_details['properties']['tourism']
+          type: attraction_details['properties']['tourism'],
+          all_details: attraction_details
         }
         if (filtered_types.includes(marker_coordinates['type']))
           coordinate_json.push(marker_coordinates)
@@ -55,9 +55,7 @@ export const HomePageMap = (props) => {
     setFetchedMarkers(fetch_marker_data())
   }, [selectedOptions])
 
-
-  const [zoomLevel, setZoomLevel] = useState(13) // Initial zoom level
-
+  const [zoomLevel, setZoomLevel] = useState(15) // Initial zoom level
 
   const mapRef = useRef(null)
 
