@@ -14,8 +14,10 @@ body {
 .NYSEENOW-LOGO {
   display: flex;
   align-items: center;
-  height: 100%; /* Set the height of the container to 100% of the parent element */
+  height: 100%;
+  transform: translateX(10px); /* Adjust this value as needed */
 }
+
 
 .NYSEENOW-LOGO img {
   max-height: 100%; /* Limit the height of the logo image to 100% of the container */
