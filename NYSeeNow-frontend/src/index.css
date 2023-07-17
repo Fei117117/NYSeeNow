@@ -97,6 +97,7 @@ aside.side-bar.open {
   vertical-align: middle;
   gap: 5rem;
   margin-left: -0.5rem;
+  margin: 15px 0;
   order: 2;
   height: 100%;
   margin-top: 15px; /* Adjust this if needed */

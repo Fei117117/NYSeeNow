@@ -15,7 +15,7 @@ export const NavBar = ({ isOpen, set_map_center }) => {
         <li>
           <Link to="/" className={styles.siteTitle}>
             <div className="NYSEENOW-LOGO">
-              <img src="nyseenowLogoBWsmall.png" alt="logo" />
+              <img src="NYSeeLogo.png" alt="logo" />
             </div>
           </Link>
         </li>
