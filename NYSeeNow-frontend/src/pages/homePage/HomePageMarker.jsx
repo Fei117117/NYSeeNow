@@ -18,25 +18,23 @@ export const HomePageMarker = (props) => {
     console.log('location clicked')
   }
 
-  const onLoad = (infoBox) => {
-    console.log('infoBox: ', infoBox)
-  }
+  const onLoad = (infoBox) => {}
 
-  const options = { closeBoxURL: '', enableEventPropagation: true }
+  const options = { closeBoxURL: '', enableEventPropagation: false }
 
   return (
     <>
       <MarkerF
         position={props.markerDetails['position']}
         onMouseOver={handleMarkerHoveredIn}
-        onMouseUp={handleMarkerHoveredOut}
         onClick={handleLocationClick}
       ></MarkerF>
       {hovered && (
         <InfoBox onLoad={onLoad} options={options} position={props.markerDetails['position']}>
           <MarkerHoverCard
-            place_name={props.markerDetails['name']}
+            place={props.markerDetails}
             onClose={handleMarkerHoveredOut}
+            markerInfo={props.markerDetails}
           ></MarkerHoverCard>
         </InfoBox>
       )}

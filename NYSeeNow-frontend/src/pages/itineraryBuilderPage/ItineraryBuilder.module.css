@@ -1,0 +1,14 @@
+.CarouselCard {
+  width: 40rem;
+  margin: auto;
+  background: rgb(255, 255, 255, 0.6);
+}
+
+.CarouselElement {
+  width: 40rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: auto;
+  background: rgb(255, 255, 255, 0.6);
+}
