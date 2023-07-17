@@ -1,7 +1,5 @@
 import { useEffect, useState, useMemo, useRef } from 'react'
-
 import attractions_data from '../../assets/cleaned_attracions.json'
-
 import { GoogleMap, MarkerF, HeatmapLayer} from '@react-google-maps/api'
 import { HomePageMarker } from './HomePageMarker'
 import { useCategories } from '../../context/CategoriesContext'
@@ -16,6 +14,7 @@ export const HomePageMap = (props) => {
   const [fetched_markers, setFetchedMarkers] = useState([])
 
   const [heatmapData, setHeatmapData] = useState([]) // New state for heatmap data
+  const [mapLoaded, setMapLoaded] = useState(false) // New state for map loading
 
   const getSelectedTypes = () => {
     let filtered_options = options
@@ -41,6 +40,8 @@ export const HomePageMap = (props) => {
         let position_cords = attraction_details['geometry']['coordinates']
         let marker_coordinates = {
           position: { lat: position_cords[1], lng: position_cords[0] },
+          lat: position_cords[1],
+          lng: position_cords[0],
           name: attraction_details['properties']['name'],
           type: attraction_details['properties']['tourism'],
           all_details: attraction_details
@@ -59,10 +60,19 @@ export const HomePageMap = (props) => {
 
   useEffect(() => {
     // Update the heatmap data whenever fetched markers change
-    const heatmapData = fetched_markers.map((marker) => marker.position)
-    //console.log('Heatmap Data:', heatmapData); // Debugging line
-    setHeatmapData(heatmapData)
-  }, [fetched_markers])
+    const lat_lon = fetched_markers.map((marker) => marker.lat+','+marker.lng);
+    console.log('Lat Lon:', lat_lon); // Debugging line
+  
+    // Convert the lat_lon data to Google LatLng locations for use in the heatmap
+    const heatmapData = lat_lon.map((position) => new window.google.maps.LatLng(, lng));
+  
+    // Now heatmapData is an array of LatLng objects
+    console.log('Heatmap Data:', heatmapData);
+  
+    setHeatmapData(heatmapData);
+  }, [fetched_markers]);
+  
+    
 
   const handleHeatmapLoad = (heatmapLayer) => {
     // Handle the loaded heatmapLayer instance
@@ -78,8 +88,6 @@ export const HomePageMap = (props) => {
 
   const mapRef = useRef(null)
 
-  const [mapLoaded, setMapLoaded] = useState(false)
-
   const handleMapLoading = () => {
     setMapLoaded(true)
   }
@@ -88,7 +96,7 @@ export const HomePageMap = (props) => {
     setZoomLevel(25)
   }
 
-  console.log('Heat Map Array:',heatmapData);
+  //console.log('Heat Map Array:',heatmapData);
 
   return (
     <GoogleMap
@@ -100,17 +108,13 @@ export const HomePageMap = (props) => {
         onLoad={handleMapLoading}
         onCenterChanged={handleCenterChange}
       >
-        {mapLoaded &&
-          fetched_markers.map((marker_details, index) => (
-            <HomePageMarker key={index} markerDetails={marker_details} />
-          ))}
+        {mapLoaded && fetched_markers.map((marker_details, index) => (
+          !props.isNowMode && <HomePageMarker key={index} markerDetails={marker_details} />
+        ))}
 
-        {mapLoaded && heatmapData.length > 0 && (
+        {mapLoaded && heatmapData.length > 0 && props.isNowMode && (
           <HeatmapLayer
-            data={heatmapData.map((position) => ({
-              location: new window.google.maps.LatLng(position.lat, position.lng),
-              weight:Math.random(),
-            }))}
+            data={heatmapData}
             onLoad={handleHeatmapLoad}
           />
         )}
