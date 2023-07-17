@@ -56,12 +56,10 @@ aside.side-bar.open {
 }
 
 .sidebar-content-icons-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  position: relative; /* Make this container a reference for absolute positioning */
   height: 100%;
   width: 100%;
-  overflow-y: auto; /* Enable scrolling */
+  overflow-y: auto;
 }
 
 .side-bar.open .sidebar-icons {
@@ -97,10 +95,10 @@ aside.side-bar.open {
   vertical-align: middle;
   gap: 5rem;
   margin-left: -0.5rem;
-  margin: 15px 0;
   order: 2;
   height: 100%;
   margin-top: 15px; /* Adjust this if needed */
+  transform: translateX(-10px);
 }
 
 .side-bar.open .sidebar-content {
