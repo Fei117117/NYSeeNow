@@ -4,7 +4,8 @@ import { useLoadScript } from '@react-google-maps/api'
 
 export const HomePage = (props) => {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: 'AIzaSyCTCIyYHCeWx1duTYP38_g8ikK3_fwVrSE'
+    googleMapsApiKey: 'AIzaSyCTCIyYHCeWx1duTYP38_g8ikK3_fwVrSE',
+    libraries: ['visualization']
   })
 
   if (!isLoaded) {

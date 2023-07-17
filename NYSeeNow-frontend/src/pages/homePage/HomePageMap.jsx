@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo, useRef } from 'react'
 
 import attractions_data from '../../assets/cleaned_attracions.json'
 
-import { GoogleMap, MarkerF } from '@react-google-maps/api'
+import { GoogleMap, MarkerF, HeatmapLayer} from '@react-google-maps/api'
 import { HomePageMarker } from './HomePageMarker'
 import { useCategories } from '../../context/CategoriesContext'
 import options from '../../assets/attraction_options.json'
@@ -14,6 +14,8 @@ export const HomePageMap = (props) => {
   const { selectedOptions, setSelectedOptions } = useCategories()
 
   const [fetched_markers, setFetchedMarkers] = useState([])
+
+  const [heatmapData, setHeatmapData] = useState([]) // New state for heatmap data
 
   const getSelectedTypes = () => {
     let filtered_options = options
@@ -55,6 +57,23 @@ export const HomePageMap = (props) => {
     setFetchedMarkers(fetch_marker_data())
   }, [selectedOptions])
 
+  useEffect(() => {
+    // Update the heatmap data whenever fetched markers change
+    const heatmapData = fetched_markers.map((marker) => marker.position)
+    //console.log('Heatmap Data:', heatmapData); // Debugging line
+    setHeatmapData(heatmapData)
+  }, [fetched_markers])
+
+  const handleHeatmapLoad = (heatmapLayer) => {
+    // Handle the loaded heatmapLayer instance
+    console.log('Heatmap Layer loaded:', heatmapLayer);
+    heatmapLayer.setOptions({
+      radius: 30, // Set the radius of each data point
+      opacity: 0.6, // Set the opacity of the heatmap layer
+      gradient: ['rgba(255, 255, 255, 0)', 'rgba(255, 0, 0, 1)'] // Define the gradient colors
+    });
+  };
+
   const [zoomLevel, setZoomLevel] = useState(15) // Initial zoom level
 
   const mapRef = useRef(null)
@@ -69,21 +88,32 @@ export const HomePageMap = (props) => {
     setZoomLevel(25)
   }
 
+  console.log('Heat Map Array:',heatmapData);
+
   return (
     <GoogleMap
-      mapContainerClassName="map-container"
-      
-      ref={mapRef}
-      mapTypeId="roadmap"
-      zoom={zoomLevel}
-      center={props.map_center}
-      onLoad={handleMapLoading}
-      onCenterChanged={handleCenterChange}
-    >
-      {mapLoaded &&
-        fetched_markers.map((marker_details, index) => (
-          <HomePageMarker key={index} markerDetails={marker_details} />
-        ))}
-    </GoogleMap>
+        mapContainerClassName="map-container"
+        ref={mapRef}
+        mapTypeId="roadmap"
+        zoom={zoomLevel}
+        center={props.map_center}
+        onLoad={handleMapLoading}
+        onCenterChanged={handleCenterChange}
+      >
+        {mapLoaded &&
+          fetched_markers.map((marker_details, index) => (
+            <HomePageMarker key={index} markerDetails={marker_details} />
+          ))}
+
+        {mapLoaded && heatmapData.length > 0 && (
+          <HeatmapLayer
+            data={heatmapData.map((position) => ({
+              location: new window.google.maps.LatLng(position.lat, position.lng),
+              weight:Math.random(),
+            }))}
+            onLoad={handleHeatmapLoad}
+          />
+        )}
+      </GoogleMap>
   )
 }
