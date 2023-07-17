@@ -18,7 +18,7 @@ const SidebarContent = ({
     setSelectedList(selectedList.filter((attraction) => attraction['name'] !== attractionName))
   }
 
-  // Iterate over the selectedList and create a div for each attraction
+    // Iterate over the selectedList and create a div for each attraction
   return (
     <div className={`sidebar-content ${!open ? 'closed' : ''}`}>
       <SideBarDate startDateSetter={getStartDate} endDateSetter={getEndDate}></SideBarDate>
