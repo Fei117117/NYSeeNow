@@ -218,3 +218,35 @@ aside.side-bar.open {
   order: 1; /* Make sure content is displayed before the icons */
   overflow-y: auto; /* Enable scrolling */
 }
+
+
+.now-mode-button {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  color: black;
+  font-size: 18px;
+  z-index: 3;
+  cursor: pointer;
+}
+
+.now-mode-button p {
+  margin: 0;
+}
+
+.now-mode-button.on {
+  background-color: green;
+}
+
+.now-mode-button.off {
+  background-color: red;
+}
+

@@ -1,14 +1,12 @@
 import React from 'react';
 
-const NowModeButton = ({isNowMode, toggleNowMode}) => {
+const NowModeButton = ({ isNowMode, toggleNowMode }) => {
   const buttonStyle = isNowMode ? "now-mode-button on" : "now-mode-button off";
+  
   return (
-    <button 
-      className={buttonStyle} 
-      onClick={toggleNowMode}
-    >
-      NOW Mode
-    </button>
+    <div className={buttonStyle} onClick={toggleNowMode}>
+      <p>NOW</p>
+    </div>
   );
 };
 
