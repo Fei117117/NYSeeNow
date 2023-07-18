@@ -59,7 +59,8 @@ export const HomePageMap = (props) => {
 
   //useeffect to set new heatmap data when the selected options change
   //the weight here will be the busyness percentage we get from backend
-  // Note that museums and artworks do not load on the map due to the location data not being present correctly
+  // Note that museums and artworks do not load on the map I can not figure out why, they are passed correctly
+  // and with a busyness value
   useEffect(() => {
 
     const lat_lon = fetched_markers.map((marker) => marker.position.lat + ',' + marker.position.lng);
