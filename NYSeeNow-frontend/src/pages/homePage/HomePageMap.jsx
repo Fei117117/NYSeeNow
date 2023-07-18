@@ -13,8 +13,11 @@ export const HomePageMap = (props) => {
 
   const [fetched_markers, setFetchedMarkers] = useState([])
 
-  const [heatmapData, setHeatmapData] = useState([]) // New state for heatmap data
   const [mapLoaded, setMapLoaded] = useState(false) // New state for map loading
+
+  const [heatmapData, setHeatmapData] = useState([]); // New state for heatmap data
+  const [heatmapLayer, setHeatmapLayer] = useState(null); // New state for heatmap layer reference
+
 
   const getSelectedTypes = () => {
     let filtered_options = options
@@ -40,8 +43,6 @@ export const HomePageMap = (props) => {
         let position_cords = attraction_details['geometry']['coordinates']
         let marker_coordinates = {
           position: { lat: position_cords[1], lng: position_cords[0] },
-          lat: position_cords[1],
-          lng: position_cords[0],
           name: attraction_details['properties']['name'],
           type: attraction_details['properties']['tourism'],
           all_details: attraction_details
@@ -58,30 +59,32 @@ export const HomePageMap = (props) => {
     setFetchedMarkers(fetch_marker_data())
   }, [selectedOptions])
 
+  //use a use effect to set a new heatmap data when the selected options change
   useEffect(() => {
-    // Update the heatmap data whenever fetched markers change
-    const lat_lon = fetched_markers.map((marker) => marker.lat+','+marker.lng);
-    console.log('Lat Lon:', lat_lon); // Debugging line
-  
-    // Convert the lat_lon data to Google LatLng locations for use in the heatmap
-    const heatmapData = lat_lon.map((position) => new window.google.maps.LatLng(, lng));
-  
-    // Now heatmapData is an array of LatLng objects
-    console.log('Heatmap Data:', heatmapData);
-  
-    setHeatmapData(heatmapData);
+    const lat_lon = fetched_markers.map((marker) => marker.position.lat + ',' + marker.position.lng);
+    const convertedData = lat_lon.map((position) => {
+      const [lat, lng] = position.split(',');
+      return new window.google.maps.LatLng(parseFloat(lat), parseFloat(lng));
+    });
+
+    if (heatmapLayer) {
+      heatmapLayer.setMap(null);
+    }
+
+    setHeatmapData(convertedData);
   }, [fetched_markers]);
   
-    
-
   const handleHeatmapLoad = (heatmapLayer) => {
     // Handle the loaded heatmapLayer instance
-    console.log('Heatmap Layer loaded:', heatmapLayer);
     heatmapLayer.setOptions({
-      radius: 30, // Set the radius of each data point
-      opacity: 0.6, // Set the opacity of the heatmap layer
-      gradient: ['rgba(255, 255, 255, 0)', 'rgba(255, 0, 0, 1)'] // Define the gradient colors
+      radius: 20, // Set the radius of each data point
+      opacity: 0.3, // Set the opacity of the heatmap layer
+      //start at opaque, then green, yellow, red
+      gradient:['rgba(255, 255, 255, 0)', 'green', 'yellow', 'red']
     });
+
+    // Set the heatmap layer reference
+    setHeatmapLayer(heatmapLayer);
   };
 
   const [zoomLevel, setZoomLevel] = useState(15) // Initial zoom level
@@ -112,12 +115,10 @@ export const HomePageMap = (props) => {
           !props.isNowMode && <HomePageMarker key={index} markerDetails={marker_details} />
         ))}
 
-        {mapLoaded && heatmapData.length > 0 && props.isNowMode && (
-          <HeatmapLayer
-            data={heatmapData}
-            onLoad={handleHeatmapLoad}
-          />
-        )}
+        {mapLoaded && props.isNowMode &&
+         <HeatmapLayer data={heatmapData} onLoad={handleHeatmapLoad}/>
+        }
+
       </GoogleMap>
   )
 }
