@@ -1,0 +1,57 @@
+{
+  "start_date": "2023-07-18",
+  "end_date": "2023-07-21",
+  "attraction_list": [
+    {
+      "position": { "lat": 40.7491907, "lng": -73.9814793 },
+      "name": "The Morgan Library & Museum",
+      "type": "museum",
+      "all_details": {
+        "type": "Feature",
+        "properties": {
+          "name": "The Morgan Library & Museum",
+          "tourism": "museum",
+          "description": "Explore the rich history and culture that Manhattan has to offer, showcasing various exhibits and artifacts from different eras.",
+          "opening_hours": "Tu-Su 10:00-17:30",
+          "website": "https://www.themorgan.org/"
+        },
+        "geometry": { "type": "Point", "coordinates": [-73.9814793, 40.7491907] }
+      },
+      "day": "Thu Jul 20 2023 01:00:00 GMT+0100 (Irish Standard Time)"
+    },
+    {
+      "position": { "lat": 40.74552, "lng": -73.9822577 },
+      "name": "Triad",
+      "type": "artwork",
+      "all_details": {
+        "type": "Feature",
+        "properties": {
+          "name": "Triad",
+          "tourism": "artwork",
+          "description": "Explore a diverse collection of artwork showcasing various styles, themes, and mediums. ",
+          "opening_hours": "nan",
+          "website": "nan"
+        },
+        "geometry": { "type": "Point", "coordinates": [-73.9822577, 40.74552] }
+      },
+      "day": "Wed Jul 19 2023 01:00:00 GMT+0100 (Irish Standard Time)"
+    },
+    {
+      "position": { "lat": 40.7486231, "lng": -73.9713889 },
+      "name": "Tudor City",
+      "type": "yes",
+      "all_details": {
+        "type": "Feature",
+        "properties": {
+          "name": "Tudor City",
+          "tourism": "yes",
+          "description": "nan",
+          "opening_hours": "nan",
+          "website": "nan"
+        },
+        "geometry": { "type": "Point", "coordinates": [-73.9713889, 40.7486231] }
+      },
+      "day": "Tue Jul 18 2023 01:00:00 GMT+0100 (Irish Standard Time)"
+    }
+  ]
+}
