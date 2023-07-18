@@ -6,12 +6,15 @@ export const MarkerHoverCard = (props) => {
   const [imageUrl, setImageUrl] = useState(null);
 
   const add_attraction = () => {
+    const attractionWithImage = { ...props.place, imgUrl: imageUrl };
+    
     if (selectedList == null) {
-      setSelectedList([props.place])
+      setSelectedList([attractionWithImage])
     } else {
-      setSelectedList([...selectedList, props.place])
+      setSelectedList([...selectedList, attractionWithImage])
     }
   }
+  
 
   const fetchImage = async (placeName) => {
     try {

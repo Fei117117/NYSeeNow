@@ -40,10 +40,10 @@ export const HomePageMarker = (props) => {
       {(isHovered || isClicked) && (
         <InfoBox onLoad={onLoad} options={options} position={props.markerDetails['position']}>
           <MarkerHoverCard
-            place={props.markerDetails}
-            onClose={handleCardClose}
-            markerInfo={props.markerDetails}
-          ></MarkerHoverCard>
+        place={props.markerDetails}
+        onClose={handleMarkerHoveredOut}
+        markerInfo={props.markerDetails}
+        ></MarkerHoverCard>
         </InfoBox>
       )}
     </>
