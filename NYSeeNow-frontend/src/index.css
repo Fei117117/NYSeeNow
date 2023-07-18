@@ -119,11 +119,29 @@ aside.side-bar.open {
   height: 30px;
 }
 
-.hover-card-containter {
-  background-color: white;
-  color: black;
-  padding: 12;
+.hover-card-container {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-top: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
+
+.hover-card-info {
+  flex-basis: 40%; /* Adjust this value as needed */
+}
+
+.hover-card-image {
+  flex-basis: 55%; /* Adjust this value as needed */
+}
+
+.hover-card-image img {
+  width: 100%;
+  height: auto;
+}
+
 
 .attraction-card {
   border: 1px solid gray;
