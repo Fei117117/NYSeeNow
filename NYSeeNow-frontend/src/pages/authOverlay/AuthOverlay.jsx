@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Login } from './Login'
 import { Register } from './Register'
 import { ResetPassword } from './Reset'
+import styles from './AuthOverlay.module.css'
+import { useNavigate } from 'react-router'
 
 export const AuthOverlay = (props) => {
   const [currentForm, setCurrentForm] = useState('login')
@@ -10,14 +12,33 @@ export const AuthOverlay = (props) => {
     setCurrentForm(formName)
   }
 
+  const navigate = useNavigate()
+
+  const overlayClose = () => {
+    navigate(-1)
+  }
+
+  let overlayElement
   switch (currentForm) {
     case 'login':
-      return <Login onFormSwitch={toggleForm} />
+      overlayElement = <Login onFormSwitch={toggleForm} />
+      break
     case 'register':
-      return <Register onFormSwitch={toggleForm} />
+      overlayElement = <Register onFormSwitch={toggleForm} />
+      break
     case 'reset':
-      return <ResetPassword onFormSwitch={toggleForm} />
+      overlayElement = <ResetPassword onFormSwitch={toggleForm} />
+      break
     default:
-      return null;
+      overlayElement = null
   }
+
+  return (
+    <div className={styles.overlay}>
+      <div className={styles.authOverlayCard}>{overlayElement}</div>
+      <button onClick={overlayClose} className={styles.authCloseButton}>
+        x Close
+      </button>
+    </div>
+  )
 }
