@@ -1,6 +1,6 @@
 import { HomePageMap } from './HomePageMap'
 import NowModeButton from '../../components/NowModeButton';
-import { GoogleMap, HeatmapLayer, useLoadScript } from '@react-google-maps/api'
+import {useLoadScript } from '@react-google-maps/api'
 import React, { useState } from 'react'; 
 
 export const HomePage = (props) => {

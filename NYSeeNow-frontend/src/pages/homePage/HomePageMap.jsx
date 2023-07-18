@@ -15,9 +15,7 @@ export const HomePageMap = (props) => {
 
   const [mapLoaded, setMapLoaded] = useState(false) // New state for map loading
 
-  const [heatmapData, setHeatmapData] = useState([]); // New state for heatmap data
-  const [heatmapLayer, setHeatmapLayer] = useState(null); // New state for heatmap layer reference
-
+  const [heatmapData, setHeatmapData] = useState([]); // Declare heatmapData state variable
 
   const getSelectedTypes = () => {
     let filtered_options = options
@@ -59,32 +57,46 @@ export const HomePageMap = (props) => {
     setFetchedMarkers(fetch_marker_data())
   }, [selectedOptions])
 
-  //use a use effect to set a new heatmap data when the selected options change
+  //useeffect to set new heatmap data when the selected options change
+  //the weight here will be the busyness percentage we get from backend
+  // Note that museums and artworks do not load on the map due to the location data not being present correctly
   useEffect(() => {
+
     const lat_lon = fetched_markers.map((marker) => marker.position.lat + ',' + marker.position.lng);
-    const convertedData = lat_lon.map((position) => {
+    console.log('lat_lon', lat_lon);
+    const heatmapData = lat_lon.map((position) => {
       const [lat, lng] = position.split(',');
-      return new window.google.maps.LatLng(parseFloat(lat), parseFloat(lng));
+      const busyness= Math.random().toFixed(2)*100;
+      //can use this info to  tie in place name and it's busyness
+      const info = {
+        name: fetched_markers.find((marker) => marker.position.lat + ',' + marker.position.lng === position)?.name,
+        busyness: busyness,
+        lat_lon: position
+      }
+      console.log('info', info);
+      return {location: new window.google.maps.LatLng(parseFloat(lat), parseFloat(lng)), weight: busyness};
     });
-
-    if (heatmapLayer) {
-      heatmapLayer.setMap(null);
-    }
-
-    setHeatmapData(convertedData);
+    
+    setHeatmapData(heatmapData);
   }, [fetched_markers]);
   
   const handleHeatmapLoad = (heatmapLayer) => {
     // Handle the loaded heatmapLayer instance
+    //define the gradient, opaque, green, yellow, red
+    const gradient = [
+      'rgba(255, 255, 255, 0)',
+      'rgba(0, 255, 0, 1)',
+      'rgba(255, 255, 0, 1)',
+      'rgba(255, 0, 0, 1)'
+    ];
+
     heatmapLayer.setOptions({
       radius: 20, // Set the radius of each data point
       opacity: 0.3, // Set the opacity of the heatmap layer
       //start at opaque, then green, yellow, red
-      gradient:['rgba(255, 255, 255, 0)', 'green', 'yellow', 'red']
+      gradient
     });
 
-    // Set the heatmap layer reference
-    setHeatmapLayer(heatmapLayer);
   };
 
   const [zoomLevel, setZoomLevel] = useState(15) // Initial zoom level
@@ -98,8 +110,6 @@ export const HomePageMap = (props) => {
   const handleCenterChange = () => {
     setZoomLevel(25)
   }
-
-  //console.log('Heat Map Array:',heatmapData);
 
   return (
     <GoogleMap
@@ -115,8 +125,8 @@ export const HomePageMap = (props) => {
           !props.isNowMode && <HomePageMarker key={index} markerDetails={marker_details} />
         ))}
 
-        {mapLoaded && props.isNowMode &&
-         <HeatmapLayer data={heatmapData} onLoad={handleHeatmapLoad}/>
+        {props.isNowMode && 
+          <HeatmapLayer data={heatmapData} onLoad={handleHeatmapLoad}/>
         }
 
       </GoogleMap>
