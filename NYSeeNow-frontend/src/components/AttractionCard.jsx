@@ -28,11 +28,19 @@ const AttractionCard = ({ attraction, onDelete, startDate, endDate }) => {
   return (
     <div className="attraction-card">
       <div className="card-header">
-        <h2>{attraction.name}</h2>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <img
+            src={attraction.imgUrl}
+            alt={attraction.name}
+            style={{ marginRight: '10px', width: '80px', height: '80px', objectFit: 'cover' }}
+          />
+
+          <h2>{attraction.name}</h2>
+        </div>
         <button className="card-delete-button" onClick={() => onDelete(attraction.name)}>
           X
         </button>
-        </div>
+      </div>
       <p className="card-content">
         This is a placeholder for your attraction details. Replace this text with the actual
         details.
