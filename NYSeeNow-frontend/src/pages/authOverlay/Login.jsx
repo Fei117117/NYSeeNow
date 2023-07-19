@@ -21,21 +21,22 @@ export const Login = (props) => {
     }
 
     const url = 'api/auth/login'
+    setIsLoggedIn(true)
 
-    post(
-      url,
-      data,
-      (message, status) => {
-        console.log('Failure:', message)
-        console.log('Status:', status)
-        setMessage('Logged in.')
-      },
-      (message, status) => {
-        console.log('Failure:', message)
-        console.log('Status:', status)
-        setMessage('Login failed. Please try again.')
-      }
-    )
+    // post(
+    //   url,
+    //   data,
+    //   (message, status) => {
+    //     console.log('Failure:', message)
+    //     console.log('Status:', status)
+    //     setMessage('Logged in.')
+    //   },
+    //   (message, status) => {
+    //     console.log('Failure:', message)
+    //     console.log('Status:', status)
+    //     setMessage('Login failed. Please try again.')
+    //   }
+    // )
   }
 
   return (

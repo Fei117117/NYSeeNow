@@ -12,30 +12,25 @@ export const SideBar = ({ isOpen, setIsOpen }) => {
   const [startDate, setStartDate] = useState()
   const [endDate, setEndDate] = useState()
   const [attractionListToSend, setAttractionListToSend] = useState([])
-  const [requestSendFlag, setRequestSendFlag] = useState(false)
 
   const { selectedList, setSelectedList } = useSelection()
 
   const handleSubmitButton = () => {
-    setRequestSendFlag(true)
+    console.log('calling submit funtion')
+    console.log('SENDING REQUEST')
+    const request_obj = {
+      start_date: startDate,
+      end_date: endDate,
+      attraction_list: selectedList
+    }
+
+    console.log(JSON.stringify(request_obj))
+
+    navigate('/itinerary-builder')
+    setIsOpen(false)
   }
 
   const navigate = useNavigate()
-
-  useEffect(() => {
-    if (requestSendFlag) {
-      console.log('SENDING REQUEST')
-      console.log(selectedList)
-      console.log(startDate)
-      console.log(endDate)
-      //Get all the current data to itinerary builder
-
-      const content = 'Hello, world!'
-
-      navigate('/itinerary-builder')
-      setIsOpen(false)
-    }
-  }, [requestSendFlag])
 
   useEffect(() => {
     setCounterLeft(isOpen ? 'calc(50% + 60px)' : '60px') // update the position according to sidebar's state

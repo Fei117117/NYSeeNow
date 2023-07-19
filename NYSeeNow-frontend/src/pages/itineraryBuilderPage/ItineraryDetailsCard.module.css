@@ -3,6 +3,14 @@
   padding: 1rem;
   margin: auto;
   position: relative;
-  max-width: 50rem;
-  width: 20rem;
+  max-width: 70rem;
+  width: 30rem;
+}
+
+.GraphStyle {
+  width: 10rem;
+  height: 2rem;
+  margin: auto;
+  position: relative;
+  padding: 1rem;
 }
