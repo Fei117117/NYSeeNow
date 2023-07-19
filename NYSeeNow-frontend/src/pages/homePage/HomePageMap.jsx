@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo, useRef } from 'react'
-import attractions_data from '../../assets/cleaned_attracions.json'
+import attractions_data from '../../assets/filtered_attractions.json'
 import { GoogleMap, MarkerF, HeatmapLayer} from '@react-google-maps/api'
 import { HomePageMarker } from './HomePageMarker'
 import { useCategories } from '../../context/CategoriesContext'
@@ -79,7 +79,7 @@ export const HomePageMap = (props) => {
               month: new Date().getMonth() + 1, // JavaScript months are 0-indexed, so we add 1 to get the correct month
             });
   
-            const response = await fetch('http://localhost:8080/attraction/predict', {
+            const response = await fetch('attraction/predict', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
