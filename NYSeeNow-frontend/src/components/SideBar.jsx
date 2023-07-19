@@ -4,6 +4,9 @@ import AttractionCounter from './AttractionCounter'
 import { Link } from 'react-router-dom'
 import { useSelection } from '../context/SelectionContext'
 import { useNavigate } from 'react-router-dom'
+import { post_itinerary } from '../net/net'
+import { useTripData } from '../context/TripDataContext'
+import axios from 'axios'
 
 export const SideBar = ({ isOpen, setIsOpen }) => {
   // State for holding the left position of AttractionCounter
@@ -14,6 +17,8 @@ export const SideBar = ({ isOpen, setIsOpen }) => {
   const [attractionListToSend, setAttractionListToSend] = useState([])
 
   const { selectedList, setSelectedList } = useSelection()
+  const { tripData, setTripData } = useTripData()
+  const navigate = useNavigate()
 
   const handleSubmitButton = () => {
     console.log('calling submit funtion')
@@ -24,13 +29,28 @@ export const SideBar = ({ isOpen, setIsOpen }) => {
       attraction_list: selectedList
     }
 
-    console.log(JSON.stringify(request_obj))
+    const url = 'itinerary/predict'
 
-    navigate('/itinerary-builder')
-    setIsOpen(false)
+    const req_string = JSON.stringify(request_obj)
+
+    axios
+      .post(url, req_string, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then((response) => {
+        console.log('Success!')
+        console.log(response)
+        setTripData(response.data)
+        navigate('/itinerary-builder')
+        setIsOpen(false)
+      })
+      .catch((error) => {
+        console.log('You have an error!')
+        console.log(error)
+      })
   }
-
-  const navigate = useNavigate()
 
   useEffect(() => {
     setCounterLeft(isOpen ? 'calc(50% + 60px)' : '60px') // update the position according to sidebar's state

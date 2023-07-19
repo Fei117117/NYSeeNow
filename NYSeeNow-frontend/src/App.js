@@ -12,6 +12,7 @@ import { Forget } from './pages/authOverlay/Reset'
 import { SelectionProvider } from './context/SelectionContext'
 import { CategoriesProvider } from './context/CategoriesContext'
 import { ItineraryBuilder } from './pages/itineraryBuilderPage/ItineraryBuilder'
+import { TripDataProvider } from './context/TripDataContext'
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -22,16 +23,18 @@ function App() {
       <AuthProvider>
         <SelectionProvider>
           <CategoriesProvider>
-            <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />
-            <NavBar isOpen={isOpen} set_map_center={setMapCenter} />
-            <div className="route-container">
-              <Routes>
-                <Route path="/" element={<HomePage map_center={center} />}></Route>
-                <Route path="/itineraries" element={<MyItineraries />}></Route>
-                <Route path="/itinerary-builder" element={<ItineraryBuilder />}></Route>
-                <Route path="/userprofile" element={<UserProfile />}></Route>
-              </Routes>
-            </div>
+            <TripDataProvider>
+              <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />
+              <NavBar isOpen={isOpen} set_map_center={setMapCenter} />
+              <div className="route-container">
+                <Routes>
+                  <Route path="/" element={<HomePage map_center={center} />}></Route>
+                  <Route path="/itineraries" element={<MyItineraries />}></Route>
+                  <Route path="/itinerary-builder" element={<ItineraryBuilder />}></Route>
+                  <Route path="/userprofile" element={<UserProfile />}></Route>
+                </Routes>
+              </div>
+            </TripDataProvider>
           </CategoriesProvider>
         </SelectionProvider>
       </AuthProvider>

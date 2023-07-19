@@ -1,10 +1,18 @@
 import styles from './ItineraryDetailsCard.module.css'
 import { Bar } from 'react-chartjs-2'
+import { useState, useEffect } from 'react'
 
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js'
 
 const ItineraryDetailsCard = (props) => {
+  const [attractionObj, setAttractionObj] = useState({})
   ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend)
+  useEffect(() => {
+    let attraction_string = props.attraction
+    let attraction_object = JSON.parse(attraction_string)
+    setAttractionObj(attraction_object)
+  }, [])
+
   const data = {
     labels: [
       '12 AM',
@@ -35,7 +43,7 @@ const ItineraryDetailsCard = (props) => {
     datasets: [
       {
         label: 'Busyness',
-        data: props.attraction.properties.day_busyness,
+        data: attractionObj.day_busyness,
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         borderColor: 'rgba(75, 192, 192, 1)',
         borderWidth: 1
@@ -55,13 +63,15 @@ const ItineraryDetailsCard = (props) => {
   }
 
   const handleTimeChange = (event) => {
-    props.attraction.properties.visitTime = event.target.value
-    console.log(props.attraction.properties)
+    attractionObj.all_details.properties.visitTime = event.target.value
+    console.log('Time changed check it out!')
+    console.log(attractionObj)
+    setAttractionObj(attractionObj)
   }
   return (
     <div className={styles.ItnDetailsCard}>
-      <div>{props.attraction.properties.name}</div>
-      <p>{props.attraction.properties.description}</p>
+      <div>{attractionObj.name}</div>
+      {attractionObj.all_details && <p>{attractionObj.all_details.properties.description}</p>}
       <label htmlFor="timeInput">Visit Time</label>
       <input type="time" id="timeInput" name="time" onChange={handleTimeChange} />
       <Bar data={data} options={options} />

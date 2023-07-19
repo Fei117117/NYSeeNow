@@ -6,29 +6,16 @@ import ItineraryCarouselCard from './ItineraryCarouselCard'
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import styles from './ItineraryBuilder.module.css'
+import { useTripData } from '../../context/TripDataContext'
 
 export const ItineraryBuilder = () => {
   const [tripMap, setTripMap] = useState({})
+  const { tripData, setTripData } = useTripData()
 
   const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth()
 
   useEffect(() => {
-    let attraction_list = attractions_data['features']
-
-    let trip_map_sample = {}
-
-    for (let i = 0; i < 6; i++) {
-      attraction_list[i].properties['day_busyness'] = [
-        12, 34, 56, 78, 90, 34, 26, 77, 78, 34, 23, 45, 12, 34, 56, 78, 90, 34, 26, 77, 78, 34, 23,
-        45
-      ]
-    }
-
-    trip_map_sample[new Date(2023, 6, 15)] = [attraction_list[0], attraction_list[1]]
-    trip_map_sample[new Date(2023, 6, 16)] = [attraction_list[2], attraction_list[3]]
-    trip_map_sample[new Date(2023, 6, 17)] = [attraction_list[4], attraction_list[5]]
-    console.log(attraction_list[0])
-    setTripMap(trip_map_sample)
+    setTripMap(tripData)
   }, [])
 
   const saveItinerary = () => {
@@ -39,6 +26,7 @@ export const ItineraryBuilder = () => {
       //move to next page
       //Go to saved
       //fetch the itineraries in useEffect there
+      console.log('The request to save')
       console.log(tripMap)
     } else {
       //move to next page
