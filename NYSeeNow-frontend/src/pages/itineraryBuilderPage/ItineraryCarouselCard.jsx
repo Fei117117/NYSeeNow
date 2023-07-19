@@ -8,7 +8,11 @@ const ItineraryCarouselCard = (props) => {
     <>
       <div className={styles.carouselCard}>{props.day}</div>
       {attractions_for_day.map((attraction, key) => (
-        <ItineraryDetailsCard key={key} attraction={attraction}></ItineraryDetailsCard>
+        <ItineraryDetailsCard
+          key={key}
+          cardkey={key}
+          attraction={attraction}
+        ></ItineraryDetailsCard>
       ))}
     </>
   )
