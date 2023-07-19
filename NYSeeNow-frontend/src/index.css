@@ -37,7 +37,7 @@ body {
 }
 
 aside.side-bar {
-  background: radial-gradient(circle at top left, #000000, #007991);
+  background: radial-gradient(circle at top left, #000000, #5DAB8C);
   color: white;
   display: grid; /* Change display to grid */
   grid-template-columns: 1fr auto; /* Two columns: content and icons */
