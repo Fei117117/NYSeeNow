@@ -4,6 +4,7 @@ import { GoogleMap, MarkerF, HeatmapLayer} from '@react-google-maps/api'
 import { HomePageMarker } from './HomePageMarker'
 import { useCategories } from '../../context/CategoriesContext'
 import options from '../../assets/attraction_options.json'
+import axios from "axios";
 // This function should fetch the code from the backend instead of the json file.
 
 export const HomePageMap = (props) => {
@@ -64,58 +65,50 @@ export const HomePageMap = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const lat_lon = fetched_markers.map((marker) => marker.position.lat + ',' + marker.position.lng);
-  
+
       const heatmapData = await Promise.all(
-        lat_lon.map(async (position) => {
-          const [lat, lng] = position.split(',');
-  
-          try {
-            // Construct the request body for the POST request
-            const requestBody = JSON.stringify({
-              name: fetched_markers.find((marker) => marker.position.lat + ',' + marker.position.lng === position)?.name,
-              lat_lon: position,
-              hour: new Date().getHours(),
-              day: new Date().getDay(),
-              month: new Date().getMonth() + 1, // JavaScript months are 0-indexed, so we add 1 to get the correct month
-            });
-  
-            const response = await fetch('attraction/predict', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: requestBody,
-            });
-  
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
+          lat_lon.map(async (position) => {
+            const [lat, lng] = position.split(',');
+
+            try {
+              // Construct the request body for the POST request
+              const requestBody = {
+                name: fetched_markers.find((marker) => marker.position.lat + ',' + marker.position.lng === position)?.name,
+                lat_lon: position,
+                hour: new Date().getHours(),
+                day: new Date().getDay(),
+                month: new Date().getMonth() + 1, // JavaScript months are 0-indexed, so we add 1 to get the correct month
+              };
+
+              const response = await axios.post('/attraction/predict', requestBody);
+
+              const data = response.data;
+              const busyness = data.busyness;
+              const info = {
+                name: fetched_markers.find((marker) => marker.position.lat + ',' + marker.position.lng === position)?.name,
+                lat_lon: position,
+                hour: new Date().getHours(),
+                day: new Date().getDay(),
+                month: new Date().getMonth(),
+                busyness: busyness,
+              };
+
+              console.log('info', info);
+
+
+              return { location: new window.google.maps.LatLng(parseFloat(lat), parseFloat(lng)), weight: busyness };
+            } catch (error) {
+              console.error('Error fetching busyness data:', error);
+              return null;
+
             }
-  
-            const data = await response.json();
-            const busyness = data.busyness;
-            const info = {
-              name: fetched_markers.find((marker) => marker.position.lat + ',' + marker.position.lng === position)?.name,
-              lat_lon: position,
-              hour: new Date().getHours(),
-              day: new Date().getDay(),
-              month: new Date().getMonth(),
-              busyness: busyness,
-            };
-  
-            console.log('info', info);
-  
-            return { location: new window.google.maps.LatLng(parseFloat(lat), parseFloat(lng)), weight: busyness };
-          } catch (error) {
-            console.error('Error fetching busyness data:', error);
-            return null;
-          }
-        })
+          })
       );
-  
+
       // Remove any potential null entries (due to errors in fetching data)
       setHeatmapData(heatmapData.filter((entry) => entry !== null));
     };
-  
+
     fetchData();
   }, [fetched_markers]);
   
