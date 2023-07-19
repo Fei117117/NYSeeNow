@@ -37,7 +37,7 @@ body {
 }
 
 aside.side-bar {
-  background-color: black;
+  background: radial-gradient(circle at top left, #000000, #007991);
   color: white;
   display: grid; /* Change display to grid */
   grid-template-columns: 1fr auto; /* Two columns: content and icons */
@@ -92,26 +92,43 @@ aside.side-bar.open {
 .sidebar-icons {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start; /* It will align your icons to start from the top of the sidebar */
-  vertical-align: middle;
-  gap: 5rem;
+  justify-content: space-between; /* This will push top-icons and question-mark-icon to the extremes */
+  height: 100%;
   margin-left: -0.5rem;
   order: 2;
-  height: 100%;
-  margin-top: 15px; /* Adjust this if needed */
   transform: translateX(-10px);
+}
+
+.top-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem;
+  padding-top: 1rem; /* Increase or decrease to move the top icons down or up */
 }
 
 .side-bar.open .sidebar-content {
   opacity: 1;
 }
 
+.hamburger-icon:hover, 
+.question-mark-icon:hover,
+.calendar-icon:hover,
+.marker-icon:hover {
+  background-color: #123456;  /* Your preferred color */
+  border-radius: 50%;         /* Make the background round, adjust as per your need */
+  transition: background-color 0.3s ease; /* This will create a smooth color transition */
+  box-shadow: 0 0 0 10px #123456;  /* Use box-shadow instead of border */
+}
+
+
+
 .question-mark-icon {
   width: 100%;
   display: flex;
   justify-content: center;
   margin-top: 0; /* Adjust if needed */
+  padding-bottom: 1rem;
 }
 
 .question-mark-icon img {
@@ -237,4 +254,3 @@ aside.side-bar.open {
 .now-mode-button.off {
   background-color: red;
 }
-

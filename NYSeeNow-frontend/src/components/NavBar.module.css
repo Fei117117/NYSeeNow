@@ -1,5 +1,5 @@
 nav {
-  background-color: black;
+  background: radial-gradient(circle at top left, black, #007991);
   color: white;
   display: flex;
   justify-content: space-between;
@@ -34,7 +34,7 @@ nav ul {
 }
 
 nav li:hover {
-  background: rgb(255, 255, 255, 0.6);
+  background: #007991;
 }
 
 nav li.active {

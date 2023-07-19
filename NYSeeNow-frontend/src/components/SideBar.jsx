@@ -39,17 +39,17 @@ export const SideBar = ({ isOpen, setIsOpen }) => {
   return (
     <aside className={`side-bar ${isOpen ? 'open' : ''}`}>
       <div className="sidebar-icons">
-        <div
-          className="hamburger-icon"
-          onClick={() => setIsOpen(!isOpen)}
-          style={{ display: 'flex', justifyContent: 'center' }}
-        >
-          <img src="hamburger.png" alt="Menu" />
+        <div className="top-icons">
+          <div className="hamburger-icon" onClick={() => setIsOpen(!isOpen)} style={{ display: 'flex', justifyContent: 'center' }}>
+            <img src="hamburger.png" alt="Menu" />
+          </div>
+          <Link to="/itineraries" className="calendar-icon">
+            <img src="calendar.png" alt="Calendar" />
+          </Link>
+          <div className="marker-icon">
+            <img src="marker.png" alt="Marker" />
+          </div>
         </div>
-        <Link to="/itineraries">
-          <img src="calendar.png" alt="Calendar" />
-        </Link>
-        <img src="marker.png" alt="Marker" />
         <div className="question-mark-icon">
           <img src="question_mark.png" alt="Help" />
         </div>
