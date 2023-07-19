@@ -137,6 +137,7 @@ aside.side-bar.open {
 }
 
 .hover-card-container {
+  background: radial-gradient(circle at top left, white, #007991);
   display: flex;
   justify-content: space-between;
   border: 1px solid #ccc;
@@ -161,6 +162,7 @@ aside.side-bar.open {
 
 
 .attraction-card {
+  background: radial-gradient(circle at top left, #007991, black);
   border: 1px solid gray;
   padding: 30px;
   margin: 10px 0;
@@ -169,6 +171,7 @@ aside.side-bar.open {
 }
 
 .attraction-counter {
+  background: radial-gradient(circle at top left, white, #007991);
   position: fixed;
   bottom: 10px;
   left: 60px;
@@ -248,9 +251,9 @@ aside.side-bar.open {
 }
 
 .now-mode-button.on {
-  background-color: green;
+  background: radial-gradient(circle at top left, rgb(175, 255, 155), green);
 }
 
 .now-mode-button.off {
-  background-color: red;
+  background: radial-gradient(circle at top left, rgb(255, 164, 164), red);
 }
