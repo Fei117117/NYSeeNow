@@ -62,23 +62,55 @@ export const HomePageMap = (props) => {
   // Note that museums and artworks do not load on the map I can not figure out why, they are passed correctly
   // and with a busyness value
   useEffect(() => {
+    const fetchData = async () => {
 
-    const lat_lon = fetched_markers.map((marker) => marker.position.lat + ',' + marker.position.lng);
-    console.log('lat_lon', lat_lon);
-    const heatmapData = lat_lon.map((position) => {
-      const [lat, lng] = position.split(',');
-      const busyness= Math.random().toFixed(2)*100;
-      //can use this info to  tie in place name and it's busyness
-      const info = {
-        name: fetched_markers.find((marker) => marker.position.lat + ',' + marker.position.lng === position)?.name,
-        busyness: busyness,
-        lat_lon: position
-      }
-      console.log('info', info);
-      return {location: new window.google.maps.LatLng(parseFloat(lat), parseFloat(lng)), weight: busyness};
-    });
-    
-    setHeatmapData(heatmapData);
+      const lat_lon = fetched_markers.map((marker) => marker.position.lat + ',' + marker.position.lng);
+      //console.log('lat_lon', lat_lon);
+
+      const heatmapData = await Promise.all(
+        lat_lon.map(async (position) => {
+          // Construct the query parameters for the API request
+          const queryParams = new URLSearchParams({
+            name: fetched_markers.find((marker) => marker.position.lat + ',' + marker.position.lng === position)?.name,
+            lat_lon: position,
+            hour: new Date().getHours(),
+            day: new Date().getDay(),
+            month: new Date().getMonth() + 1, // JavaScript months are 0-indexed, so we add 1 to get the correct month
+          });
+          
+          try {
+            const response = await fetch(`http://localhost:8080/attraction/predict?${queryParams}`);
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+
+            // Assuming the response from the API contains busyness data
+            const busyness = data.busyness;
+            const info = {
+              name: fetched_markers.find((marker) => marker.position.lat + ',' + marker.position.lng === position)?.name,
+              lat_lon: position,
+              hour: new Date().getHours(),
+              day: new Date().getDay(),
+              month: new Date().getMonth(),
+              busyness: busyness,
+            };
+
+            console.log('info', info);
+
+            return { location: new window.google.maps.LatLng(parseFloat(lat), parseFloat(lng)), weight: busyness };
+          } catch (error) {
+            console.error('Error fetching busyness data:', error);
+            return null;
+          }
+        })
+      );
+
+      // Remove any potential null entries (due to errors in fetching data)
+      setHeatmapData(heatmapData.filter((entry) => entry !== null));
+    };
+
+    fetchData();
   }, [fetched_markers]);
   
   const handleHeatmapLoad = (heatmapLayer) => {
