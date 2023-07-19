@@ -19,22 +19,8 @@ export const ItineraryBuilder = () => {
   }, [])
 
   const saveItinerary = () => {
-    //store in context
-    if (isLoggedIn) {
-      //send Request
-      //getResponse
-      //move to next page
-      //Go to saved
-      //fetch the itineraries in useEffect there
-      console.log('The request to save')
-      console.log(tripMap)
-    } else {
-      //move to next page
-      //login
-      //send request using context data
-      //get response
-      //render page by sending another request to fetch all the data
-    }
+    console.log('The request to save')
+    console.log(tripMap)
   }
 
   return (

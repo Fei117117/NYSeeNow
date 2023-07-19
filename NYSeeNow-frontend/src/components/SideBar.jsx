@@ -33,6 +33,20 @@ export const SideBar = ({ isOpen, setIsOpen }) => {
 
     const req_string = JSON.stringify(request_obj)
 
+    const response_processing = (response_obj) => {
+      let new_map = {}
+      Object.entries(response_obj).map(([key, attraction_list]) => {
+        new_map[key] = []
+        attraction_list.map((attraction, arrKey) => {
+          let attraction_string = attraction
+          let attraction_object = JSON.parse(attraction_string)
+          new_map[key].push(attraction_object)
+        })
+      })
+
+      return new_map
+    }
+
     axios
       .post(url, req_string, {
         headers: {
@@ -42,7 +56,8 @@ export const SideBar = ({ isOpen, setIsOpen }) => {
       .then((response) => {
         console.log('Success!')
         console.log(response)
-        setTripData(response.data)
+        let response_obj = response_processing(response.data)
+        setTripData(response_obj)
         navigate('/itinerary-builder')
         setIsOpen(false)
       })
