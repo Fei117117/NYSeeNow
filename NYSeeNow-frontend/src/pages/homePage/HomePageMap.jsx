@@ -161,9 +161,9 @@ export const HomePageMap = (props) => {
           !props.isNowMode && <HomePageMarker key={index} markerDetails={marker_details} />
         ))}
 
-        {props.isNowMode && 
+        {props.isNowMode && (
           <HeatmapLayer data={heatmapData} onLoad={handleHeatmapLoad}/>
-        }
+        )}
 
       </GoogleMap>
   )
