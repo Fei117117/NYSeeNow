@@ -56,12 +56,16 @@ export const HomePageMap = (props) => {
 
   useEffect(() => {
     setFetchedMarkers(fetch_marker_data())
+    console.log(fetch_marker_data()); // Log out fetched_markers
   }, [selectedOptions])
+
 
   //useeffect to set new heatmap data when the selected options change
   //the weight here will be the busyness percentage we get from backend
   // Note that museums and artworks do not load on the map I can not figure out why, they are passed correctly
   // and with a busyness value
+  // ... Other parts of the code
+
   useEffect(() => {
     const fetchData = async () => {
       const lat_lon = fetched_markers.map((marker) => marker.position.lat + ',' + marker.position.lng);
@@ -71,13 +75,12 @@ export const HomePageMap = (props) => {
             const [lat, lng] = position.split(',');
 
             try {
-              // Construct the request body for the POST request
               const requestBody = {
                 name: fetched_markers.find((marker) => marker.position.lat + ',' + marker.position.lng === position)?.name,
                 lat_lon: position,
                 hour: new Date().getHours(),
                 day: new Date().getDay(),
-                month: new Date().getMonth() + 1, // JavaScript months are 0-indexed, so we add 1 to get the correct month
+                month: new Date().getMonth() + 1,
               };
 
               const response = await axios.post('attraction/predict', requestBody);
@@ -95,23 +98,24 @@ export const HomePageMap = (props) => {
 
               console.log('info', info);
 
-
               return { location: new window.google.maps.LatLng(parseFloat(lat), parseFloat(lng)), weight: busyness };
             } catch (error) {
               console.error('Error fetching busyness data:', error);
               return null;
-
             }
           })
       );
 
-      // Remove any potential null entries (due to errors in fetching data)
       setHeatmapData(heatmapData.filter((entry) => entry !== null));
+      console.log(heatmapData); // Log out heatmapData
     };
 
     fetchData();
   }, [fetched_markers]);
-  
+
+// ... Other parts of the code
+
+
   const handleHeatmapLoad = (heatmapLayer) => {
     // Handle the loaded heatmapLayer instance
     //define the gradient, opaque, green, yellow, red
