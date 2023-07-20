@@ -367,23 +367,6 @@
         {
             "type": "Feature",
             "properties": {
-                "name": "Beach Museum of Art",
-                "tourism": "museum",
-                "description": "Explore the rich history and culture that Manhattan has to offer, showcasing various exhibits and artifacts from different eras.",
-                "opening_hours": "nan",
-                "website": "nan"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -96.5787359,
-                    39.1868978
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
                 "name": "The Rink at Rockefeller Center",
                 "tourism": "yes",
                 "description": "nan",
@@ -395,23 +378,6 @@
                 "coordinates": [
                     -73.9784188,
                     40.7586424
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "name": "Sunset Zoo",
-                "tourism": "zoo",
-                "description": "Discover a captivating world filled with fascinating creatures from across the globe right here in Manhattan!",
-                "opening_hours": "Mo-Su 09:30-17:00",
-                "website": "https://www.sunsetzoo.com/"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -96.5957218,
-                    39.1770169
                 ]
             }
         },
@@ -554,23 +520,6 @@
         {
             "type": "Feature",
             "properties": {
-                "name": "Union Pacific Train Depot",
-                "tourism": "museum",
-                "description": "Explore the rich history and culture that Manhattan has to offer, showcasing various exhibits and artifacts from different eras.",
-                "opening_hours": "nan",
-                "website": "nan"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -96.5578143,
-                    39.1749936
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
                 "name": "Met Life Tower",
                 "tourism": "yes",
                 "description": "nan",
@@ -633,23 +582,6 @@
                 "coordinates": [
                     -73.9713889,
                     40.7486231
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "name": "Flint Hills Discovery Center",
-                "tourism": "museum",
-                "description": "Explore the rich history and culture that Manhattan has to offer, showcasing various exhibits and artifacts from different eras.",
-                "opening_hours": "nan",
-                "website": "nan"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -96.5598614,
-                    39.1765236
                 ]
             }
         },
@@ -769,23 +701,6 @@
                 "coordinates": [
                     -74.003384,
                     40.7053456
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "name": "Riley County Museum",
-                "tourism": "museum",
-                "description": "Explore the rich history and culture that Manhattan has to offer, showcasing various exhibits and artifacts from different eras.",
-                "opening_hours": "nan",
-                "website": "nan"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -96.5962999,
-                    39.1923611
                 ]
             }
         },
@@ -3240,57 +3155,6 @@
         {
             "type": "Feature",
             "properties": {
-                "name": "Johnny Kaw Statue",
-                "tourism": "artwork",
-                "description": "Explore a diverse collection of artwork showcasing various styles, themes, and mediums. ",
-                "opening_hours": "nan",
-                "website": "nan"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -96.5736732,
-                    39.1801252
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "name": "Bosco Clock Tower",
-                "tourism": "artwork",
-                "description": "Explore a diverse collection of artwork showcasing various styles, themes, and mediums. ",
-                "opening_hours": "nan",
-                "website": "nan"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -96.582684,
-                    39.1889086
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "name": "Family",
-                "tourism": "artwork",
-                "description": "Explore a diverse collection of artwork showcasing various styles, themes, and mediums. ",
-                "opening_hours": "nan",
-                "website": "nan"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -96.575527,
-                    39.2116419
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
                 "name": "Jasper\u2019s Split Star",
                 "tourism": "artwork",
                 "description": "Explore a diverse collection of artwork showcasing various styles, themes, and mediums. ",
@@ -3319,23 +3183,6 @@
                 "coordinates": [
                     -73.9420363,
                     40.8471692
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "name": "Martin Luther King Jr. Bust",
-                "tourism": "artwork",
-                "description": "Explore a diverse collection of artwork showcasing various styles, themes, and mediums. ",
-                "opening_hours": "nan",
-                "website": "nan"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -96.5835304,
-                    39.1885896
                 ]
             }
         },
@@ -4260,23 +4107,6 @@
         {
             "type": "Feature",
             "properties": {
-                "name": "Manhattan Area Museum",
-                "tourism": "museum",
-                "description": "Explore the rich history and culture that Manhattan has to offer, showcasing various exhibits and artifacts from different eras.",
-                "opening_hours": "nan",
-                "website": "nan"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -111.3331661,
-                    45.8560206
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
                 "name": "Tropical Zone",
                 "tourism": "attraction",
                 "description": "Explore this fascinating attraction and discover its unique offerings. With various exhibits and activities, it promises an enriching experience for visitors of all ages.",
@@ -4322,23 +4152,6 @@
                 "coordinates": [
                     -73.9941473,
                     40.7466544
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "name": "MANHATTAN",
-                "tourism": "artwork",
-                "description": "Explore a diverse collection of artwork showcasing various styles, themes, and mediums. ",
-                "opening_hours": "nan",
-                "website": "nan"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -96.5628212,
-                    39.1924605
                 ]
             }
         },
@@ -6141,23 +5954,6 @@
                 "coordinates": [
                     -73.9964593,
                     40.7337057
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "name": "Bill Snyder",
-                "tourism": "artwork",
-                "description": "Explore a diverse collection of artwork showcasing various styles, themes, and mediums. ",
-                "opening_hours": "nan",
-                "website": "nan"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -96.595144,
-                    39.2020098
                 ]
             }
         },

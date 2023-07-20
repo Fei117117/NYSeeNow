@@ -80,7 +80,7 @@ export const HomePageMap = (props) => {
                 month: new Date().getMonth() + 1, // JavaScript months are 0-indexed, so we add 1 to get the correct month
               };
 
-              const response = await axios.post('/attraction/predict', requestBody);
+              const response = await axios.post('attraction/predict', requestBody);
 
               const data = response.data;
               const busyness = data.busyness;
@@ -123,7 +123,7 @@ export const HomePageMap = (props) => {
     ];
 
     heatmapLayer.setOptions({
-      radius: 20, // Set the radius of each data point
+      radius: 20, //Set the radius of each data point
       opacity: 0.3, // Set the opacity of the heatmap layer
       //start at opaque, then green, yellow, red
       gradient
