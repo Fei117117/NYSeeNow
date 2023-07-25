@@ -6,6 +6,7 @@ import { GoogleMap, MarkerF } from '@react-google-maps/api'
 import { HomePageMarker } from './HomePageMarker'
 import { useCategories } from '../../context/CategoriesContext'
 import options from '../../assets/attraction_options.json'
+import axios from 'axios'
 // This function should fetch the code from the backend instead of the json file.
 
 export const HomePageMap = (props) => {
@@ -13,7 +14,7 @@ export const HomePageMap = (props) => {
 
   const { selectedOptions, setSelectedOptions } = useCategories()
 
-  const [fetched_markers, setFetchedMarkers] = useState([])
+  const [fetched_markers, setFetchedMarkers] = useState(null)
 
   const getSelectedTypes = () => {
     let filtered_options = options
@@ -28,31 +29,33 @@ export const HomePageMap = (props) => {
     return filtered_types
   }
 
-  function fetch_marker_data() {
-    let filtered_types = getSelectedTypes()
-    let attraction_list = attractions_data['features']
-
-    let coordinate_json = []
-    for (let key in attraction_list) {
-      if (attraction_list.hasOwnProperty(key)) {
-        let attraction_details = attraction_list[key]
-        let position_cords = attraction_details['geometry']['coordinates']
-        let marker_coordinates = {
-          position: { lat: position_cords[1], lng: position_cords[0] },
-          name: attraction_details['properties']['name'],
-          type: attraction_details['properties']['tourism'],
-          all_details: attraction_details
-        }
-        if (filtered_types.includes(marker_coordinates['type']))
-          coordinate_json.push(marker_coordinates)
-      }
-    }
-
-    return coordinate_json
-  }
-
+  let attraction_url = '/attractions/fetch'
+  let filtered_types = getSelectedTypes()
+  let attractions = null
+  let coordinate_json = []
   useEffect(() => {
-    setFetchedMarkers(fetch_marker_data())
+    axios
+      .get(attraction_url)
+      .then((response) => {
+        attractions = response.data
+        attractions.map((attraction, key) => {
+          attraction['position'] = { lat: attraction.latitude, lng: attraction.longitude }
+        })
+        for (let key in attractions) {
+          if (attractions.hasOwnProperty(key)) {
+            let attraction_details = attractions[key]
+            if (filtered_types.includes(attraction_details['tourism']))
+              coordinate_json.push(attraction_details)
+          }
+        }
+        setMapLoaded(true)
+        console.log('Letss goooo')
+        console.log(coordinate_json)
+        setFetchedMarkers(coordinate_json)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }, [selectedOptions])
 
   const [zoomLevel, setZoomLevel] = useState(15) // Initial zoom level
@@ -80,6 +83,7 @@ export const HomePageMap = (props) => {
       onCenterChanged={handleCenterChange}
     >
       {mapLoaded &&
+        fetched_markers &&
         fetched_markers.map((marker_details, index) => (
           <HomePageMarker key={index} markerDetails={marker_details} />
         ))}

@@ -28,6 +28,8 @@ export const SideBar = ({ isOpen, setIsOpen }) => {
       end_date: endDate,
       attraction_list: selectedList
     }
+    console.log('This is the sending list: FYR')
+    console.log(selectedList)
 
     const url = 'itinerary/predict'
 
