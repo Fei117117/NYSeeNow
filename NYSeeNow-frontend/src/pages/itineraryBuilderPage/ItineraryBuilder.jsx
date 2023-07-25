@@ -20,7 +20,9 @@ export const ItineraryBuilder = () => {
 
   const saveItinerary = () => {
     console.log('The request to save')
-    console.log(tripMap)
+    let req_obj = { user: authUser }
+    req_obj['trip_data'] = tripMap
+    console.log(req_obj)
   }
 
   return (

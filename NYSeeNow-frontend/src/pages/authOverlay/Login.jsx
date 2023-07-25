@@ -30,6 +30,8 @@ export const Login = (props) => {
         console.log('Status:', status)
         setMessage('Logged in.')
         setIsLoggedIn(true)
+        console.log('Username', data['username'])
+        setAuthUser(data['username'])
       },
       (message, status) => {
         console.log('Failure:', message)
