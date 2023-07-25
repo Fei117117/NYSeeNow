@@ -1,8 +1,6 @@
 import { useEffect, useState, useMemo, useRef } from 'react'
-
-import attractions_data from '../../assets/cleaned_attracions.json'
-
-import { GoogleMap, MarkerF } from '@react-google-maps/api'
+import attractions_data from '../../assets/filtered_attractions.json'
+import { GoogleMap, MarkerF, HeatmapLayer } from '@react-google-maps/api'
 import { HomePageMarker } from './HomePageMarker'
 import { useCategories } from '../../context/CategoriesContext'
 import options from '../../assets/attraction_options.json'
@@ -14,7 +12,11 @@ export const HomePageMap = (props) => {
 
   const { selectedOptions, setSelectedOptions } = useCategories()
 
-  const [fetched_markers, setFetchedMarkers] = useState(null)
+  const [fetched_markers, setFetchedMarkers] = useState([])
+
+  const [mapLoaded, setMapLoaded] = useState(false) // New state for map loading
+
+  const [heatmapData, setHeatmapData] = useState([]) // Declare heatmapData state variable
 
   const getSelectedTypes = () => {
     let filtered_options = options
@@ -58,11 +60,91 @@ export const HomePageMap = (props) => {
       })
   }, [selectedOptions])
 
+  //useeffect to set new heatmap data when the selected options change
+  //the weight here will be the busyness percentage we get from backend
+  // Note that museums and artworks do not load on the map I can not figure out why, they are passed correctly
+  // and with a busyness value
+  // ... Other parts of the code
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const lat_lon = fetched_markers.map(
+        (marker) => marker.position.lat + ',' + marker.position.lng
+      )
+
+      const heatmapData = await Promise.all(
+        lat_lon.map(async (position) => {
+          const [lat, lng] = position.split(',')
+
+          try {
+            const requestBody = {
+              name: fetched_markers.find(
+                (marker) => marker.position.lat + ',' + marker.position.lng === position
+              )?.name,
+              lat_lon: position,
+              hour: new Date().getHours(),
+              day: new Date().getDay(),
+              month: new Date().getMonth() + 1
+            }
+
+            const response = await axios.post('attraction/predict', requestBody)
+
+            const data = response.data
+            const busyness = data.busyness
+            const info = {
+              name: fetched_markers.find(
+                (marker) => marker.position.lat + ',' + marker.position.lng === position
+              )?.name,
+              lat_lon: position,
+              hour: new Date().getHours(),
+              day: new Date().getDay(),
+              month: new Date().getMonth(),
+              busyness: busyness
+            }
+
+            console.log('info', info)
+
+            return {
+              location: new window.google.maps.LatLng(parseFloat(lat), parseFloat(lng)),
+              weight: busyness
+            }
+          } catch (error) {
+            console.error('Error fetching busyness data:', error)
+            return null
+          }
+        })
+      )
+
+      setHeatmapData(heatmapData.filter((entry) => entry !== null))
+      console.log(heatmapData) // Log out heatmapData
+    }
+
+    fetchData()
+  }, [fetched_markers])
+
+  // ... Other parts of the code
+
+  const handleHeatmapLoad = (heatmapLayer) => {
+    // Handle the loaded heatmapLayer instance
+    //define the gradient, opaque, green, yellow, red
+    const gradient = [
+      'rgba(255, 255, 255, 0)',
+      'rgba(0, 255, 0, 1)',
+      'rgba(255, 255, 0, 1)',
+      'rgba(255, 0, 0, 1)'
+    ]
+
+    heatmapLayer.setOptions({
+      radius: 20, //Set the radius of each data point
+      opacity: 0.3, // Set the opacity of the heatmap layer
+      //start at opaque, then green, yellow, red
+      gradient
+    })
+  }
+
   const [zoomLevel, setZoomLevel] = useState(15) // Initial zoom level
 
   const mapRef = useRef(null)
-
-  const [mapLoaded, setMapLoaded] = useState(false)
 
   const handleMapLoading = () => {
     setMapLoaded(true)
@@ -83,10 +165,12 @@ export const HomePageMap = (props) => {
       onCenterChanged={handleCenterChange}
     >
       {mapLoaded &&
-        fetched_markers &&
-        fetched_markers.map((marker_details, index) => (
-          <HomePageMarker key={index} markerDetails={marker_details} />
-        ))}
+        fetched_markers.map(
+          (marker_details, index) =>
+            !props.isNowMode && <HomePageMarker key={index} markerDetails={marker_details} />
+        )}
+
+      {props.isNowMode && <HeatmapLayer data={heatmapData} onLoad={handleHeatmapLoad} />}
     </GoogleMap>
   )
 }
