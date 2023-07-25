@@ -4,6 +4,9 @@ import AttractionCounter from './AttractionCounter'
 import { Link } from 'react-router-dom'
 import { useSelection } from '../context/SelectionContext'
 import { useNavigate } from 'react-router-dom'
+import { post_itinerary } from '../net/net'
+import { useTripData } from '../context/TripDataContext'
+import axios from 'axios'
 
 export const SideBar = ({ isOpen, setIsOpen }) => {
   // State for holding the left position of AttractionCounter
@@ -14,6 +17,8 @@ export const SideBar = ({ isOpen, setIsOpen }) => {
   const [attractionListToSend, setAttractionListToSend] = useState([])
 
   const { selectedList, setSelectedList } = useSelection()
+  const { tripData, setTripData } = useTripData()
+  const navigate = useNavigate()
 
   const handleSubmitButton = () => {
     console.log('calling submit funtion')
@@ -23,14 +28,46 @@ export const SideBar = ({ isOpen, setIsOpen }) => {
       end_date: endDate,
       attraction_list: selectedList
     }
+    console.log('This is the sending list: FYR')
+    console.log(selectedList)
 
-    console.log(JSON.stringify(request_obj))
+    const url = 'itinerary/predict'
 
-    navigate('/itinerary-builder')
-    setIsOpen(false)
+    const req_string = JSON.stringify(request_obj)
+
+    const response_processing = (response_obj) => {
+      let new_map = {}
+      Object.entries(response_obj).map(([key, attraction_list]) => {
+        new_map[key] = []
+        attraction_list.map((attraction, arrKey) => {
+          let attraction_string = attraction
+          let attraction_object = JSON.parse(attraction_string)
+          new_map[key].push(attraction_object)
+        })
+      })
+
+      return new_map
+    }
+
+    axios
+      .post(url, req_string, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then((response) => {
+        console.log('Success!')
+        console.log(response)
+        let response_obj = response_processing(response.data)
+        setTripData(response_obj)
+        navigate('/itinerary-builder')
+        setIsOpen(false)
+      })
+      .catch((error) => {
+        console.log('You have an error!')
+        console.log(error)
+      })
   }
-
-  const navigate = useNavigate()
 
   useEffect(() => {
     setCounterLeft(isOpen ? 'calc(50% + 60px)' : '60px') // update the position according to sidebar's state

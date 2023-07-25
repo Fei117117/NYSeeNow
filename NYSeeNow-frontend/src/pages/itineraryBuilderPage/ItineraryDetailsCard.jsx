@@ -1,10 +1,12 @@
 import styles from './ItineraryDetailsCard.module.css'
 import { Bar } from 'react-chartjs-2'
+import { useState, useEffect } from 'react'
 
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js'
 
 const ItineraryDetailsCard = (props) => {
   ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend)
+
   const data = {
     labels: [
       '12 AM',
@@ -35,7 +37,7 @@ const ItineraryDetailsCard = (props) => {
     datasets: [
       {
         label: 'Busyness',
-        data: props.attraction.properties.day_busyness,
+        data: props.attraction.day_busyness,
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         borderColor: 'rgba(75, 192, 192, 1)',
         borderWidth: 1
@@ -55,13 +57,14 @@ const ItineraryDetailsCard = (props) => {
   }
 
   const handleTimeChange = (event) => {
-    props.attraction.properties.visitTime = event.target.value
-    console.log(props.attraction.properties)
+    props.attraction.visitTime = event.target.value
+    console.log('Time changed check it out!')
+    console.log(props.attraction)
   }
   return (
     <div className={styles.ItnDetailsCard}>
-      <div>{props.attraction.properties.name}</div>
-      <p>{props.attraction.properties.description}</p>
+      <div>{props.attraction.name}</div>
+      {props.attraction.all_details && <p>{props.attraction.all_details.properties.description}</p>}
       <label htmlFor="timeInput">Visit Time</label>
       <input type="time" id="timeInput" name="time" onChange={handleTimeChange} />
       <Bar data={data} options={options} />
