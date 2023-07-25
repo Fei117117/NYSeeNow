@@ -51,8 +51,6 @@ export const HomePageMap = (props) => {
           }
         }
         setMapLoaded(true)
-        console.log('Letss goooo')
-        console.log(coordinate_json)
         setFetchedMarkers(coordinate_json)
       })
       .catch((error) => {
@@ -102,8 +100,6 @@ export const HomePageMap = (props) => {
               busyness: busyness
             }
 
-            console.log('info', info)
-
             return {
               location: new window.google.maps.LatLng(parseFloat(lat), parseFloat(lng)),
               weight: busyness
@@ -116,7 +112,6 @@ export const HomePageMap = (props) => {
       )
 
       setHeatmapData(heatmapData.filter((entry) => entry !== null))
-      console.log(heatmapData) // Log out heatmapData
     }
 
     fetchData()
