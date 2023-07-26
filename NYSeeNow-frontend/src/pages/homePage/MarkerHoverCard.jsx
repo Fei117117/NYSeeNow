@@ -6,6 +6,7 @@ export const MarkerHoverCard = (props) => {
   const [imageUrl, setImageUrl] = useState(null);
 
   const add_attraction = () => {
+    console.log('PLACE:', props.place);  // Add this line to inspect the properties of a place
     const attractionWithImage = { ...props.place, imgUrl: imageUrl };
     
     if (selectedList == null) {

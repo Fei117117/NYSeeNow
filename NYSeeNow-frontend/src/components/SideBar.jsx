@@ -1,19 +1,32 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'  // import useContext
 import SidebarContent from './SidebarContent'
 import AttractionCounter from './AttractionCounter'
 import { Link } from 'react-router-dom'
 import { useSelection } from '../context/SelectionContext'
 import { useNavigate } from 'react-router-dom'
+import { LocatorContext } from '../context/LocatorContext';
+import Locator from './Locator';
 
-export const SideBar = ({ isOpen, setIsOpen }) => {
+export const SideBar = ({ mapRef }) => {
   // State for holding the left position of AttractionCounter
   const [counterLeft, setCounterLeft] = useState('60px')
-
+  const [isOpen, setIsOpen] = useState(false);
   const [startDate, setStartDate] = useState()
   const [endDate, setEndDate] = useState()
   const [attractionListToSend, setAttractionListToSend] = useState([])
 
   const { selectedList, setSelectedList } = useSelection()
+
+  // Use the showLocator and setShowLocator from LocatorContext
+  const { showLocator, setShowLocator } = useContext(LocatorContext);
+
+  // Handle locator button click
+  const handleLocatorClick = () => {
+    setIsOpen(false);
+    setShowLocator(true);
+    console.log("Locator button clicked, showLocator:", showLocator); // add this line
+  }
+  
 
   const handleSubmitButton = () => {
     console.log('calling submit funtion')
@@ -49,7 +62,9 @@ export const SideBar = ({ isOpen, setIsOpen }) => {
         <Link to="/itineraries">
           <img src="calendar.png" alt="Calendar" />
         </Link>
-        <img src="marker.png" alt="Marker" />
+        <div onClick={handleLocatorClick}>
+          <img src="marker.png" alt="Marker" />
+        </div>
         <div className="question-mark-icon">
           <img src="question_mark.png" alt="Help" />
         </div>
