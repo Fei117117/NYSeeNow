@@ -1,10 +1,10 @@
 import { useEffect, useState, useMemo, useRef } from 'react'
 import attractions_data from '../../assets/filtered_attractions.json'
-import { GoogleMap, MarkerF, HeatmapLayer, Polyline } from '@react-google-maps/api';
+import { GoogleMap, MarkerF, HeatmapLayer, Polyline } from '@react-google-maps/api'
 import { HomePageMarker } from './HomePageMarker'
 import { useCategories } from '../../context/CategoriesContext'
 import options from '../../assets/attraction_options.json'
-import axios from "axios";
+import axios from 'axios'
 // This function should fetch the code from the backend instead of the json file.
 
 export const HomePageMap = (props) => {
@@ -12,199 +12,199 @@ export const HomePageMap = (props) => {
 
   const mapStyles = [
     {
-        "featureType": "administrative",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#444444"
-            }
-        ]
+      featureType: 'administrative',
+      elementType: 'labels.text.fill',
+      stylers: [
+        {
+          color: '#444444'
+        }
+      ]
     },
     {
-        "featureType": "landscape",
-        "elementType": "all",
-        "stylers": [
-            {
-                "color": "#f2f2f2"
-            }
-        ]
+      featureType: 'landscape',
+      elementType: 'all',
+      stylers: [
+        {
+          color: '#f2f2f2'
+        }
+      ]
     },
     {
-        "featureType": "landscape.man_made",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "on"
-            }
-        ]
+      featureType: 'landscape.man_made',
+      elementType: 'all',
+      stylers: [
+        {
+          visibility: 'on'
+        }
+      ]
     },
     {
-        "featureType": "poi",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
+      featureType: 'poi',
+      elementType: 'all',
+      stylers: [
+        {
+          visibility: 'off'
+        }
+      ]
     },
     {
-        "featureType": "poi.attraction",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
+      featureType: 'poi.attraction',
+      elementType: 'all',
+      stylers: [
+        {
+          visibility: 'off'
+        }
+      ]
     },
     {
-        "featureType": "poi.business",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
+      featureType: 'poi.business',
+      elementType: 'all',
+      stylers: [
+        {
+          visibility: 'off'
+        }
+      ]
     },
     {
-        "featureType": "road",
-        "elementType": "all",
-        "stylers": [
-            {
-                "saturation": -100
-            },
-            {
-                "lightness": 45
-            }
-        ]
+      featureType: 'road',
+      elementType: 'all',
+      stylers: [
+        {
+          saturation: -100
+        },
+        {
+          lightness: 45
+        }
+      ]
     },
     {
-        "featureType": "road",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "saturation": "0"
-            },
-            {
-                "visibility": "on"
-            },
-            {
-                "color": "#fefefe"
-            }
-        ]
+      featureType: 'road',
+      elementType: 'geometry.fill',
+      stylers: [
+        {
+          saturation: '0'
+        },
+        {
+          visibility: 'on'
+        },
+        {
+          color: '#fefefe'
+        }
+      ]
     },
     {
-        "featureType": "road",
-        "elementType": "labels.text",
-        "stylers": [
-            {
-                "color": "#303030"
-            }
-        ]
+      featureType: 'road',
+      elementType: 'labels.text',
+      stylers: [
+        {
+          color: '#303030'
+        }
+      ]
     },
     {
-        "featureType": "road",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#aca9a9"
-            },
-            {
-                "visibility": "off"
-            }
-        ]
+      featureType: 'road',
+      elementType: 'labels.text.fill',
+      stylers: [
+        {
+          color: '#aca9a9'
+        },
+        {
+          visibility: 'off'
+        }
+      ]
     },
     {
-        "featureType": "road",
-        "elementType": "labels.text.stroke",
-        "stylers": [
-            {
-                "weight": "0.64"
-            },
-            {
-                "color": "#393939"
-            },
-            {
-                "visibility": "on"
-            }
-        ]
+      featureType: 'road',
+      elementType: 'labels.text.stroke',
+      stylers: [
+        {
+          weight: '0.64'
+        },
+        {
+          color: '#393939'
+        },
+        {
+          visibility: 'on'
+        }
+      ]
     },
     {
-        "featureType": "road.highway",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "on"
-            }
-        ]
+      featureType: 'road.highway',
+      elementType: 'all',
+      stylers: [
+        {
+          visibility: 'on'
+        }
+      ]
     },
     {
-        "featureType": "road.highway",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#f9bc1e"
-            }
-        ]
+      featureType: 'road.highway',
+      elementType: 'geometry.fill',
+      stylers: [
+        {
+          color: '#f9bc1e'
+        }
+      ]
     },
     {
-        "featureType": "road.highway",
-        "elementType": "geometry.stroke",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
+      featureType: 'road.highway',
+      elementType: 'geometry.stroke',
+      stylers: [
+        {
+          visibility: 'off'
+        }
+      ]
     },
     {
-        "featureType": "road.highway",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
+      featureType: 'road.highway',
+      elementType: 'labels.text.fill',
+      stylers: [
+        {
+          visibility: 'off'
+        }
+      ]
     },
     {
-        "featureType": "road.highway",
-        "elementType": "labels.text.stroke",
-        "stylers": [
-            {
-                "weight": "2.99"
-            },
-            {
-                "visibility": "on"
-            }
-        ]
+      featureType: 'road.highway',
+      elementType: 'labels.text.stroke',
+      stylers: [
+        {
+          weight: '2.99'
+        },
+        {
+          visibility: 'on'
+        }
+      ]
     },
     {
-        "featureType": "road.arterial",
-        "elementType": "labels.icon",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
+      featureType: 'road.arterial',
+      elementType: 'labels.icon',
+      stylers: [
+        {
+          visibility: 'off'
+        }
+      ]
     },
     {
-        "featureType": "transit",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
+      featureType: 'transit',
+      elementType: 'all',
+      stylers: [
+        {
+          visibility: 'off'
+        }
+      ]
     },
     {
-        "featureType": "water",
-        "elementType": "all",
-        "stylers": [
-            {
-                "color": "#46bcec"
-            },
-            {
-                "visibility": "on"
-            }
-        ]
+      featureType: 'water',
+      elementType: 'all',
+      stylers: [
+        {
+          color: '#46bcec'
+        },
+        {
+          visibility: 'on'
+        }
+      ]
     }
   ]
   const { selectedOptions, setSelectedOptions } = useCategories()
@@ -213,7 +213,7 @@ export const HomePageMap = (props) => {
 
   const [mapLoaded, setMapLoaded] = useState(false) // New state for map loading
 
-  const [heatmapData, setHeatmapData] = useState([]); // Declare heatmapData state variable
+  const [heatmapData, setHeatmapData] = useState([]) // Declare heatmapData state variable
 
   const getSelectedTypes = () => {
     let filtered_options = options
@@ -228,34 +228,32 @@ export const HomePageMap = (props) => {
     return filtered_types
   }
 
-  function fetch_marker_data() {
-    let filtered_types = getSelectedTypes()
-    let attraction_list = attractions_data['features']
-
-    let coordinate_json = []
-    for (let key in attraction_list) {
-      if (attraction_list.hasOwnProperty(key)) {
-        let attraction_details = attraction_list[key]
-        let position_cords = attraction_details['geometry']['coordinates']
-        let marker_coordinates = {
-          position: { lat: position_cords[1], lng: position_cords[0] },
-          name: attraction_details['properties']['name'],
-          type: attraction_details['properties']['tourism'],
-          all_details: attraction_details
-        }
-        if (filtered_types.includes(marker_coordinates['type']))
-          coordinate_json.push(marker_coordinates)
-      }
-    }
-
-    return coordinate_json
-  }
-
+  let attraction_url = '/attractions/fetch'
+  let filtered_types = getSelectedTypes()
+  let attractions = null
+  let coordinate_json = []
   useEffect(() => {
-    setFetchedMarkers(fetch_marker_data())
-    console.log(fetch_marker_data()); // Log out fetched_markers
+    axios
+      .get(attraction_url)
+      .then((response) => {
+        attractions = response.data
+        attractions.map((attraction, key) => {
+          attraction['position'] = { lat: attraction.latitude, lng: attraction.longitude }
+        })
+        for (let key in attractions) {
+          if (attractions.hasOwnProperty(key)) {
+            let attraction_details = attractions[key]
+            if (filtered_types.includes(attraction_details['tourism']))
+              coordinate_json.push(attraction_details)
+          }
+        }
+        setMapLoaded(true)
+        setFetchedMarkers(coordinate_json)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }, [selectedOptions])
-
 
   //useeffect to set new heatmap data when the selected options change
   //the weight here will be the busyness percentage we get from backend
@@ -265,51 +263,58 @@ export const HomePageMap = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const lat_lon = fetched_markers.map((marker) => marker.position.lat + ',' + marker.position.lng);
+      const lat_lon = fetched_markers.map(
+        (marker) => marker.position.lat + ',' + marker.position.lng
+      )
 
       const heatmapData = await Promise.all(
         lat_lon.map(async (position) => {
-          const [lat, lng] = position.split(',');
+          const [lat, lng] = position.split(',')
 
           try {
             const requestBody = {
-              name: fetched_markers.find((marker) => marker.position.lat + ',' + marker.position.lng === position)?.name,
+              name: fetched_markers.find(
+                (marker) => marker.position.lat + ',' + marker.position.lng === position
+              )?.name,
               lat_lon: position,
               hour: new Date().getHours(),
               day: new Date().getDay(),
-              month: new Date().getMonth() + 1,
-            };
+              month: new Date().getMonth() + 1
+            }
 
-            const response = await axios.post('attraction/predict', requestBody);
+            const response = await axios.post('attraction/predict', requestBody)
 
-            const data = response.data;
-            const busyness = data.busyness;
+            const data = response.data
+            const busyness = data.busyness
             const info = {
-              name: fetched_markers.find((marker) => marker.position.lat + ',' + marker.position.lng === position)?.name,
+              name: fetched_markers.find(
+                (marker) => marker.position.lat + ',' + marker.position.lng === position
+              )?.name,
               lat_lon: position,
               hour: new Date().getHours(),
               day: new Date().getDay(),
               month: new Date().getMonth(),
-              busyness: busyness,
-            };
+              busyness: busyness
+            }
 
-            console.log('info', info);
+            console.log('info', info)
 
-            return { location: new window.google.maps.LatLng(parseFloat(lat), parseFloat(lng)), weight: busyness };
+            return {
+              location: new window.google.maps.LatLng(parseFloat(lat), parseFloat(lng)),
+              weight: busyness
+            }
           } catch (error) {
-            console.error('Error fetching busyness data:', error);
-            return null;
+            console.error('Error fetching busyness data:', error)
+            return null
           }
         })
-      );
+      )
 
-      setHeatmapData(heatmapData.filter((entry) => entry !== null));
-      console.log(heatmapData); // Log out heatmapData
-    };
+      setHeatmapData(heatmapData.filter((entry) => entry !== null))
+    }
 
-    fetchData();
-  }, [fetched_markers]);
-
+    fetchData()
+  }, [fetched_markers])
 
   const handleHeatmapLoad = (heatmapLayer) => {
     // Handle the loaded heatmapLayer instance
@@ -319,16 +324,15 @@ export const HomePageMap = (props) => {
       'rgba(0, 255, 0, 1)',
       'rgba(255, 255, 0, 1)',
       'rgba(255, 0, 0, 1)'
-    ];
+    ]
 
     heatmapLayer.setOptions({
       radius: 20, //Set the radius of each data point
       opacity: 0.3, // Set the opacity of the heatmap layer
       //start at opaque, then green, yellow, red
       gradient
-    });
-
-  };
+    })
+  }
 
   const [zoomLevel, setZoomLevel] = useState(15) // Initial zoom level
 
@@ -341,14 +345,17 @@ export const HomePageMap = (props) => {
   // Notice we now also handle zoom from the props if it is provided
   const handleCenterChange = () => {
     if (props.zoom) {
-      setZoomLevel(props.zoom);
+      setZoomLevel(props.zoom)
     } else {
-      setZoomLevel(25);
+      setZoomLevel(25)
     }
   }
 
   // If the path has data, prepare it for the polyline
-  const polylinePath = props.path.length > 0 ? props.path.map(location => ({ lat: location.lat, lng: location.lng })) : [];
+  const polylinePath =
+    props.path.length > 0
+      ? props.path.map((location) => ({ lat: location.lat, lng: location.lng }))
+      : []
 
   return (
     <GoogleMap
@@ -359,24 +366,18 @@ export const HomePageMap = (props) => {
       center={props.map_center}
       onLoad={handleMapLoading}
       onCenterChanged={handleCenterChange}
-      options={{ // Note this new options prop
-        styles: mapStyles, // Your styles are passed here
+      options={{
+        // Note this new options prop
+        styles: mapStyles // Your styles are passed here
       }}
     >
-      {props.path.length > 0 && (
-        <Polyline
-          path={polylinePath}
-          options={{ strokeColor: "#FF0000 " }}
-        />
-      )}
+      {mapLoaded &&
+        fetched_markers.map(
+          (marker_details, index) =>
+            !props.isNowMode && <HomePageMarker key={index} markerDetails={marker_details} />
+        )}
 
-      {mapLoaded && fetched_markers.map((marker_details, index) => (
-        !props.isNowMode && <HomePageMarker key={index} markerDetails={marker_details} />
-      ))}
-
-      {props.isNowMode && (
-        <HeatmapLayer data={heatmapData} onLoad={handleHeatmapLoad} />
-      )}
+      {props.isNowMode && <HeatmapLayer data={heatmapData} onLoad={handleHeatmapLoad} />}
     </GoogleMap>
   )
 }

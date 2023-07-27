@@ -17,7 +17,26 @@ function post(url, data, success, failure = defaultFailure, error = defaultError
       if (data.success) success(data.message, data.status)
       else failure(data.message, data.status)
     })
-    .catch(error)
+    .catch(console.log(error))
+}
+
+function post_itinerary(url, data, success) {
+  let response_obj
+  axios
+    .post(url, data, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((response) => {
+      console.log('Success!')
+      console.log(response)
+      return response.data
+    })
+    .catch((error) => {
+      console.log('You have an error!')
+      console.log(error)
+    })
 }
 
 function get(url, success, failure = defaultFailure, error = defaultError) {
@@ -32,4 +51,4 @@ function get(url, success, failure = defaultFailure, error = defaultError) {
     .catch(error)
 }
 
-export { get, post }
+export { get, post, post_itinerary }
