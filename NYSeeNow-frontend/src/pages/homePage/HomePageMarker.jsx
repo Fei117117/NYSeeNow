@@ -51,7 +51,7 @@ export const HomePageMarker = (props) => {
     fillOpacity: 1,
     strokeColor: 'black',
     strokeWeight: 1,
-    scale: 5,
+    scale: 10,  // Increase this number to make the SVG larger
   };
 
   return (

@@ -26,7 +26,7 @@ export const SideBar = ({ mapRef }) => {
     setShowLocator(true);
     console.log("Locator button clicked, showLocator:", showLocator); // add this line
   }
-  
+
 
   const handleSubmitButton = () => {
     console.log('calling submit funtion')
@@ -59,9 +59,9 @@ export const SideBar = ({ mapRef }) => {
           <Link to="/itineraries" className="calendar-icon">
             <img src="calendar.png" alt="Calendar" />
           </Link>
-          <div onClick={handleLocatorClick}>
-          <img src="marker.png" alt="Marker" />
-        </div>
+          <div className="locator-icon" onClick={handleLocatorClick}>
+            <img src="marker.png" alt="Marker" />
+          </div>
         </div>
         <div className="question-mark-icon">
           <img src="question_mark.png" alt="Help" />

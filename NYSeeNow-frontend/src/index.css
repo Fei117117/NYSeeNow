@@ -111,15 +111,14 @@ aside.side-bar.open {
 }
 
 .hamburger-icon:hover, 
-.question-mark-icon:hover,
 .calendar-icon:hover,
+.locator-icon:hover,
 .marker-icon:hover {
   background-color: #123456;  /* Your preferred color */
   border-radius: 50%;         /* Make the background round, adjust as per your need */
   transition: background-color 0.3s ease; /* This will create a smooth color transition */
   box-shadow: 0 0 0 10px #123456;  /* Use box-shadow instead of border */
 }
-
 
 
 .question-mark-icon {
@@ -135,6 +134,13 @@ aside.side-bar.open {
   height: 30px;
 }
 
+.question-mark-icon:hover img {
+  background-color: #123456; /* Your preferred color */
+  border-radius: 50%; /* Make the background round, adjust as per your need */
+  transition: background-color 0.3s ease; /* This will create a smooth color transition */
+  box-shadow: 0 0 0 10px #123456; /* Use box-shadow instead of border */
+}
+
 .hover-card-container {
   background: radial-gradient(circle at top left, white, #6EA2DE);
   display: flex;
@@ -145,6 +151,12 @@ aside.side-bar.open {
   background-color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
+
+.my-svg {
+  width: 50px; /* adjust as necessary */
+  height: 50px; /* adjust as necessary */
+}
+
 
 .hover-card-info {
   flex-basis: 40%; /* Adjust this value as needed */
