@@ -6,3 +6,10 @@
   max-width: 70rem;
   width: 30rem;
 }
+.card-delete-button-trip {
+  color: black;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
