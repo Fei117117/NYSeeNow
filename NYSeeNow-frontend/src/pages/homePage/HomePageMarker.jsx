@@ -1,45 +1,77 @@
 import { MarkerF, InfoBox } from '@react-google-maps/api'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { MarkerHoverCard } from './MarkerHoverCard'
 
+const getTypeColor = (type) => {
+  const typeColorMap = {
+    attraction: 'blue',
+    museum: 'red',
+    artwork: 'green',
+    gallery: 'yellow',
+    sightseeing: 'purple',
+    aquarium: 'cyan',
+    camp_site: 'magenta',
+    view_point: 'orange'
+    // Add other types and colors as needed
+  }
+
+  return typeColorMap[type] || 'gray' // gray will be the default color if the type is not found
+}
+
 export const HomePageMarker = (props) => {
-  useEffect(() => {})
-  const [hovered, setHovered] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
+  const [isClicked, setIsClicked] = useState(false)
 
   const handleMarkerHoveredIn = () => {
-    setHovered(true)
+    setIsHovered(true)
   }
 
   const handleMarkerHoveredOut = () => {
-    setHovered(false)
+    if (!isClicked) {
+      setIsHovered(false)
+    }
   }
 
-  const handleLocationClick = () => {
-    console.log('location clicked')
+  const handleMarkerClicked = () => {
+    setIsClicked(true)
+  }
+
+  const handleCardClose = () => {
+    setIsClicked(false)
+    setIsHovered(false)
   }
 
   const onLoad = (infoBox) => {}
 
-  const options = { closeBoxURL: '', enableEventPropagation: false }
+  const options = { closeBoxURL: '', enableEventPropagation: true }
+
+  const icon = {
+    path: google.maps.SymbolPath.CIRCLE,
+    fillColor: getTypeColor(props.markerDetails.tourism),
+    fillOpacity: 1,
+    strokeColor: 'black',
+    strokeWeight: 1,
+    scale: 10 // Increase this number to make the SVG larger
+  }
 
   return (
     <>
       <MarkerF
         position={props.markerDetails['position']}
         onMouseOver={handleMarkerHoveredIn}
-        onClick={handleLocationClick}
+        onClick={handleMarkerClicked}
+        icon={icon}
       ></MarkerF>
-      {hovered && (
+      {(isHovered || isClicked) && (
         <InfoBox onLoad={onLoad} options={options} position={props.markerDetails['position']}>
           <MarkerHoverCard
             place={props.markerDetails}
-            onClose={handleMarkerHoveredOut}
+            onClose={handleCardClose}
             markerInfo={props.markerDetails}
+            onMouseOut={handleMarkerHoveredOut}
           ></MarkerHoverCard>
         </InfoBox>
       )}
     </>
   )
-}
-{
 }

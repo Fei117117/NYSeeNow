@@ -1,12 +1,28 @@
 nav {
-  background-color: black;
+  background: radial-gradient(circle at top left, #000000, #6EA2DE);
   color: white;
+  border-right: 2px solid black; 
   display: flex;
   justify-content: space-between;
-  align-items: stretch;
+  align-items: center; /* Added to center items vertically */
   gap: 2rem;
-  padding: 0 1rem;
+  padding: 0rem 1rem;
   z-index: 1; /* lower z-index */
+  height: 60px;
+  position: relative; /* Added */
+  overflow: hidden; /* Added */
+}
+
+nav::after {
+  content: "";
+  background: url('/public/skyline.png') bottom center / 40% 100% no-repeat; /* Adjust as per your image path */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0.5; /* Adjust as per your need */
+  z-index: -1; /* Keep it below the content */
 }
 
 nav a {
@@ -15,6 +31,7 @@ nav a {
   height: 100%;
   display: flex;
   align-items: center;
+  align-self: center;
   padding: 0.25rem;
 }
 
@@ -27,13 +44,15 @@ nav ul {
   margin: 0;
   list-style: none;
   display: flex;
+  align-items: center;
   gap: 2rem;
 }
 
 nav li:hover {
-  background: rgb(255, 255, 255, 0.6);
+  background: #007991;
 }
 
 nav li.active {
   background-color: lightgray;
 }
+

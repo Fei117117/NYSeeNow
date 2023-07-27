@@ -7,7 +7,7 @@ export const useSelection = () => {
 }
 
 export function SelectionProvider(props) {
-  const [selectedList, setSelectedList] = useState(null)
+  const [selectedList, setSelectedList] = useState([])  // Changed from null to []
 
   const value = {
     selectedList,

@@ -5,17 +5,22 @@ import styles from './NavBar.module.css'
 
 export const NavBar = ({ isOpen, set_map_center }) => {
   const navStyle = {
-    marginLeft: isOpen ? '50%' : '0', // position of sidebar extended
+    marginLeft: isOpen ? '40%' : '0', // position of sidebar extended
+    transition: 'margin-left 0.3s ease' // transition animation
+  }
+
+  const logoStyle = {
+    marginLeft: isOpen ? '50%' : '0', // position of logo when sidebar is extended
     transition: 'margin-left 0.3s ease' // transition animation
   }
   return (
     <nav style={navStyle}>
       <ul>
         <li></li>
-        <li>
+        <li style={logoStyle}>
           <Link to="/" className={styles.siteTitle}>
             <div className="NYSEENOW-LOGO">
-              <img src="nyseenowLogoBWsmall.png" alt="logo" />
+              <img src="NYSeeLogoTR.png" alt="logo" />
             </div>
           </Link>
         </li>

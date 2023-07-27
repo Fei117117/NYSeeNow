@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react' // import useContext
 import SidebarContent from './SidebarContent'
 import AttractionCounter from './AttractionCounter'
 import { Link } from 'react-router-dom'
@@ -7,11 +7,13 @@ import { useNavigate } from 'react-router-dom'
 import { post_itinerary } from '../net/net'
 import { useTripData } from '../context/TripDataContext'
 import axios from 'axios'
+import { LocatorContext } from '../context/LocatorContext'
+import Locator from './Locator'
 
-export const SideBar = ({ isOpen, setIsOpen }) => {
+export const SideBar = ({ mapRef }) => {
   // State for holding the left position of AttractionCounter
   const [counterLeft, setCounterLeft] = useState('60px')
-
+  const [isOpen, setIsOpen] = useState(false)
   const [startDate, setStartDate] = useState()
   const [endDate, setEndDate] = useState()
   const [attractionListToSend, setAttractionListToSend] = useState([])
@@ -19,6 +21,16 @@ export const SideBar = ({ isOpen, setIsOpen }) => {
   const { selectedList, setSelectedList } = useSelection()
   const { tripData, setTripData } = useTripData()
   const navigate = useNavigate()
+
+  // Use the showLocator and setShowLocator from LocatorContext
+  const { showLocator, setShowLocator } = useContext(LocatorContext)
+
+  // Handle locator button click
+  const handleLocatorClick = () => {
+    setIsOpen(false)
+    setShowLocator(true)
+    console.log('Locator button clicked, showLocator:', showLocator) // add this line
+  }
 
   const handleSubmitButton = () => {
     console.log('calling submit funtion')
@@ -76,17 +88,21 @@ export const SideBar = ({ isOpen, setIsOpen }) => {
   return (
     <aside className={`side-bar ${isOpen ? 'open' : ''}`}>
       <div className="sidebar-icons">
-        <div
-          className="hamburger-icon"
-          onClick={() => setIsOpen(!isOpen)}
-          style={{ display: 'flex', justifyContent: 'center' }}
-        >
-          <img src="hamburger.png" alt="Menu" />
+        <div className="top-icons">
+          <div
+            className="hamburger-icon"
+            onClick={() => setIsOpen(!isOpen)}
+            style={{ display: 'flex', justifyContent: 'center' }}
+          >
+            <img src="hamburger.png" alt="Menu" />
+          </div>
+          <Link to="/itineraries" className="calendar-icon">
+            <img src="calendar.png" alt="Calendar" />
+          </Link>
+          <div className="locator-icon" onClick={handleLocatorClick}>
+            <img src="marker.png" alt="Marker" />
+          </div>
         </div>
-        <Link to="/itineraries">
-          <img src="calendar.png" alt="Calendar" />
-        </Link>
-        <img src="marker.png" alt="Marker" />
         <div className="question-mark-icon">
           <img src="question_mark.png" alt="Help" />
         </div>
