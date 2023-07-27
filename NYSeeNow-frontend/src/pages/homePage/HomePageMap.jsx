@@ -297,8 +297,6 @@ export const HomePageMap = (props) => {
               busyness: busyness
             }
 
-            console.log('info', info)
-
             return {
               location: new window.google.maps.LatLng(parseFloat(lat), parseFloat(lng)),
               weight: busyness
