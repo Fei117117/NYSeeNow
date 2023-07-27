@@ -14,35 +14,34 @@ body {
 .NYSEENOW-LOGO {
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 100%;
-  transform: translateX(10px); /* Adjust this value as needed */
 }
 
 
 .NYSEENOW-LOGO img {
-  max-height: 100%; /* Limit the height of the logo image to 100% of the container */
-  width: auto; /* Allow the width to adjust automatically to maintain aspect ratio */
+  max-height: 70px; /* Increase this value as per your need */
+  width: auto; 
 }
-
 .site-title {
   font-size: 2rem;
 }
 
 .map-container {
   height: calc(100vh - 60px);
-  width: calc(100vw - 60px);
+  width: calc(100vw - 55px);
   position: absolute;
   top: 60px;
-  left: 60px;
+  left: 55px;
 }
 
 aside.side-bar {
-  background-color: black;
+  background: radial-gradient(circle at top left, #000000, #6EA2DE);
   color: white;
   display: grid; /* Change display to grid */
   grid-template-columns: 1fr auto; /* Two columns: content and icons */
   height: 100vh;
-  width: 60px;
+  width: 55px;
   position: fixed;
   left: 0;
   grid-template-columns: 1fr auto;
@@ -92,26 +91,43 @@ aside.side-bar.open {
 .sidebar-icons {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start; /* It will align your icons to start from the top of the sidebar */
-  vertical-align: middle;
-  gap: 5rem;
+  justify-content: space-between; /* This will push top-icons and question-mark-icon to the extremes */
+  height: 100%;
   margin-left: -0.5rem;
   order: 2;
-  height: 100%;
-  margin-top: 15px; /* Adjust this if needed */
   transform: translateX(-10px);
+}
+
+.top-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem;
+  padding-top: 1rem; /* Increase or decrease to move the top icons down or up */
 }
 
 .side-bar.open .sidebar-content {
   opacity: 1;
 }
 
+.hamburger-icon:hover, 
+.question-mark-icon:hover,
+.calendar-icon:hover,
+.marker-icon:hover {
+  background-color: #123456;  /* Your preferred color */
+  border-radius: 50%;         /* Make the background round, adjust as per your need */
+  transition: background-color 0.3s ease; /* This will create a smooth color transition */
+  box-shadow: 0 0 0 10px #123456;  /* Use box-shadow instead of border */
+}
+
+
+
 .question-mark-icon {
   width: 100%;
   display: flex;
   justify-content: center;
   margin-top: 0; /* Adjust if needed */
+  padding-bottom: 1rem;
 }
 
 .question-mark-icon img {
@@ -120,6 +136,7 @@ aside.side-bar.open {
 }
 
 .hover-card-container {
+  background: radial-gradient(circle at top left, white, #6EA2DE);
   display: flex;
   justify-content: space-between;
   border: 1px solid #ccc;
@@ -144,6 +161,7 @@ aside.side-bar.open {
 
 
 .attraction-card {
+  background: radial-gradient(circle at top left, #6EA2DE, black);
   border: 1px solid gray;
   padding: 30px;
   margin: 10px 0;
@@ -152,6 +170,7 @@ aside.side-bar.open {
 }
 
 .attraction-counter {
+  background-color:#007991;
   position: fixed;
   bottom: 10px;
   left: 60px;
@@ -231,10 +250,9 @@ aside.side-bar.open {
 }
 
 .now-mode-button.on {
-  background-color: green;
+  background: radial-gradient(circle at top left, rgb(175, 255, 155), green);
 }
 
 .now-mode-button.off {
-  background-color: red;
+  background: radial-gradient(circle at top left, rgb(255, 164, 164), red);
 }
-

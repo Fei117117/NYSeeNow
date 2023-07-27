@@ -52,18 +52,16 @@ export const SideBar = ({ mapRef }) => {
   return (
     <aside className={`side-bar ${isOpen ? 'open' : ''}`}>
       <div className="sidebar-icons">
-        <div
-          className="hamburger-icon"
-          onClick={() => setIsOpen(!isOpen)}
-          style={{ display: 'flex', justifyContent: 'center' }}
-        >
-          <img src="hamburger.png" alt="Menu" />
-        </div>
-        <Link to="/itineraries">
-          <img src="calendar.png" alt="Calendar" />
-        </Link>
-        <div onClick={handleLocatorClick}>
+        <div className="top-icons">
+          <div className="hamburger-icon" onClick={() => setIsOpen(!isOpen)} style={{ display: 'flex', justifyContent: 'center' }}>
+            <img src="hamburger.png" alt="Menu" />
+          </div>
+          <Link to="/itineraries" className="calendar-icon">
+            <img src="calendar.png" alt="Calendar" />
+          </Link>
+          <div onClick={handleLocatorClick}>
           <img src="marker.png" alt="Marker" />
+        </div>
         </div>
         <div className="question-mark-icon">
           <img src="question_mark.png" alt="Help" />
