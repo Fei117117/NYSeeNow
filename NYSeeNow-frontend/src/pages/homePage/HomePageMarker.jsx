@@ -1,6 +1,22 @@
-import { MarkerF, InfoBox } from '@react-google-maps/api'
-import { useState } from 'react'
-import { MarkerHoverCard } from './MarkerHoverCard'
+import { MarkerF, InfoBox } from '@react-google-maps/api';
+import { useState } from 'react';
+import { MarkerHoverCard } from './MarkerHoverCard';
+
+const getTypeColor = (type) => {
+  const typeColorMap = {
+    'attraction': 'blue',
+    'museum': 'red',
+    'artwork': 'green',
+    'gallery': 'yellow',
+    'sightseeing': 'purple',
+    'aquarium': 'cyan',
+    'camp_site': 'magenta',
+    'view_point': 'orange',
+    // Add other types and colors as needed
+  };
+
+  return typeColorMap[type] || 'gray'; // gray will be the default color if the type is not found
+};
 
 export const HomePageMarker = (props) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -25,9 +41,18 @@ export const HomePageMarker = (props) => {
     setIsHovered(false);
   }
 
-  const onLoad = (infoBox) => {}
+  const onLoad = (infoBox) => { }
 
   const options = { closeBoxURL: '', enableEventPropagation: true }
+
+  const icon = {
+    path: google.maps.SymbolPath.CIRCLE,
+    fillColor: getTypeColor(props.markerDetails.type),
+    fillOpacity: 1,
+    strokeColor: 'black',
+    strokeWeight: 1,
+    scale: 5,
+  };
 
   return (
     <>
@@ -36,14 +61,15 @@ export const HomePageMarker = (props) => {
         onMouseOver={handleMarkerHoveredIn}
         onMouseOut={handleMarkerHoveredOut}
         onClick={handleMarkerClicked}
+        icon={icon}
       ></MarkerF>
       {(isHovered || isClicked) && (
         <InfoBox onLoad={onLoad} options={options} position={props.markerDetails['position']}>
           <MarkerHoverCard
-        place={props.markerDetails}
-        onClose={handleMarkerHoveredOut}
-        markerInfo={props.markerDetails}
-        ></MarkerHoverCard>
+            place={props.markerDetails}
+            onClose={handleCardClose} 
+            markerInfo={props.markerDetails}
+          ></MarkerHoverCard>
         </InfoBox>
       )}
     </>
