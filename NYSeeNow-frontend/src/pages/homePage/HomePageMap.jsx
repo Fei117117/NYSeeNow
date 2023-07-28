@@ -289,7 +289,6 @@ export const HomePageMap = (props) => {
               day: new Date(getCurrentTimeInNewYork()).getDay(),
               month: new Date(getCurrentTimeInNewYork()).getMonth() + 1
             }
-            console.log(requestBody)
 
             const response = await axios.post('Attraction/Predict', requestBody)
 
