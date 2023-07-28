@@ -293,7 +293,7 @@ export const HomePageMap = (props) => {
             const response = await axios.post('http://localhost:5001/AttractionPredict', requestBody)
 
             const data = response.data
-            const busyness = data.busyness
+            const busyness = data.prediction
             const info = {
               name: fetched_markers.find(
                 (marker) => marker.position.lat + ',' + marker.position.lng === position
