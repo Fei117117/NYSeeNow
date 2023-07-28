@@ -267,6 +267,14 @@ export const HomePageMap = (props) => {
         (marker) => marker.position.lat + ',' + marker.position.lng
       )
 
+      function getCurrentTimeInNewYork() {
+        const options = {
+          timeZone: 'America/New_York',
+          hour12: false, // Use 24-hour format
+        };
+        return new Date().toLocaleString('en-US', options);
+      }
+
       const heatmapData = await Promise.all(
         lat_lon.map(async (position) => {
           const [lat, lng] = position.split(',')
@@ -277,12 +285,13 @@ export const HomePageMap = (props) => {
                 (marker) => marker.position.lat + ',' + marker.position.lng === position
               )?.name,
               lat_lon: position,
-              hour: new Date().getHours(),
-              day: new Date().getDay(),
-              month: new Date().getMonth() + 1
+              hour: new Date(getCurrentTimeInNewYork()).getHours(),
+              day: new Date(getCurrentTimeInNewYork()).getDay(),
+              month: new Date(getCurrentTimeInNewYork()).getMonth() + 1
             }
+            console.log(requestBody)
 
-            const response = await axios.post('attraction/predict', requestBody)
+            const response = await axios.post('Attraction/Predict', requestBody)
 
             const data = response.data
             const busyness = data.busyness
