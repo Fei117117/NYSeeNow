@@ -290,7 +290,7 @@ export const HomePageMap = (props) => {
               month: new Date(getCurrentTimeInNewYork()).getMonth() + 1
             }
 
-            const response = await axios.post('Attraction/Predict', requestBody)
+            const response = await axios.post('http://localhost:5001/AttractionPredict', requestBody)
 
             const data = response.data
             const busyness = data.busyness
@@ -298,12 +298,13 @@ export const HomePageMap = (props) => {
               name: fetched_markers.find(
                 (marker) => marker.position.lat + ',' + marker.position.lng === position
               )?.name,
-              lat_lon: position,
-              hour: new Date().getHours(),
-              day: new Date().getDay(),
-              month: new Date().getMonth(),
+              lat_lon: requestBody.lat_lon,
+              hour: requestBody.hour,
+              day: requestBody.day,
+              month: requestBody.month,
               busyness: busyness
             }
+            console.log(info)
 
             return {
               location: new window.google.maps.LatLng(parseFloat(lat), parseFloat(lng)),
