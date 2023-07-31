@@ -7,47 +7,81 @@ import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import styles from './ItineraryBuilder.module.css'
 import { useTripData } from '../../context/TripDataContext'
-import { useNavigate } from 'react-router-dom'
+import {useLocation, useNavigate} from 'react-router-dom'
 import axios from 'axios'
 
 export const ItineraryBuilder = () => {
-  const [tripMap, setTripMap] = useState({})
-  const { tripData, setTripData } = useTripData()
+    const [tripMap, setTripMap] = useState({})
+    const { tripData, setTripData } = useTripData()
 
-  const navigate = useNavigate()
+    const navigate = useNavigate()
 
-  const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth()
+    const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth()
+
+    // Get the tripId from the location state (passed from the previous page)
+    const location = useLocation();
+    const tripId = location?.state?.trip_id;
+
 
   useEffect(() => {
-    setTripMap(tripData)
+      setTripMap(tripData)
   }, [])
 
   const saveItinerary = () => {
-    console.log('The request to save')
-    let req_obj = { user: authUser }
-    req_obj['tripDetails'] = tripMap
-    console.log(req_obj)
+      console.log('The request to save')
 
-    const save_url = 'trip/create'
+      let req_obj = { user: authUser }
+      req_obj['tripDetails'] = tripMap
+      console.log(req_obj)
 
-    const req_string = JSON.stringify(req_obj)
 
-    axios
-      .post(save_url, req_string, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-      .then((response) => {
-        console.log('Saving Success!')
-        console.log(response)
-        navigate('/itineraries')
-      })
-      .catch((error) => {
-        console.log('You have an error while saving!')
-        console.log(error)
-      })
+      let save_url = '/trip/create' // default to creating a new trip
+
+      const req_string = JSON.stringify(req_obj);
+
+      if (tripId) {
+          console.log(tripId)
+          // If tripId is defined, it means we are updating an existing trip
+          save_url = `/trip/update/${authUser}/${tripId}` // update the save_url
+          axios
+              .put(save_url, req_string, {
+                  headers: {
+                      'Content-Type': 'application/json'
+                  }
+              })
+              .then((response) => {
+                  console.log('Editing Success!')
+                  console.log(response)
+                  navigate('/itineraries')
+              })
+              .catch((error) => {
+                  console.log('You have an error while editing!')
+                  console.log(error)
+              })
+
+      }
+      else
+          axios
+              .post(save_url, req_string, {
+                  headers: {
+                      'Content-Type': 'application/json'
+                  }
+              })
+              .then((response) => {
+                  console.log('Saving Success!')
+                  console.log(response)
+                  navigate('/itineraries')
+              })
+              .catch((error) => {
+                  console.log('You have an error while saving!')
+                  console.log(error)
+              })
   }
+
+
+
+
+
 
   return (
     <div>

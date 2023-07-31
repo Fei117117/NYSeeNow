@@ -2,15 +2,18 @@ import React, { useEffect, useState } from 'react'
 import styles from './TripContainer.module.css'
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext'
+import { useNavigate } from 'react-router-dom';
+
 
 export const TripContainer = (props) => {
-  const [tripObj, setTripObj] = useState(null)
-  const { authUser } = useAuth();
+    const [tripObj, setTripObj] = useState(null)
+    const { authUser } = useAuth();
+    const navigate = useNavigate();
 
     useEffect(() => {
-    const trip_detail_string = props.trip_details
-    setTripObj(JSON.parse(trip_detail_string))
-  }, [])
+      const trip_detail_string = props.trip_details
+      setTripObj(JSON.parse(trip_detail_string))
+    }, [props.trip_details])
 
     const handleDelete = async () => {
         try {
@@ -34,8 +37,10 @@ export const TripContainer = (props) => {
         }
     };
 
-
-
+    // Function to handle Edit button click
+    const handleEdit = () => {
+        navigate('/itinerary-builder', { state: { trip_id: tripObj.trip_id } });
+    }
 
     if (tripObj) {
     return (
@@ -45,9 +50,10 @@ export const TripContainer = (props) => {
         <div>Start Date: {tripObj['start_date']}</div>
         <div>End Date: {tripObj['end_date']}</div>
           <button className="card-delete-button-trip" onClick={() => { console.log(authUser); handleDelete(); }}>Delete</button>
+          <button className="card-edit-button-trip" onClick={handleEdit}>Edit</button> {/* Edit button */}
       </div>
     )
-  } else {
-    return <div>Nothing in this.</div>
+    } else {
+        return <div>Nothing in this.</div>
   }
 }
