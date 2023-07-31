@@ -207,6 +207,7 @@ export const HomePageMap = (props) => {
       ]
     }
   ]
+  
   const { selectedOptions, setSelectedOptions } = useCategories()
 
   const [fetched_markers, setFetchedMarkers] = useState([])
@@ -365,8 +366,7 @@ export const HomePageMap = (props) => {
       onLoad={handleMapLoading}
       onCenterChanged={handleCenterChange}
       options={{
-        // Note this new options prop
-        styles: mapStyles // Your styles are passed here
+        styles: mapStyles
       }}
     >
       {mapLoaded &&
@@ -376,6 +376,7 @@ export const HomePageMap = (props) => {
         )}
 
       {props.isNowMode && <HeatmapLayer data={heatmapData} onLoad={handleHeatmapLoad} />}
+      { polylinePath.length > 0 && <Polyline path={polylinePath} /> }
     </GoogleMap>
   )
 }
