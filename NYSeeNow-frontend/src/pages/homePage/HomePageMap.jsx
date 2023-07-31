@@ -277,7 +277,6 @@ export const HomePageMap = (props) => {
 
       const heatmapData = await Promise.all(
         lat_lon.map(async (position) => {
-          const [lat, lng] = position.split(',')
 
           try {
             const requestBody = {
@@ -293,7 +292,8 @@ export const HomePageMap = (props) => {
             const response = await axios.post('http://localhost:5001/AttractionPredict', requestBody)
 
             const data = response.data
-            const busyness = data.prediction
+            const busyness = data.prediction[0]
+            //extract the int from the array
             const info = {
               name: fetched_markers.find(
                 (marker) => marker.position.lat + ',' + marker.position.lng === position
@@ -304,10 +304,15 @@ export const HomePageMap = (props) => {
               month: requestBody.month,
               busyness: busyness
             }
-            console.log(info)
+            //console.log(info)
 
+            const [lat, lng] = requestBody.lat_lon.split(',');
+            //convert to floats
+            const latitude=parseFloat(lat)
+            const longitude=parseFloat(lng)
+            console.log(lat, lng)
             return {
-              location: new window.google.maps.LatLng(parseFloat(lat), parseFloat(lng)),
+              location: new window.google.maps.LatLng(latitude, longitude),
               weight: busyness
             }
           } catch (error) {
