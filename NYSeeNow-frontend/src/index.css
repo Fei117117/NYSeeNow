@@ -268,3 +268,14 @@ aside.side-bar.open {
 .now-mode-button.off {
   background: radial-gradient(circle at top left, rgb(255, 164, 164), red);
 }
+
+.weather-data {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  z-index: 4; /* Ensure the weather data appears above the map */
+}
