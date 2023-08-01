@@ -11,7 +11,6 @@ const LandingPage = () => {
                 <nav className={location.pathname === "/" ? styles['landing-navbar'] : ""}>
                     <div className={styles['logo-section']}>
                         <img src="nyseenowLogoLanding.png" alt="logo" style={{ maxHeight: '50px', maxWidth: '100%' }} />
-                        <h1>NYSeeNOW</h1>
                     </div>
                     <div className={styles['nav-links']}>
                         <Link to="/about">About Us</Link>

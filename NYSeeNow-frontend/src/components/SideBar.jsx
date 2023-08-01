@@ -87,26 +87,6 @@ export const SideBar = ({ mapRef }) => {
 
   return (
     <aside className={`side-bar ${isOpen ? 'open' : ''}`}>
-      <div className="sidebar-icons">
-        <div className="top-icons">
-          <div
-            className="hamburger-icon"
-            onClick={() => setIsOpen(!isOpen)}
-            style={{ display: 'flex', justifyContent: 'center' }}
-          >
-            <img src="hamburger.png" alt="Menu" />
-          </div>
-          <Link to="/itineraries" className="calendar-icon">
-            <img src="calendar.png" alt="Calendar" />
-          </Link>
-          <div className="locator-icon" onClick={handleLocatorClick}>
-            <img src="marker.png" alt="Marker" />
-          </div>
-        </div>
-        <div className="question-mark-icon">
-          <img src="question_mark.png" alt="Help" />
-        </div>
-      </div>
       <div className="sidebar-content">
         <SidebarContent
           open={isOpen}
@@ -116,6 +96,29 @@ export const SideBar = ({ mapRef }) => {
           currStartDate={startDate}
           currEndDate={endDate}
         />
+      </div>
+      <div className={`sidebar-icons ${isOpen ? 'sidebar-open' : ''}`}>
+        <div className="top-icons">
+          <div
+            className="hamburger-icon"
+            onClick={() => setIsOpen(!isOpen)}
+            style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}
+          >
+            <i className="fas fa-bars"></i>
+          </div>
+          <Link to="/itineraries" className="calendar-icon sidebar-link">
+            <i className="far fa-calendar-alt"></i>
+            <p>Itinerary</p>
+          </Link>
+          <div className="locator-icon" onClick={handleLocatorClick} style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+            <i className="fas fa-map-marker-alt"></i>
+            <p>Locator</p>
+          </div>
+        </div>
+        <div className="question-mark-icon" style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+          <i className="fas fa-question-circle"></i>
+          <p>Help</p>
+        </div>
       </div>
       <AttractionCounter left={counterLeft} />
     </aside>

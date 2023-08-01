@@ -16,11 +16,10 @@ export const NavBar = ({ isOpen, set_map_center }) => {
   return (
     <nav style={navStyle}>
       <ul>
-        <li></li>
         <li style={logoStyle}>
           <Link to="/" className={styles.siteTitle}>
-            <div className="NYSEENOW-LOGO">
-              <img src="NYSeeLogoTR.png" alt="logo" />
+            <div className={styles['logo-section']}>
+              <img src="nyseenowLogoLanding.png" alt="logo" style={{ maxHeight: '100px', maxWidth: '100%' }} />
             </div>
           </Link>
         </li>
