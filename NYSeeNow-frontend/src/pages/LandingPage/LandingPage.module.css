@@ -1,0 +1,116 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.landing-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+}
+
+header {
+    display: flex;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.landing-navbar {
+    background: white !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    border-right: none !important;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+}
+
+.landing-navbar::after {
+    display: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: black;
+    text-decoration: none;
+}
+
+footer {
+    margin-top: auto;
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    /* background-image: url('./images/hero-image.jpg'); */
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-logo {
+    max-width: 300px;
+}
+
+.slogan {
+    font-size: 2rem;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.button {
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.app-usage {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.app-usage img {
+    width: 100%;
+    object-fit: cover;
+}
+
+footer {
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+footer a {
+    color: black;
+    text-decoration: none;
+}

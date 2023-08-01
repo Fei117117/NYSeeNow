@@ -14,12 +14,17 @@ import { CategoriesProvider } from './context/CategoriesContext'
 import { ItineraryBuilder } from './pages/itineraryBuilderPage/ItineraryBuilder'
 import { TripDataProvider } from './context/TripDataContext'
 import { LocatorContext } from './context/LocatorContext'
+import LandingPage from './pages/LandingPage/LandingPage';
+import { useLocation } from 'react-router-dom';
+
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
   const [center, setMapCenter] = useState({ lat: 40.7484, lng: -73.9857 })
   const [zoom, setZoom] = useState(10) // Add this new state
   const [showLocator, setShowLocator] = useState(false)
+  const location = useLocation();
+
 
   return (
     <>
@@ -28,28 +33,16 @@ function App() {
           <CategoriesProvider>
             <LocatorContext.Provider value={{ showLocator, setShowLocator }}>
               <TripDataProvider>
-                <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />
-                <NavBar isOpen={isOpen} set_map_center={setMapCenter} />
+                {location.pathname !== "/" && <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />}
+                {location.pathname !== "/" && <NavBar isOpen={isOpen} set_map_center={setMapCenter} />}
                 <div className="route-container">
                   <Routes>
-                    <Route
-                      path="/"
-                      element={
-                        <HomePage
-                          map_center={center}
-                          setMapCenter={setMapCenter}
-                          zoom={zoom}
-                          setZoom={setZoom}
-                        />
-                      }
-                    />
-                    <Route path="/itineraries" element={<MyItineraries />}></Route>
-                    <Route path="/itinerary-builder" element={<ItineraryBuilder />}></Route>
-                    <Route path="/userprofile" element={<UserProfile />}></Route>
-                    <Route
-                      path="/attractions-map"
-                      element={<HomePage map_center={center} setMapCenter={setMapCenter} />}
-                    />
+                    <Route path="/" element={<LandingPage />} />
+                    <Route path="/home" element={<HomePage map_center={center} setMapCenter={setMapCenter} zoom={zoom} setZoom={setZoom} />} />
+                    <Route path="/itineraries" element={<MyItineraries />} />
+                    <Route path="/itinerary-builder" element={<ItineraryBuilder />} />
+                    <Route path="/userprofile" element={<UserProfile />} />
+                    <Route path="/attractions-map" element={<HomePage map_center={center} setMapCenter={setMapCenter} />} />
                   </Routes>
                 </div>
               </TripDataProvider>
