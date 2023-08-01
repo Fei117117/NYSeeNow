@@ -10,35 +10,7 @@ import { WeatherCard } from '../../components/WeatherCard';
 
 const libraries = ['visualization'];
 
-export const HomePage = ({ map_center, setMapCenter, zoom, setZoom }) => {
-
-  const [currentWeather, setCurrentWeather] = useState(null);
-
-  useEffect(() => {
-    const fetchWeatherData = async () => {
-      try {
-        const owUri = 'https://api.openweathermap.org/data/3.0/onecall?';
-        const owLat = 40.7834300;
-        const owLon = -73.9662500;
-        const owKey = '0b1cf2b24bd3ed36a449501ff15b4131';
-
-        const response = await fetch(`${owUri}lat=${owLat}&lon=${owLon}&units=metric&exclude=minutely,hourly,daily,alerts&appid=${owKey}`);
-
-        if (response.ok) {
-          const weatherData = await response.json();
-          console.log('Connected to OpenWeather and data collected successfully');
-          console.log(weatherData);
-          setCurrentWeather(weatherData);
-        } else {
-          console.error('Failed to fetch weather data:', response.statusText);
-        }
-      } catch (error) {
-        console.error('Error while fetching weather data:', error);
-      }
-    };
-
-    fetchWeatherData();
-  }, []);
+export const HomePage = ({ map_center, setMapCenter, zoom, setZoom }) => {  
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: 'AIzaSyCTCIyYHCeWx1duTYP38_g8ikK3_fwVrSE',
@@ -108,7 +80,7 @@ export const HomePage = ({ map_center, setMapCenter, zoom, setZoom }) => {
         <HomePageMap mapRef={mapRef} map_center={map_center} zoom={zoom} isNowMode={isNowMode} selectedAttractions={selectedList} path={path} />
         <NowModeButton isNowMode={isNowMode} toggleNowMode={toggleNowMode} />
         {selectedList && selectedList.length >= 2 && <Locator mapRef={mapRef} selectedAttractions={selectedList} setPath={setPath} setTotalTime={setTotalTime} setMapCenter={setMapCenter} setZoom={setZoom} />}
-        <WeatherCard  currentWeather={currentWeather}/>
+        <WeatherCard />
       </>
     );
   };
