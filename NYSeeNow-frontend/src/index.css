@@ -114,11 +114,11 @@ aside.side-bar.open {
 
 .sidebar-logo {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom: 60px;
+  left: 140px;
   opacity: 0.5;
   max-width: 100%;
-  max-height: 600px;
+  max-height: 400px;
 }
 
 
@@ -299,8 +299,6 @@ aside.side-bar.open {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: red;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   color: black;
   z-index: 3;
   cursor: pointer;
@@ -310,10 +308,17 @@ aside.side-bar.open {
   margin: 0;
 }
 
-.now-mode-button.on {
-  background: radial-gradient(circle at top left, rgb(175, 255, 155), green);
+.now-mode-button:hover {
+  transform: scale(1.05); 
+  transition: transform 0.3s ease-in-out;
 }
 
-.now-mode-button.off {
-  background: radial-gradient(circle at top left, rgb(255, 164, 164), red);
+
+.sidebar-skyline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  opacity: 0.5;
+  max-width: 100%;
+  max-height: 600px;
 }

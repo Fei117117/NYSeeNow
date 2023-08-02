@@ -23,6 +23,7 @@ export const SideBar = ({ mapRef }) => {
   const { tripData, setTripData } = useTripData()
   const navigate = useNavigate()
   const logo = "/nyseenowLogoOnly.png";
+  const skyline = "/skyline.png"; 
 
   // Use the showLocator and setShowLocator from LocatorContext
   const { showLocator, setShowLocator } = useContext(LocatorContext)
@@ -99,6 +100,7 @@ export const SideBar = ({ mapRef }) => {
           currStartDate={startDate}
           currEndDate={endDate}
         />
+        {isOpen && <img src={skyline} alt="Skyline" className="sidebar-skyline" />}
       </div>
       <div className={`sidebar-icons ${isOpen ? 'sidebar-open' : ''}`}>
         <div className="top-icons">
@@ -109,7 +111,7 @@ export const SideBar = ({ mapRef }) => {
           >
             <i className="fas fa-bars"></i>
           </div>
-          <Link to="/itineraries" className="calendar-icon sidebar-link">
+          <Link to="/" className="calendar-icon sidebar-link">
             <i className="far fa-calendar-alt"></i>
             <p>Itinerary</p>
           </Link>
