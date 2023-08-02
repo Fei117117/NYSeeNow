@@ -112,6 +112,15 @@ aside.side-bar.open {
   padding-right: 60px; /* Add left padding to move icons to the left */
 }
 
+.sidebar-logo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  opacity: 0.5;
+  max-width: 100%;
+  max-height: 600px;
+}
+
 
 /* Target the link inside the button */
 .sidebar-icons a {
@@ -282,18 +291,17 @@ aside.side-bar.open {
 
 .now-mode-button {
   position: fixed;
-  right: 20px;
+  right: 50px;
   bottom: 20px;
-  width: 70px;
-  height: 70px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white;
+  background-color: red;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   color: black;
-  font-size: 18px;
   z-index: 3;
   cursor: pointer;
 }

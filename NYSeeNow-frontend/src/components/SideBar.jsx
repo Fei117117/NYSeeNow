@@ -10,6 +10,7 @@ import axios from 'axios'
 import { LocatorContext } from '../context/LocatorContext'
 import Locator from './Locator'
 
+
 export const SideBar = ({ mapRef }) => {
   // State for holding the left position of AttractionCounter
   const [counterLeft, setCounterLeft] = useState('60px')
@@ -21,6 +22,7 @@ export const SideBar = ({ mapRef }) => {
   const { selectedList, setSelectedList } = useSelection()
   const { tripData, setTripData } = useTripData()
   const navigate = useNavigate()
+  const logo = "/nyseenowLogoOnly.png";
 
   // Use the showLocator and setShowLocator from LocatorContext
   const { showLocator, setShowLocator } = useContext(LocatorContext)
@@ -87,6 +89,7 @@ export const SideBar = ({ mapRef }) => {
 
   return (
     <aside className={`side-bar ${isOpen ? 'open' : ''}`}>
+      {isOpen && <img src={logo} alt="Logo" className="sidebar-logo" />}
       <div className="sidebar-content">
         <SidebarContent
           open={isOpen}
@@ -118,7 +121,7 @@ export const SideBar = ({ mapRef }) => {
         <Link to="/" className="question-mark-icon" style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
           <i className="fas fa-question-circle"></i>
           <p>Help</p>
-          </Link> 
+        </Link>
       </div>
       <AttractionCounter left={counterLeft} />
     </aside>
