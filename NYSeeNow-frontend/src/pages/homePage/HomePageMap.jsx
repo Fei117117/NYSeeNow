@@ -268,9 +268,16 @@ export const HomePageMap = (props) => {
         (marker) => marker.position.lat + ',' + marker.position.lng
       )
 
+      function getCurrentTimeInNewYork() {
+        const options = {
+          timeZone: 'America/New_York',
+          hour12: false, // Use 24-hour format
+        };
+        return new Date().toLocaleString('en-US', options);
+      }
+
       const heatmapData = await Promise.all(
         lat_lon.map(async (position) => {
-          const [lat, lng] = position.split(',')
 
           try {
             const requestBody = {
@@ -278,28 +285,35 @@ export const HomePageMap = (props) => {
                 (marker) => marker.position.lat + ',' + marker.position.lng === position
               )?.name,
               lat_lon: position,
-              hour: new Date().getHours(),
-              day: new Date().getDay(),
-              month: new Date().getMonth() + 1
+              hour: new Date(getCurrentTimeInNewYork()).getHours(),
+              day: new Date(getCurrentTimeInNewYork()).getDay(),
+              month: new Date(getCurrentTimeInNewYork()).getMonth() + 1
             }
 
-            const response = await axios.post('attraction/predict', requestBody)
+            const response = await axios.post('http://localhost:5001/AttractionPredict', requestBody)
 
             const data = response.data
-            const busyness = data.busyness
+            const busyness = data.prediction[0]
+            //extract the int from the array
             const info = {
               name: fetched_markers.find(
                 (marker) => marker.position.lat + ',' + marker.position.lng === position
               )?.name,
-              lat_lon: position,
-              hour: new Date().getHours(),
-              day: new Date().getDay(),
-              month: new Date().getMonth(),
+              lat_lon: requestBody.lat_lon,
+              hour: requestBody.hour,
+              day: requestBody.day,
+              month: requestBody.month,
               busyness: busyness
             }
+            console.log(info)
 
+            const [lat, lng] = requestBody.lat_lon.split(',');
+            //convert to floats
+            const latitude=parseFloat(lat)
+            const longitude=parseFloat(lng)
+            console.log(lat, lng)
             return {
-              location: new window.google.maps.LatLng(parseFloat(lat), parseFloat(lng)),
+              location: new window.google.maps.LatLng(latitude, longitude),
               weight: busyness
             }
           } catch (error) {

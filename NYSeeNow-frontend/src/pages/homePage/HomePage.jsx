@@ -6,10 +6,12 @@ import Locator from '../../components/Locator';
 import { useSelection } from '../../context/SelectionContext'; // Import the useSelection hook
 import { LocatorContext } from '../../context/LocatorContext';
 import { SideBar } from '../../components/SideBar';
+import { WeatherCard } from '../../components/WeatherCard';
 
 const libraries = ['visualization'];
 
-export const HomePage = ({ map_center, setMapCenter, zoom, setZoom }) => {
+export const HomePage = ({ map_center, setMapCenter, zoom, setZoom }) => {  
+
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: 'AIzaSyCTCIyYHCeWx1duTYP38_g8ikK3_fwVrSE',
     libraries
@@ -78,6 +80,7 @@ export const HomePage = ({ map_center, setMapCenter, zoom, setZoom }) => {
         <HomePageMap mapRef={mapRef} map_center={map_center} zoom={zoom} isNowMode={isNowMode} selectedAttractions={selectedList} path={path} />
         <NowModeButton isNowMode={isNowMode} toggleNowMode={toggleNowMode} />
         {selectedList && selectedList.length >= 2 && <Locator mapRef={mapRef} selectedAttractions={selectedList} setPath={setPath} setTotalTime={setTotalTime} setMapCenter={setMapCenter} setZoom={setZoom} />}
+        <WeatherCard />
       </>
     );
   };

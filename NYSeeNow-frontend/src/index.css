@@ -322,3 +322,14 @@ aside.side-bar.open {
   max-width: 100%;
   max-height: 600px;
 }
+
+.weather-data {
+  position: absolute;
+  top: 70px;
+  left: 60px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  z-index: 4; /* Ensure the weather data appears above the map */
+}
