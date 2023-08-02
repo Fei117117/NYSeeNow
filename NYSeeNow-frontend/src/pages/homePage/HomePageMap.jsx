@@ -305,7 +305,7 @@ export const HomePageMap = (props) => {
               month: requestBody.month,
               busyness: busyness
             }
-            //console.log(info)
+            console.log(info)
 
             const [lat, lng] = requestBody.lat_lon.split(',');
             //convert to floats

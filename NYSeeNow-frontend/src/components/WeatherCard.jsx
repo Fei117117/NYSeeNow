@@ -27,7 +27,9 @@ export const WeatherCard = () => {
 
     const today = (
       <div>
-        Today: <img src={`../../assets/weather_assets/weather_icons/${currentWeather.current.weather[0].icon}.png`} id='weather-icon' />
+        Today: <img src={`../../assets/weather_assets/weather_icons/${currentWeather.current.weather[0].icon}.png`}
+        id='weather-icon'
+        alt={`${currentWeather.current.weather[0].description}`} />
       </div>
     );
     
