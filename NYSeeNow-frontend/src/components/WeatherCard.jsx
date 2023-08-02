@@ -94,7 +94,7 @@ export const WeatherCard = () => {
   }, []);
 
   return (
-    <div class='weather-data'>
+    <div className='weather-data'>
       {/* Render the weather display component */}
       <WeatherDisplay currentWeather={currentWeather} />
     </div>
