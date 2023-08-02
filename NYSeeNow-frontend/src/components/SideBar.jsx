@@ -115,10 +115,10 @@ export const SideBar = ({ mapRef }) => {
             <p>Locator</p>
           </div>
         </div>
-        <div className="question-mark-icon" style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+        <Link to="/" className="question-mark-icon" style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
           <i className="fas fa-question-circle"></i>
           <p>Help</p>
-        </div>
+          </Link> 
       </div>
       <AttractionCounter left={counterLeft} />
     </aside>
