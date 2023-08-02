@@ -14,14 +14,12 @@ body {
 .NYSEENOW-LOGO {
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: 100%;
 }
 
 
 .NYSEENOW-LOGO img {
-  max-height: 70px; /* Increase this value as per your need */
-  width: auto; 
+  max-height: 100px;
+  max-width: 100%;
 }
 .site-title {
   font-size: 2rem;
@@ -33,27 +31,30 @@ body {
   position: absolute;
   top: 60px;
   left: 55px;
+  z-index: 1; 
 }
 
 aside.side-bar {
-  background: radial-gradient(circle at top left, #000000, #6EA2DE);
-  color: white;
-  display: grid; /* Change display to grid */
-  grid-template-columns: 1fr auto; /* Two columns: content and icons */
-  height: 100vh;
+  background: white;
+  font-family: 'Roboto', sans-serif;
+  color: #212529;
+  display: flex; /* Change display to flex */
+  flex-direction: row; /* Arrange content and icons horizontally */
+  top: 60px;
+  height: calc(100vh - 60px); 
   width: 55px;
   position: fixed;
   left: 0;
-  grid-template-columns: 1fr auto;
-  z-index: 2;
   transition: width 0.3s ease;
   overflow: hidden; /* Hide the overflow */
+  box-shadow: 10px 0 15px -10px rgba(0, 0, 0, 0.15);
+  z-index: 1;  
 }
 
 aside.side-bar.open {
   width: 50%;
   overflow-y: auto; /* Show scrollbar when open */
-  grid-template-columns: 1fr 54px;
+ z-index: 2;
 }
 
 .sidebar-content-icons-container {
@@ -73,6 +74,15 @@ aside.side-bar.open {
   object-fit: contain;
 }
 
+.sidebar-link p {
+  font-size: 0.8rem; /* Adjust this value as needed */
+}
+
+.sidebar-icons.sidebar-open {
+  padding-left: 20px; /* Adjust this value as per your requirement */
+}
+
+
 .sidebar-content {
   display: flex;
   flex-direction: column;
@@ -82,6 +92,8 @@ aside.side-bar.open {
   height: 100%;
   width: 100%;
   padding: 1rem 1rem;
+  order: 1; /* Make sure content is displayed before the icons */
+  transform: translateX(-100%); /* Hide the content when the sidebar is closed */
 }
 
 .sidebar-content.closed {
@@ -91,35 +103,90 @@ aside.side-bar.open {
 .sidebar-icons {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* This will push top-icons and question-mark-icon to the extremes */
+  justify-content: space-between; /* Distribute the buttons evenly */
+  align-items: center; /* Horizontally center the buttons */
   height: 100%;
-  margin-left: -0.5rem;
-  order: 2;
-  transform: translateX(-10px);
+  padding: 1rem 0; /* Add some padding to the top and bottom */
+  order: 2; /* Make sure icons are displayed after the content */
+  width: 55px; /* Set a fixed width for the icons */
+  padding-right: 60px; /* Add left padding to move icons to the left */
+}
+
+.sidebar-logo {
+  position: absolute;
+  bottom: 60px;
+  left: 140px;
+  opacity: 0.5;
+  max-width: 100%;
+  max-height: 400px;
+}
+
+
+/* Target the link inside the button */
+.sidebar-icons a {
+  color: inherit; /* Inherit the color from the parent */
+  text-decoration: none; /* Remove the underline */
+}
+
+.top-icons, .question-mark-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; /* Center the text */
+}
+
+.top-icons div, .question-mark-icon {
+  cursor: pointer; /* Change cursor on hover */
+  padding: 10px; 
+}
+
+.top-icons div:hover, .question-mark-icon:hover {
+  background-color: #e0e0e0; 
+  border-radius: 10px; /* Add some border radius */
+  transition: background-color 0.3s ease; /* Add transition for smooth hover effect */
+}
+
+.top-icons div p, .question-mark-icon p {
+  margin-top: 0.5rem; /* Add some margin to the top of the text */
+  font-size: 0.8rem; /* Adjust the font size of the text */
+}
+
+/* Style for the link button */
+.calendar-icon {
+  color: inherit; /* Inherit the color from the parent */
+  text-decoration: none; /* Remove the underline */
 }
 
 .top-icons {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5rem;
-  padding-top: 1rem; /* Increase or decrease to move the top icons down or up */
+  gap: 2rem;
+  padding-top: 1rem;
+}
+
+.top-icons div, .question-mark-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; /* Center the text */
+  cursor: pointer; /* Change cursor on hover */
+}
+
+.top-icons div:hover, .question-mark-icon:hover {
+  background-color: #f5f5f5; /* Change the background color on hover */
+  border-radius: 10px; /* Add some border radius */
+  transition: background-color 0.3s ease; /* Add transition for smooth hover effect */
+}
+
+.top-icons div p, .question-mark-icon p {
+  margin-top: 0.5rem; /* Add some margin to the top of the text */
+  font-size: 0.8rem; /* Adjust the font size of the text */
 }
 
 .side-bar.open .sidebar-content {
-  opacity: 1;
+  transform: translateX(0); /* Show the content when the sidebar is open */
 }
-
-.hamburger-icon:hover, 
-.calendar-icon:hover,
-.locator-icon:hover,
-.marker-icon:hover {
-  background-color: #123456;  /* Your preferred color */
-  border-radius: 50%;         /* Make the background round, adjust as per your need */
-  transition: background-color 0.3s ease; /* This will create a smooth color transition */
-  box-shadow: 0 0 0 10px #123456;  /* Use box-shadow instead of border */
-}
-
 
 .question-mark-icon {
   width: 100%;
@@ -134,23 +201,6 @@ aside.side-bar.open {
   height: 30px;
 }
 
-.question-mark-icon:hover img {
-  background-color: #123456; /* Your preferred color */
-  border-radius: 50%; /* Make the background round, adjust as per your need */
-  transition: background-color 0.3s ease; /* This will create a smooth color transition */
-  box-shadow: 0 0 0 10px #123456; /* Use box-shadow instead of border */
-}
-
-.hover-card-container {
-  background: radial-gradient(circle at top left, white, #6EA2DE);
-  display: flex;
-  justify-content: space-between;
-  border: 1px solid #ccc;
-  padding: 20px;
-  margin-top: 20px;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-}
 
 .my-svg {
   width: 50px; /* adjust as necessary */
@@ -241,18 +291,15 @@ aside.side-bar.open {
 
 .now-mode-button {
   position: fixed;
-  right: 20px;
+  right: 50px;
   bottom: 20px;
-  width: 70px;
-  height: 70px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   color: black;
-  font-size: 18px;
   z-index: 3;
   cursor: pointer;
 }
@@ -261,10 +308,17 @@ aside.side-bar.open {
   margin: 0;
 }
 
-.now-mode-button.on {
-  background: radial-gradient(circle at top left, rgb(175, 255, 155), green);
+.now-mode-button:hover {
+  transform: scale(1.05); 
+  transition: transform 0.3s ease-in-out;
 }
 
-.now-mode-button.off {
-  background: radial-gradient(circle at top left, rgb(255, 164, 164), red);
+
+.sidebar-skyline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  opacity: 0.5;
+  max-width: 100%;
+  max-height: 600px;
 }
