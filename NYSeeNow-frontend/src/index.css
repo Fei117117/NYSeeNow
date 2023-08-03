@@ -326,7 +326,7 @@ aside.side-bar.open {
 .weather-data {
   position: absolute;
   top: 70px;
-  left: 60px;
+  right: 60px;
   background-color: white;
   padding: 10px;
   border-radius: 8px;

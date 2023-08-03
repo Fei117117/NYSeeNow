@@ -1,4 +1,5 @@
 import React from 'react';
+import { WeatherCard } from './WeatherCard'; // Import the WeatherCard component
 
 const NowModeButton = ({ isNowMode, toggleNowMode }) => {
   const buttonStyle = isNowMode ? "now-mode-button on" : "now-mode-button off";
@@ -11,7 +12,9 @@ const NowModeButton = ({ isNowMode, toggleNowMode }) => {
   };
   
   return (
-    <div className={buttonStyle} onClick={toggleNowMode} style={buttonStyleWithBackground}>
+    <div>
+      <div className={buttonStyle} onClick={toggleNowMode} style={buttonStyleWithBackground}></div>
+      {isNowMode && <WeatherCard />} {/* Render the WeatherCard if isNowMode is true */}
     </div>
   );
 };

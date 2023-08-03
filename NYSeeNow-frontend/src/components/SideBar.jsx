@@ -111,9 +111,9 @@ export const SideBar = ({ mapRef }) => {
           >
             <i className="fas fa-bars"></i>
           </div>
-          <Link to="/" className="calendar-icon sidebar-link">
+          <Link to="/itineraries" className="calendar-icon sidebar-link">
             <i className="far fa-calendar-alt"></i>
-            <p>Itinerary</p>
+            <p>My Itineraries</p>
           </Link>
           <div className="locator-icon" onClick={handleLocatorClick} style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
             <i className="fas fa-map-marker-alt"></i>
