@@ -13,9 +13,14 @@ export function AuthProvider(props) {
   // Load any saved login state from local storage when the component mounts
   useEffect(() => {
     const storedIsLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn'))
+    const storedAuthUser = localStorage.getItem('authUser')
 
     if (storedIsLoggedIn) {
       setIsLoggedIn(storedIsLoggedIn)
+    }
+    
+    if (storedAuthUser) {
+      setAuthUser(storedAuthUser) // Add this line
     }
   }, [])
 
