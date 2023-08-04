@@ -16,6 +16,7 @@ import { TripDataProvider } from './context/TripDataContext'
 import { LocatorContext } from './context/LocatorContext'
 import LandingPage from './pages/LandingPage/LandingPage';
 import { useLocation } from 'react-router-dom';
+import TripEditPage from "./pages/itineraryBuilderPage/ItineraryEdit";
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
                     <Route path="/itinerary-builder" element={<ItineraryBuilder />} />
                     <Route path="/userprofile" element={<UserProfile />} />
                     <Route path="/attractions-map" element={<HomePage map_center={center} setMapCenter={setMapCenter} />} />
+                    <Route path="/ItineraryEdit" element={<TripEditPage />} />
                   </Routes>
                 </div>
               </TripDataProvider>
