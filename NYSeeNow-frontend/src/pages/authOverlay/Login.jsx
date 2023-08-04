@@ -26,7 +26,7 @@ export const Login = (props) => {
       url,
       data,
       (message, status) => {
-        console.log('Failure:', message)
+        console.log('Success:', message)
         console.log('Status:', status)
         setMessage('Logged in.')
         setIsLoggedIn(true)

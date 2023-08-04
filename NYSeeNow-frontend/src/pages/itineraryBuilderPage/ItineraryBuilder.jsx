@@ -1,87 +1,50 @@
 import { useEffect, useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
-//temporary fecthing of attractions from the file
-import attractions_data from '../../assets/cleaned_attracions.json'
 import ItineraryCarouselCard from './ItineraryCarouselCard'
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import styles from './ItineraryBuilder.module.css'
 import { useTripData } from '../../context/TripDataContext'
-import {useLocation, useNavigate} from 'react-router-dom'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 export const ItineraryBuilder = () => {
-    const [tripMap, setTripMap] = useState({})
-    const { tripData, setTripData } = useTripData()
+  const navigate = useNavigate()
 
-    const navigate = useNavigate()
-
-    const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth()
-
-    // Get the tripId from the location state (passed from the previous page)
-    const location = useLocation();
-    const tripId = location?.state?.trip_id;
-
+  const [tripMap, setTripMap] = useState({})
+  const { tripData, setTripData } = useTripData()
+  const { authUser } = useAuth()
 
   useEffect(() => {
-      setTripMap(tripData)
+    setTripMap(tripData)
   }, [])
 
   const saveItinerary = () => {
-      console.log('The request to save')
+    console.log('The request to save')
 
-      let req_obj = { user: authUser }
-      req_obj['tripDetails'] = tripMap
-      console.log(req_obj)
+    let req_obj = { user: authUser }
+    req_obj['tripDetails'] = tripMap
+    console.log(req_obj)
 
+    const req_string = JSON.stringify(req_obj)
+    const save_url = '/trip/create'
 
-      let save_url = '/trip/create' // default to creating a new trip
-
-      const req_string = JSON.stringify(req_obj);
-
-      if (tripId) {
-          console.log(tripId)
-          // If tripId is defined, it means we are updating an existing trip
-          save_url = `/trip/update/${authUser}/${tripId}` // update the save_url
-          axios
-              .put(save_url, req_string, {
-                  headers: {
-                      'Content-Type': 'application/json'
-                  }
-              })
-              .then((response) => {
-                  console.log('Editing Success!')
-                  console.log(response)
-                  navigate('/itineraries')
-              })
-              .catch((error) => {
-                  console.log('You have an error while editing!')
-                  console.log(error)
-              })
-
-      }
-      else
-          axios
-              .post(save_url, req_string, {
-                  headers: {
-                      'Content-Type': 'application/json'
-                  }
-              })
-              .then((response) => {
-                  console.log('Saving Success!')
-                  console.log(response)
-                  navigate('/itineraries')
-              })
-              .catch((error) => {
-                  console.log('You have an error while saving!')
-                  console.log(error)
-              })
+    axios
+      .post(save_url, req_string, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then((response) => {
+        console.log('Saving Success!')
+        console.log(response)
+      })
+      .catch((error) => {
+        console.log('You have an error while saving!')
+        console.log(error)
+      })
+    navigate('/itineraries')
   }
-
-
-
-
-
 
   return (
     <div>
@@ -102,14 +65,3 @@ export const ItineraryBuilder = () => {
     </div>
   )
 }
-
-//I will pass the key to one component (should have previous and next buttons)
-//I will pass the array to another component
-
-//response processing
-//create an array
-// array = ['16 july' , '17 july' , '18 july']
-// map = {}
-// for arr in aerray:
-// map[16 july]: []
-// map {'16 july': [att2 ,att4 ]} //day_busyness: [23,56,67....]

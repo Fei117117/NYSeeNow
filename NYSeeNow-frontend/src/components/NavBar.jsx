@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { SearchBar } from './SearchBar'
 import CategoryDropDown from './CategoriesDropDown'
 import styles from './NavBar.module.css'
+import { useState } from 'react'
 
 export const NavBar = ({ isOpen, set_map_center }) => {
   const navStyle = {
@@ -13,30 +14,54 @@ export const NavBar = ({ isOpen, set_map_center }) => {
     marginLeft: isOpen ? '50%' : '0', // position of logo when sidebar is extended
     transition: 'margin-left 0.3s ease' // transition animation
   }
+
+  const [burgerOpen, setBurgerOpen] = useState(false)
+
+  const toggleBurger = () => {
+    setBurgerOpen(!burgerOpen)
+  }
   return (
     <nav style={navStyle}>
       <ul>
-        <li></li>
-        <li style={logoStyle}>
-          <Link to="/" className={styles.siteTitle}>
-            <div className="NYSEENOW-LOGO">
-              <img src="NYSeeLogoTR.png" alt="logo" />
+        <div style={logoStyle}>
+          <Link to="/home" className={styles.siteTitle}>
+            <div className={styles['logo-section']}>
+              <img
+                src="nyseenowLogoLanding.png"
+                alt="logo"
+                style={{ maxHeight: '100px', maxWidth: '100%' }}
+              />
             </div>
           </Link>
-        </li>
+        </div>
       </ul>
       <ul>
         <li>
           <SearchBar set_map_center={set_map_center}></SearchBar>
         </li>
       </ul>
-      <ul>
+      <ul className={styles.changeableNav}>
         <li>
           <CategoryDropDown></CategoryDropDown>
         </li>
         <li>
           <Link to="/userprofile">User</Link>
         </li>
+      </ul>
+      <ul className={styles.navHamburger}>
+        <li onClick={toggleBurger}>
+          <i className="fas fa-bars"></i>
+        </li>
+        {burgerOpen && (
+          <div className={styles.dropdownContainer}>
+            <div>
+              <CategoryDropDown></CategoryDropDown>
+            </div>
+            <div>
+              <Link to="/userprofile">User</Link>
+            </div>
+          </div>
+        )}
       </ul>
     </nav>
   )

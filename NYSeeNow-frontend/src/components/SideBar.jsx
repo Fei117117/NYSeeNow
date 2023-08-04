@@ -10,6 +10,7 @@ import axios from 'axios'
 import { LocatorContext } from '../context/LocatorContext'
 import Locator from './Locator'
 
+
 export const SideBar = ({ mapRef }) => {
   // State for holding the left position of AttractionCounter
   const [counterLeft, setCounterLeft] = useState('60px')
@@ -21,6 +22,8 @@ export const SideBar = ({ mapRef }) => {
   const { selectedList, setSelectedList } = useSelection()
   const { tripData, setTripData } = useTripData()
   const navigate = useNavigate()
+  const logo = "/nyseenowLogoOnly.png";
+  const skyline = "/skyline.png"; 
 
   // Use the showLocator and setShowLocator from LocatorContext
   const { showLocator, setShowLocator } = useContext(LocatorContext)
@@ -87,26 +90,7 @@ export const SideBar = ({ mapRef }) => {
 
   return (
     <aside className={`side-bar ${isOpen ? 'open' : ''}`}>
-      <div className="sidebar-icons">
-        <div className="top-icons">
-          <div
-            className="hamburger-icon"
-            onClick={() => setIsOpen(!isOpen)}
-            style={{ display: 'flex', justifyContent: 'center' }}
-          >
-            <img src="hamburger.png" alt="Menu" />
-          </div>
-          <Link to="/itineraries" className="calendar-icon">
-            <img src="calendar.png" alt="Calendar" />
-          </Link>
-          <div className="locator-icon" onClick={handleLocatorClick}>
-            <img src="marker.png" alt="Marker" />
-          </div>
-        </div>
-        <div className="question-mark-icon">
-          <img src="question_mark.png" alt="Help" />
-        </div>
-      </div>
+      {isOpen && <img src={logo} alt="Logo" className="sidebar-logo" />}
       <div className="sidebar-content">
         <SidebarContent
           open={isOpen}
@@ -116,6 +100,30 @@ export const SideBar = ({ mapRef }) => {
           currStartDate={startDate}
           currEndDate={endDate}
         />
+        {isOpen && <img src={skyline} alt="Skyline" className="sidebar-skyline" />}
+      </div>
+      <div className={`sidebar-icons ${isOpen ? 'sidebar-open' : ''}`}>
+        <div className="top-icons">
+          <div
+            className="hamburger-icon"
+            onClick={() => setIsOpen(!isOpen)}
+            style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}
+          >
+            <i className="fas fa-bars"></i>
+          </div>
+          <Link to="/itineraries" className="calendar-icon sidebar-link">
+            <i className="far fa-calendar-alt"></i>
+            <p>My Itineraries</p>
+          </Link>
+          <div className="locator-icon" onClick={handleLocatorClick} style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+            <i className="fas fa-map-marker-alt"></i>
+            <p>Locator</p>
+          </div>
+        </div>
+        <Link to="/" className="question-mark-icon" style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+          <i className="fas fa-question-circle"></i>
+          <p>Help</p>
+        </Link>
       </div>
       <AttractionCounter left={counterLeft} />
     </aside>

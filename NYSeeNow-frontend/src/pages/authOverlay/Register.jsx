@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Login.css'
 import { post } from '../../net/net'
+import { useNavigate } from 'react-router-dom';
 
 export const Register = (props) => {
   const [username, setUsername] = useState('')
@@ -8,7 +9,8 @@ export const Register = (props) => {
   const [confirm, setConfirm] = useState('')
   const [email, setEmail] = useState('')
   const [errors, setErrors] = useState({})
-  const [message, setMessage] = useState('') // <- Add this line
+  const [message, setMessage] = useState('') 
+  const navigate = useNavigate();
 
   const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
   const NAME_REGEX = /^[a-zA-Z0-9._-]{4,20}$/
@@ -112,9 +114,9 @@ export const Register = (props) => {
         <button>Create Account</button>
         {message && <p>{message}</p>}
       </form>
-      <button onClick={() => props.onFormSwitch('login')}>
-        Already have an account? Login here.{' '}
+      <button onClick={() => navigate('/userprofile')}>
+        Already have an account? Login here.
       </button>
     </div>
-  )
-}
+  );
+};
