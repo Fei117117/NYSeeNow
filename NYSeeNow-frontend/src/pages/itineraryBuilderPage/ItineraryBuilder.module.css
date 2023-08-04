@@ -11,4 +11,5 @@
   gap: 2vw;
   margin: auto;
   background: rgb(255, 255, 255, 0.6);
+  overflow: scroll;
 }

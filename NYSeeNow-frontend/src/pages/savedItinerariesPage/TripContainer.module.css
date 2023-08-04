@@ -1,16 +1,20 @@
 .tripContainer {
+  display: flex;
+  flex-direction: row;
   border: 1px solid black;
-  padding: 1rem 2rem;
-  margin: 1rem auto;
+  padding: 0.5vw 2vw;
+  margin: 0.5vw auto;
   position: relative;
-  max-width: 70rem;
-  width: 50rem;
-  box-shadow: 2rem;
+  max-width: 70vw;
+  width: 70vw;
+  box-shadow: 2vw;
+  overflow: scroll;
+  gap: 10vw;
 }
 
 .tripContainer img {
-  width: 5rem;
-  height: 5rem;
+  width: 5vw;
+  height: 5vw;
 }
 .card-delete-button-trip {
   color: black;
@@ -22,5 +26,29 @@
 .tripDetails {
   display: flex;
   flex-direction: row;
-  gap: 2rem;
+  gap: 2vw;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2vw;
+}
+
+@media (max-width: 600px) {
+  .tripContainer img {
+    width: 15vw;
+    height: 15vw;
+    margin: auto;
+  }
+  .tripContainer {
+    flex-direction: column;
+  }
+  .tripDetails {
+    flex-direction: column;
+  }
+
+  .buttonContainer {
+    padding-left: 0vw;
+  }
 }

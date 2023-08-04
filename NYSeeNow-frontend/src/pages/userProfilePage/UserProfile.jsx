@@ -13,30 +13,33 @@ export const UserProfile = () => {
   const [selectedTab, setSelectedTab] = useState('My Profile')
 
   useEffect(() => {
-    axios.get(`/api/users/${authUser}`)
-      .then(response => {
+    axios
+      .get(`/api/users/${authUser}`)
+      .then((response) => {
         setEmail(response.data.email)
         setCreatedAt(new Date(response.data.createdAt)) // Parse the date from the response
       })
-      .catch(error => console.error('Error fetching user data:', error))
+      .catch((error) => console.error('Error fetching user data:', error))
   }, [authUser])
 
   const navigate = useNavigate()
 
-  const timeRegistered = createdAt
-    ? `${differenceInDays(new Date(), createdAt)} days ago`
-    : ''
+  const timeRegistered = createdAt ? `${differenceInDays(new Date(), createdAt)} days ago` : ''
 
   const logoutHandler = () => {
     setIsLoggedIn(false)
     navigate('/')
   }
 
-  const [profilePic, setProfilePic] = useState(null);
+  const [profilePic, setProfilePic] = useState(null)
 
   const handleProfilePicChange = (event) => {
-    setProfilePic(URL.createObjectURL(event.target.files[0]));
-  };
+    setProfilePic(URL.createObjectURL(event.target.files[0]))
+  }
+
+  const gobackFunc = () => {
+    navigate(-1)
+  }
 
   const renderTabContent = () => {
     switch (selectedTab) {
@@ -44,12 +47,23 @@ export const UserProfile = () => {
         return (
           <>
             <div className={styles.profilePicContainer}>
-              <img src={profilePic || '/placeholder.png'} className={styles.profilePic} alt="Profile" />
-              <input type="file" onChange={handleProfilePicChange} className={styles.fileInputBox} />
+              <img
+                src={profilePic || '/placeholder.png'}
+                className={styles.profilePic}
+                alt="Profile"
+              />
+              <input
+                type="file"
+                onChange={handleProfilePicChange}
+                className={styles.fileInputBox}
+              />
             </div>
             <p className={styles.profileInfo}>Username: {authUser}</p>
             <p className={styles.profileInfo}>Email: {email}</p>
-            <textarea className={styles.bioInput} placeholder="Short description of you..."></textarea>
+            <textarea
+              className={styles.bioInput}
+              placeholder="Short description of you..."
+            ></textarea>
             <input className={styles.locationInput} type="text" placeholder="Add your location" />
             <input className={styles.interestsInput} type="text" placeholder="Add your interests" />
             <button className={styles.saveButton}>SAVE</button>
@@ -66,7 +80,6 @@ export const UserProfile = () => {
     }
   }
 
-
   if (isLoggedIn) {
     return (
       <div className={styles.pageWrapper}>
@@ -75,16 +88,40 @@ export const UserProfile = () => {
             <h2>{selectedTab}</h2>
           </div>
           <div className={styles.sidebar}>
-            <button className={`${styles.button} ${selectedTab === 'My Profile' ? styles.active : ''}`} onClick={() => setSelectedTab('My Profile')}>My Profile</button>
-            <button className={`${styles.button} ${selectedTab === 'Saved Itineraries' ? styles.active : ''}`} onClick={() => setSelectedTab('Saved Itineraries')}>Saved Itineraries</button>
-            <button className={`${styles.button} ${selectedTab === 'Favorites' ? styles.active : ''}`} onClick={() => setSelectedTab('Favorites')}>Favorites</button>
-            <button className={`${styles.button} ${selectedTab === 'Settings' ? styles.active : ''}`} onClick={() => setSelectedTab('Settings')}>Settings</button>
-            <button className={styles.button} onClick={logoutHandler}>Logout</button>
+            <button
+              className={`${styles.button} ${selectedTab === 'My Profile' ? styles.active : ''}`}
+              onClick={() => setSelectedTab('My Profile')}
+            >
+              My Profile
+            </button>
+            <button
+              className={`${styles.button} ${
+                selectedTab === 'Saved Itineraries' ? styles.active : ''
+              }`}
+              onClick={() => setSelectedTab('Saved Itineraries')}
+            >
+              Saved Itineraries
+            </button>
+            <button
+              className={`${styles.button} ${selectedTab === 'Favorites' ? styles.active : ''}`}
+              onClick={() => setSelectedTab('Favorites')}
+            >
+              Favorites
+            </button>
+            <button
+              className={`${styles.button} ${selectedTab === 'Settings' ? styles.active : ''}`}
+              onClick={() => setSelectedTab('Settings')}
+            >
+              Settings
+            </button>
+            <button className={styles.button} onClick={logoutHandler}>
+              Logout
+            </button>
+            <button className={styles.button} onClick={gobackFunc}>
+              Go back
+            </button>
           </div>
-          <div className={styles.content}>
-            {renderTabContent()}
-
-          </div>
+          <div className={styles.content}>{renderTabContent()}</div>
         </div>
       </div>
     )
