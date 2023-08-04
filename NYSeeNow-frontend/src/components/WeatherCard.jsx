@@ -105,8 +105,8 @@ export const WeatherCard = () => {
 
         if (response.ok) {
           const weatherData = await response.json();
-          console.log('Connected to OpenWeather and data collected successfully');
-          console.log(weatherData);
+          //console.log('Connected to OpenWeather and data collected successfully');
+          //console.log(weatherData);
           setCurrentWeather(weatherData);
         } else {
           console.error('Failed to fetch weather data:', response.statusText);

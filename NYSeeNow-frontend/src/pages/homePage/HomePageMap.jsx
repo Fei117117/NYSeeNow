@@ -365,12 +365,10 @@ export const HomePageMap = (props) => {
 ]
 
   
-  const { selectedOptions, setSelectedOptions } = useCategories()
+  const { selectedOptions } = useCategories()
 
   const [fetched_markers, setFetchedMarkers] = useState([])
-
   const [mapLoaded, setMapLoaded] = useState(false) // New state for map loading
-
   const [heatmapData, setHeatmapData] = useState([]) // Declare heatmapData state variable
 
   const getSelectedTypes = () => {
@@ -390,6 +388,7 @@ export const HomePageMap = (props) => {
   let filtered_types = getSelectedTypes()
   let attractions = null
   let coordinate_json = []
+  
   useEffect(() => {
     axios
       .get(attraction_url)
@@ -418,20 +417,69 @@ export const HomePageMap = (props) => {
   // Note that museums and artworks do not load on the map I can not figure out why, they are passed correctly
   // and with a busyness value
   // ... Other parts of the code
+  function getCurrentTimeInNewYork() {
+    const options = {
+      timeZone: 'America/New_York',
+      hour12: false, // Use 24-hour format
+    };
+    return new Date().toLocaleString('en-US', options);
+  }
 
+  // Code for initial loading
+  useEffect(() => {
+    const fetchData = async () => {
+      // Load file best_time_ok.json
+      const response = await fetch('../assets/best_time_ok_data.json');
+      const best_time_data = await response.json();
+      const heatmapData = [];
+  
+      for (let i = 0; i < best_time_data.length; i++) {
+        const venue=best_time_data[i]
+        const venueName = venue["Venue Name"];
+        const venueCoordinates = venue["Venue Coordinates"];
+        const avgDwellTime = venue["Average Dwell Time"];
+        console.log('Venue name:', venueName, 'has an average dwell time of:', avgDwellTime);
+  
+        // Split the coordinates string into latitude and longitude
+        const [latitude, longitude] = venueCoordinates.split(' ');
+        // Convert latitude and longitude to floating-point numbers
+        const latitudeFloat = parseFloat(latitude);
+        const longitudeFloat = parseFloat(longitude);
+  
+        const requestBody = {
+          name: venueName,
+          hour: new Date(getCurrentTimeInNewYork()).getHours(),
+          day: new Date(getCurrentTimeInNewYork()).getDay()
+        };
+  
+        try {
+          const url = 'busyness/get';
+          const response = await axios.post(url, requestBody);
+          const data = response.data;
+          const busyness = data.prediction[0];
+          console.log('Busyness prediction for besttimes:', busyness);
+  
+          heatmapData.push({
+            location: new window.google.maps.LatLng(latitudeFloat, longitudeFloat),
+            weight: busyness
+          });
+        } catch (error) {
+          console.error('Error fetching busyness data:', error);
+        }
+      }
+      setHeatmapData(heatmapData.filter((entry) => entry !== null));
+    };
+  
+    fetchData();
+  }, [fetched_markers]);
+
+
+  //Code for every time the markers change
   useEffect(() => {
     const fetchData = async () => {
       const lat_lon = fetched_markers.map(
         (marker) => marker.position.lat + ',' + marker.position.lng
       )
-
-      function getCurrentTimeInNewYork() {
-        const options = {
-          timeZone: 'America/New_York',
-          hour12: false, // Use 24-hour format
-        };
-        return new Date().toLocaleString('en-US', options);
-      }
 
       const heatmapData = await Promise.all(
         lat_lon.map(async (position) => {
@@ -447,28 +495,15 @@ export const HomePageMap = (props) => {
               month: new Date(getCurrentTimeInNewYork()).getMonth() + 1
             }
 
-            const response = await axios.post('http://localhost:5001/AttractionPredict', requestBody)
-
+            const url='http://localhost:5001/AttractionPredict'             
+            const response = await axios.post(url, requestBody)
             const data = response.data
             const busyness = data.prediction[0]
-            //extract the int from the array
-            const info = {
-              name: fetched_markers.find(
-                (marker) => marker.position.lat + ',' + marker.position.lng === position
-              )?.name,
-              lat_lon: requestBody.lat_lon,
-              hour: requestBody.hour,
-              day: requestBody.day,
-              month: requestBody.month,
-              busyness: busyness
-            }
-            console.log(info)
-
+            console.log(busyness)
             const [lat, lng] = requestBody.lat_lon.split(',');
             //convert to floats
             const latitude=parseFloat(lat)
             const longitude=parseFloat(lng)
-            console.log(lat, lng)
             return {
               location: new window.google.maps.LatLng(latitude, longitude),
               weight: busyness
@@ -497,8 +532,8 @@ export const HomePageMap = (props) => {
     ]
 
     heatmapLayer.setOptions({
-      radius: 20, //Set the radius of each data point
-      opacity: 0.3, // Set the opacity of the heatmap layer
+      radius: 30, //Set the radius of each data point
+      opacity: 0.5, // Set the opacity of the heatmap layer
       //start at opaque, then green, yellow, red
       gradient
     })
