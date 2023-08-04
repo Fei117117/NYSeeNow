@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import styles from './ItineraryBuilder.module.css'; // Please adjust this path
 import { Bar } from 'react-chartjs-2';
-import styles from './ItineraryDetailsCard.module.css';
 import {
     Chart,
     LinearScale,
@@ -15,7 +17,6 @@ import {
     BarElement,
 } from 'chart.js';
 import 'chartjs-adapter-moment';
-import moment from "moment";
 
 // Register the necessary components and scales
 Chart.register(
@@ -27,26 +28,23 @@ Chart.register(
     Legend,
     CategoryScale,
     BarElement
-
 );
 
-const TripEditPage = () => {
+const ItineraryEdit = () => {
     const [tripObj, setTripObj] = useState(null)
     const { state } = useLocation();
     const [tripAttractions, setTripAttractions] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [attractions, setAttractions] = useState([]);
 
-
     useEffect(() => {
         const fetchAttractions = async () => {
             const response = await axios.get(`/attractions/fetch`);
             setAttractions(response.data);
-            console.log(response.data); // Add this line to check the response
+            console.log(response.data);
         }
         fetchAttractions();
     }, []);
-
 
     useEffect(() => {
         const fetchTripAttractions = async () => {
@@ -55,13 +53,12 @@ const TripEditPage = () => {
             const response = await axios.get(`/trip/tripAttraction/${username}/${tripId}`);
             setTripAttractions(response.data);
             setIsLoading(false);
-            console.log(response.data); // Add this line to check the response
+            console.log(response.data);
         }
         if (state?.username && state?.trip_id) {
             fetchTripAttractions();
         }
     }, [state]);
-
 
     const handleInputChange = (index, event) => {
         const values = [...tripAttractions];
@@ -83,16 +80,12 @@ const TripEditPage = () => {
                 attractionId,
                 date,
                 time: visitTime,
-                // Only stringify prediction if it's not already a string
                 prediction: typeof prediction === 'string' ? prediction : JSON.stringify(prediction),
             };
         });
 
-
         try {
-            // Change the URL to match your backend endpoint
             const response = await axios.put(`/trip/update/${state.username}/${state.trip_id}`, tripDetails);
-
 
             if (response.status === 200) {
                 console.log("Data successfully updated");
@@ -104,9 +97,33 @@ const TripEditPage = () => {
         }
     };
 
-
     const data = (dayBusyness) => ({
-        labels: [...Array(24).keys()].map(i => `${i}:00`),
+        labels: [
+            '12 AM',
+            '1 AM',
+            '2 AM',
+            '3 AM',
+            '4 AM',
+            '5 AM',
+            '6 AM',
+            '7 AM',
+            '8 AM',
+            '9 AM',
+            '10 AM',
+            '11 AM',
+            '12 PM',
+            '1 PM',
+            '2 PM',
+            '3 PM',
+            '4 PM',
+            '5 PM',
+            '6 PM',
+            '7 PM',
+            '8 PM',
+            '9 PM',
+            '10 PM',
+            '11 PM'
+        ],
         datasets: [
             {
                 label: 'Busyness',
@@ -130,45 +147,37 @@ const TripEditPage = () => {
     };
 
     return (
-        <div className={styles.ItnDetailsCard}>
-            {isLoading ? (
-                <div>Loading...</div>
-            ) : (
-                <form onSubmit={handleSubmit}>
-                    {tripAttractions.map((tripAttraction, index) => {
-                        // Match attraction id to get the correct attraction object
-                        const matchedAttraction = attractions.find(attraction => attraction.attractionId === tripAttraction.attractionId);
-                        return (
-                            <div key={index}>
-                                <div>{matchedAttraction ? matchedAttraction.name : 'Attraction not found'}</div>
-                                <label>
-                                    Date:
-                                    <input
-                                        type="date"
-                                        name="date"
-                                        value={tripAttraction.date}
-                                        onChange={event => handleInputChange(index, event)}
-                                    />
-                                </label>
-                                <label>
-                                    Time:
-                                    <input
-                                        type="time"
-                                        name="time"
-                                        value={tripAttraction.time}
-                                        onChange={event => handleInputChange(index, event)}
-                                    />
-                                </label>
-                                <Bar data={data(tripAttraction.prediction)} options={options} />
-                            </div>
-                        );
-                    })}
-                    <button type="submit">Submit</button>
-                </form>
-            )}
+        <div>
+            <h1>Itinerary Edit Page</h1>
+            <Carousel
+                className={styles.CarouselCard}
+                showArrows={true}
+                showThumbs={false}
+                centerSlidePercentage={50}
+            >
+                {tripAttractions.map((tripAttraction, index) => {
+                    const matchedAttraction = attractions.find(attraction => attraction.attractionId === tripAttraction.attractionId);
+                    return (
+                        <div key={index} className={styles.CarouselElement}>
+                            <div>{matchedAttraction ? matchedAttraction.name : 'Attraction not found'}</div>
+                            <div>Date: {tripAttraction.date}</div>
+                            <label>
+                                Time:
+                                <input
+                                    type="time"
+                                    name="time"
+                                    value={tripAttraction.time}
+                                    onChange={event => handleInputChange(index, event)}
+                                />
+                            </label>
+                            <Bar data={data(tripAttraction.prediction)} options={options} />
+                        </div>
+                    );
+                })}
+            </Carousel>
+            <button onClick={handleSubmit}>Submit</button>
         </div>
     );
-
 };
 
-export default TripEditPage;
+export default ItineraryEdit;
