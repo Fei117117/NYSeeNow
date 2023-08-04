@@ -42,29 +42,36 @@ export const TripContainer = (props) => {
   }
 
   if (tripObj) {
-    return (
-      <div className={styles.tripContainer}>
-        <div className={styles.tripDetails}>
-          <img src="/NYSeeLogo.png"></img>
-          <div>Trip Id: {tripObj['trip_id']}</div>
-          <div>Number of Attractions: {tripObj['number_of_attractions']}</div>
-          <div>Start Date: {tripObj['start_date']}</div>
-          <div>End Date: {tripObj['end_date']}</div>
-        </div>
+    const id_val = tripObj['trip_id']
+    const random_gen = id_val % 4
+    const nyc_string = `/nyc${random_gen}.png`
 
-        <button
-          className="card-delete-button-trip"
-          onClick={() => {
-            console.log(authUser)
-            handleDelete()
-          }}
-        >
-          Delete
-        </button>
-        <button className="card-edit-button-trip" onClick={handleEdit}>
-          Edit
-        </button>
-      </div>
+    return (
+      <>
+        <div className={styles.tripContainer}>
+          <div className={styles.tripDetails}>
+            <img src={nyc_string}></img>
+            <div>Id: {tripObj['trip_id']}</div>
+            <div>Attractions: {tripObj['number_of_attractions']}</div>
+            <div>Start Date: {tripObj['start_date']}</div>
+            <div>End Date: {tripObj['end_date']}</div>
+          </div>
+          <div className={styles.buttonContainer}>
+            <button
+              className={styles.cardButtontrip}
+              onClick={() => {
+                console.log(authUser)
+                handleDelete()
+              }}
+            >
+              Delete
+            </button>
+            <button className={styles.cardButtontrip} onClick={handleEdit}>
+              Edit
+            </button>
+          </div>
+        </div>
+      </>
     )
   } else {
     return <div>Nothing in this.</div>

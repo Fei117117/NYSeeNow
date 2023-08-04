@@ -1,26 +1,55 @@
 .tripContainer {
   border: 1px solid black;
-  padding: 1rem 2rem;
-  margin: 1rem auto;
+  border-radius: 1vw;
+  padding: 1vw 1vw;
+  margin: 1vw auto;
   position: relative;
-  max-width: 70rem;
-  width: 50rem;
-  box-shadow: 2rem;
+  max-width: 70vw;
+  width: 50vw;
+  box-shadow: 2vw;
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.tripContainer:last-child {
+  flex-direction: column;
 }
 
 .tripContainer img {
-  width: 5rem;
-  height: 5rem;
+  display: block;
+  width: 7vw;
+  height: 7vw;
+  border-radius: 10px;
 }
-.card-delete-button-trip {
+
+.buttonContainer {
+  width: 30%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.cardButtontrip {
+  margin: auto;
   color: black;
   background-color: transparent;
+  align-items: center;
+  justify-content: center;
   border: none;
   cursor: pointer;
+  height: 2vw;
 }
 
 .tripDetails {
   display: flex;
   flex-direction: row;
-  gap: 2rem;
+  flex-wrap: wrap;
+  gap: 2vw;
+}
+
+@media (max-width: 1389) {
+  .tripDetails {
+    flex-direction: column;
+  }
 }

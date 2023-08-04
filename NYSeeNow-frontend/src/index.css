@@ -4,6 +4,7 @@ body {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial,
     sans-serif;
   overflow: hidden;
+  overflow-y: auto; /* This makes the content scrollable vertically when needed */
 }
 
 * {

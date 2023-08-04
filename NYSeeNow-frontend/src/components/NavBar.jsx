@@ -2,9 +2,12 @@ import { Link } from 'react-router-dom'
 import { SearchBar } from './SearchBar'
 import CategoryDropDown from './CategoriesDropDown'
 import styles from './NavBar.module.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 
 export const NavBar = ({ isOpen, set_map_center }) => {
+  const location = useLocation()
+  const [path, setPath] = useState(null)
   const navStyle = {
     marginLeft: isOpen ? '40%' : '0', // position of sidebar extended
     transition: 'margin-left 0.3s ease' // transition animation
@@ -20,6 +23,11 @@ export const NavBar = ({ isOpen, set_map_center }) => {
   const toggleBurger = () => {
     setBurgerOpen(!burgerOpen)
   }
+
+  useEffect(() => {
+    console.log(location.pathname)
+  }, [location])
+
   return (
     <nav style={navStyle}>
       <ul>
