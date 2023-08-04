@@ -4,7 +4,7 @@ import { AuthOverlay } from '../authOverlay/AuthOverlay'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { differenceInDays } from 'date-fns'
-import styles from './UserProfile.module.css' 
+import styles from './UserProfile.module.css'
 
 export const UserProfile = () => {
   const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth()
@@ -14,18 +14,18 @@ export const UserProfile = () => {
 
   useEffect(() => {
     axios.get(`/api/users/${authUser}`)
-        .then(response => {
-          setEmail(response.data.email)
-          setCreatedAt(new Date(response.data.createdAt)) // Parse the date from the response
-        })
-        .catch(error => console.error('Error fetching user data:', error))
+      .then(response => {
+        setEmail(response.data.email)
+        setCreatedAt(new Date(response.data.createdAt)) // Parse the date from the response
+      })
+      .catch(error => console.error('Error fetching user data:', error))
   }, [authUser])
 
   const navigate = useNavigate()
 
   const timeRegistered = createdAt
-      ? `${differenceInDays(new Date(), createdAt)} days ago`
-      : ''
+    ? `${differenceInDays(new Date(), createdAt)} days ago`
+    : ''
 
   const logoutHandler = () => {
     setIsLoggedIn(false)
@@ -37,7 +37,6 @@ export const UserProfile = () => {
       case 'My Profile':
         return (
           <>
-            <h1>My UserProfile</h1>
             <p>Username: {authUser}</p>
             <p>Email: {email}</p>
             <p>Registered: {timeRegistered}</p>
@@ -56,41 +55,21 @@ export const UserProfile = () => {
 
   if (isLoggedIn) {
     return (
-      <div className={styles.container}>
-        <div className={styles.sidebar}>
-          <button 
-            className={selectedTab === 'My Profile' ? `${styles.button} ${styles.active}` : styles.button} 
-            onClick={() => setSelectedTab('My Profile')}
-          >
-            My Profile
-          </button>
-          <button 
-            className={selectedTab === 'Saved Itineraries' ? `${styles.button} ${styles.active}` : styles.button} 
-            onClick={() => setSelectedTab('Saved Itineraries')}
-          >
-            Saved Itineraries
-          </button>
-          <button 
-            className={selectedTab === 'Favorites' ? `${styles.button} ${styles.active}` : styles.button} 
-            onClick={() => setSelectedTab('Favorites')}
-          >
-            Favorites
-          </button>
-          <button 
-            className={selectedTab === 'Settings' ? `${styles.button} ${styles.active}` : styles.button} 
-            onClick={() => setSelectedTab('Settings')}
-          >
-            Settings
-          </button>
-          <button 
-            className={selectedTab === 'Logout' ? `${styles.button} ${styles.active}` : styles.button} 
-            onClick={logoutHandler}
-          >
-            Logout
-          </button>
-        </div>
-        <div className={styles.content}>
-          {renderTabContent()}
+      <div className={styles.pageWrapper}>
+        <div className={styles.container}>
+          <div className={styles.header}>
+            <h2>{selectedTab}</h2>
+          </div>
+          <div className={styles.sidebar}>
+            <button onClick={() => setSelectedTab('My Profile')}>My Profile</button>
+            <button onClick={() => setSelectedTab('Saved Itineraries')}>Saved Itineraries</button>
+            <button onClick={() => setSelectedTab('Favorites')}>Favorites</button>
+            <button onClick={() => setSelectedTab('Settings')}>Settings</button>
+            <button onClick={logoutHandler}>Logout</button>
+          </div>
+          <div className={styles.content}>
+            {renderTabContent()}
+          </div>
         </div>
       </div>
     )
