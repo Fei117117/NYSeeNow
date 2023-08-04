@@ -14,8 +14,8 @@ const LandingPage = () => {
                     </div>
                     <div className={styles['nav-links']}>
                         <Link to="/about">About Us</Link>
-                        <Link to="/signin">Sign In</Link>
-                        <Link to="/signup">Sign Up</Link>
+                        <Link to="/userprofile">Sign In</Link>
+                        <Link to="/register">Sign Up</Link>
                     </div>
                 </nav>
             </header>

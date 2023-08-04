@@ -81,8 +81,8 @@ button.active {
     border-radius: 50%; /* This will make the image circular */
     object-fit: cover; /* This will ensure the image covers the entire circle */
     position: absolute;
-    top: 20%; /* Adjust this value to move the picture up or down */
-    right: 46%; 
+    top: 19%; /* Adjust this value to move the picture up or down */
+    right: 48%; 
   }
   
   .profileInfo {
@@ -102,7 +102,7 @@ button.active {
   .fileInputBox {
     position: absolute;
     top: 30%; /* Adjust this value to move the file input box up or down */
-    right: 28%; 
+    right: 30%; 
     display: block;
     margin-top: 20px;
     padding: 10px;

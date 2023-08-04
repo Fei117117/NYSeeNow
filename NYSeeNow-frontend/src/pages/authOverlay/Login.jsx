@@ -33,7 +33,7 @@ export const Login = (props) => {
         localStorage.setItem('isLoggedIn', JSON.stringify(true));
         console.log('Username', data['username'])
         setAuthUser(data['username'])
-        localStorage.setItem('authUser', data['username']); // Add this line
+        localStorage.setItem('authUser', data['username']); 
       },
       (message, status) => {
         console.log('Failure:', message)
