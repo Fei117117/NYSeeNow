@@ -30,6 +30,7 @@ export const Login = (props) => {
         console.log('Status:', status)
         setMessage('Logged in.')
         setIsLoggedIn(true)
+        localStorage.setItem('isLoggedIn', JSON.stringify(true));
         console.log('Username', data['username'])
         setAuthUser(data['username'])
       },
