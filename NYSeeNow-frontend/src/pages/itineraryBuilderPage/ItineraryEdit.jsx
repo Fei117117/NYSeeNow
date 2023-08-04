@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import styles from './ItineraryBuilder.module.css'; // Please adjust this path
+import styles from './ItineraryBuilder.module.css';
 import { Bar } from 'react-chartjs-2';
 import {
     Chart,
@@ -41,7 +41,6 @@ const ItineraryEdit = () => {
         const fetchAttractions = async () => {
             const response = await axios.get(`/attractions/fetch`);
             setAttractions(response.data);
-            console.log(response.data);
         }
         fetchAttractions();
     }, []);
@@ -53,7 +52,6 @@ const ItineraryEdit = () => {
             const response = await axios.get(`/trip/tripAttraction/${username}/${tripId}`);
             setTripAttractions(response.data);
             setIsLoading(false);
-            console.log(response.data);
         }
         if (state?.username && state?.trip_id) {
             fetchTripAttractions();
