@@ -1,54 +1,91 @@
 import { useAuth } from '../../context/AuthContext'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { AuthOverlay } from '../authOverlay/AuthOverlay'
 import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
 import axios from 'axios'
 import { differenceInDays } from 'date-fns'
-
+import styles from './UserProfile.module.css'
 
 export const UserProfile = () => {
   const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth()
   const [email, setEmail] = useState('')
   const [createdAt, setCreatedAt] = useState(null)
-
+  const [selectedTab, setSelectedTab] = useState('My Profile')
 
   useEffect(() => {
     axios.get(`/api/users/${authUser}`)
-        .then(response => {
-          setEmail(response.data.email)
-          setCreatedAt(new Date(response.data.createdAt)) // Parse the date from the response
-        })
-        .catch(error => console.error('Error fetching user data:', error))
+      .then(response => {
+        setEmail(response.data.email)
+        setCreatedAt(new Date(response.data.createdAt)) // Parse the date from the response
+      })
+      .catch(error => console.error('Error fetching user data:', error))
   }, [authUser])
 
-  const toggleForm = (formName) => {
-    setCurrentForm(formName)
-  }
-  // Get the state, if login not done, show overlay. I login, render userprofile page just like that.
   const navigate = useNavigate()
 
   const timeRegistered = createdAt
-      ? `${differenceInDays(new Date(), createdAt)} days ago`
-      : ''
+    ? `${differenceInDays(new Date(), createdAt)} days ago`
+    : ''
 
   const logoutHandler = () => {
     setIsLoggedIn(false)
     navigate('/')
   }
+
+  const [profilePic, setProfilePic] = useState(null);
+
+  const handleProfilePicChange = (event) => {
+    setProfilePic(URL.createObjectURL(event.target.files[0]));
+  };
+
+  const renderTabContent = () => {
+    switch (selectedTab) {
+      case 'My Profile':
+        return (
+          <>
+            <div className={styles.profilePicContainer}>
+              <img src={profilePic || '/placeholder.png'} className={styles.profilePic} alt="Profile" />
+            </div>
+            <p className={styles.profileInfo}>Username: {authUser}</p>
+            <p className={styles.profileInfo}>Email: {email}</p>
+            <p className={styles.profileInfo}>Registered: {timeRegistered}</p>
+            <input type="file" onChange={handleProfilePicChange} className={styles.fileInput} />
+          </>
+        )
+      case 'Saved Itineraries':
+        return <div>Saved Itineraries content goes here</div>
+      case 'Favorites':
+        return <div>Favorites content goes here</div>
+      case 'Settings':
+        return <div>Settings content goes here</div>
+      default:
+        return <div>Select a tab</div>
+    }
+  }
+
+
   if (isLoggedIn) {
     return (
-      <>
-        <h1>My UserProfile</h1>
-        <p>Username: {authUser}</p>
-        <p>Email: {email}</p>
-        <p>Registered: {timeRegistered}</p>
-        <button onClick={logoutHandler}>Logout</button>
-      </>
+      <div className={styles.pageWrapper}>
+        <div className={styles.container}>
+          <div className={styles.header}>
+            <h2>{selectedTab}</h2>
+          </div>
+          <div className={styles.sidebar}>
+            <button className={`${styles.button} ${selectedTab === 'My Profile' ? styles.active : ''}`} onClick={() => setSelectedTab('My Profile')}>My Profile</button>
+            <button className={`${styles.button} ${selectedTab === 'Saved Itineraries' ? styles.active : ''}`} onClick={() => setSelectedTab('Saved Itineraries')}>Saved Itineraries</button>
+            <button className={`${styles.button} ${selectedTab === 'Favorites' ? styles.active : ''}`} onClick={() => setSelectedTab('Favorites')}>Favorites</button>
+            <button className={`${styles.button} ${selectedTab === 'Settings' ? styles.active : ''}`} onClick={() => setSelectedTab('Settings')}>Settings</button>
+            <button className={styles.button} onClick={logoutHandler}>Logout</button>
+          </div>
+          <div className={styles.content}>
+            {renderTabContent()}
+            
+          </div>
+        </div>
+      </div>
     )
   } else {
-    {
-      return <AuthOverlay></AuthOverlay>
-    }
+    return <AuthOverlay></AuthOverlay>
   }
 }
