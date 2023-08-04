@@ -23,7 +23,8 @@ export const MyItineraries = () => {
   }, [])
 
   return (
-    <>
+    <div>
+      <h2>Upcoming Trips</h2>
       {isLoggedIn &&
         myTrips &&
         Object.entries(myTrips).map(([key, value]) => (
@@ -31,6 +32,6 @@ export const MyItineraries = () => {
             <TripContainer key={key} trip_details={key} attraction_details={value}></TripContainer>
           </div>
         ))}
-    </>
+    </div>
   )
 }

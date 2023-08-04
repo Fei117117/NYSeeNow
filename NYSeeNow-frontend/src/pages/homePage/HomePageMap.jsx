@@ -210,161 +210,160 @@ export const HomePageMap = (props) => {
 
   const darkMapStyles = [
     {
-        "featureType": "all",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#0a2639"
-            }
-        ]
+      featureType: 'all',
+      elementType: 'geometry',
+      stylers: [
+        {
+          color: '#0a2639'
+        }
+      ]
     },
     {
-        "featureType": "all",
-        "elementType": "labels.text",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
+      featureType: 'all',
+      elementType: 'labels.text',
+      stylers: [
+        {
+          visibility: 'off'
+        }
+      ]
     },
     {
-        "featureType": "all",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "gamma": 0.01
-            },
-            {
-                "lightness": 20
-            }
-        ]
+      featureType: 'all',
+      elementType: 'labels.text.fill',
+      stylers: [
+        {
+          gamma: 0.01
+        },
+        {
+          lightness: 20
+        }
+      ]
     },
     {
-        "featureType": "all",
-        "elementType": "labels.text.stroke",
-        "stylers": [
-            {
-                "saturation": -31
-            },
-            {
-                "lightness": -33
-            },
-            {
-                "weight": 2
-            },
-            {
-                "gamma": 0.8
-            }
-        ]
+      featureType: 'all',
+      elementType: 'labels.text.stroke',
+      stylers: [
+        {
+          saturation: -31
+        },
+        {
+          lightness: -33
+        },
+        {
+          weight: 2
+        },
+        {
+          gamma: 0.8
+        }
+      ]
     },
     {
-        "featureType": "all",
-        "elementType": "labels.icon",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
+      featureType: 'all',
+      elementType: 'labels.icon',
+      stylers: [
+        {
+          visibility: 'off'
+        }
+      ]
     },
     {
-        "featureType": "landscape",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "lightness": 30
-            },
-            {
-                "saturation": 30
-            }
-        ]
+      featureType: 'landscape',
+      elementType: 'geometry',
+      stylers: [
+        {
+          lightness: 30
+        },
+        {
+          saturation: 30
+        }
+      ]
     },
     {
-        "featureType": "landscape",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "saturation": "-19"
-            },
-            {
-                "color": "#003148"
-            }
-        ]
+      featureType: 'landscape',
+      elementType: 'geometry.fill',
+      stylers: [
+        {
+          saturation: '-19'
+        },
+        {
+          color: '#003148'
+        }
+      ]
     },
     {
-        "featureType": "poi",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "saturation": 20
-            }
-        ]
+      featureType: 'poi',
+      elementType: 'geometry',
+      stylers: [
+        {
+          saturation: 20
+        }
+      ]
     },
     {
-        "featureType": "poi.park",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "lightness": 20
-            },
-            {
-                "saturation": -20
-            }
-        ]
+      featureType: 'poi.park',
+      elementType: 'geometry',
+      stylers: [
+        {
+          lightness: 20
+        },
+        {
+          saturation: -20
+        }
+      ]
     },
     {
-        "featureType": "road",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "lightness": 10
-            },
-            {
-                "saturation": -30
-            }
-        ]
+      featureType: 'road',
+      elementType: 'geometry',
+      stylers: [
+        {
+          lightness: 10
+        },
+        {
+          saturation: -30
+        }
+      ]
     },
     {
-        "featureType": "road",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#000000"
-            }
-        ]
+      featureType: 'road',
+      elementType: 'geometry.fill',
+      stylers: [
+        {
+          color: '#000000'
+        }
+      ]
     },
     {
-        "featureType": "road",
-        "elementType": "geometry.stroke",
-        "stylers": [
-            {
-                "saturation": 25
-            },
-            {
-                "lightness": 25
-            }
-        ]
+      featureType: 'road',
+      elementType: 'geometry.stroke',
+      stylers: [
+        {
+          saturation: 25
+        },
+        {
+          lightness: 25
+        }
+      ]
     },
     {
-        "featureType": "road.highway",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#12e1e4"
-            }
-        ]
+      featureType: 'road.highway',
+      elementType: 'geometry.fill',
+      stylers: [
+        {
+          color: '#12e1e4'
+        }
+      ]
     },
     {
-        "featureType": "water",
-        "elementType": "all",
-        "stylers": [
-            {
-                "lightness": -20
-            }
-        ]
+      featureType: 'water',
+      elementType: 'all',
+      stylers: [
+        {
+          lightness: -20
+        }
+      ]
     }
-]
+  ]
 
-  
   const { selectedOptions, setSelectedOptions } = useCategories()
 
   const [fetched_markers, setFetchedMarkers] = useState([])
@@ -428,14 +427,13 @@ export const HomePageMap = (props) => {
       function getCurrentTimeInNewYork() {
         const options = {
           timeZone: 'America/New_York',
-          hour12: false, // Use 24-hour format
-        };
-        return new Date().toLocaleString('en-US', options);
+          hour12: false // Use 24-hour format
+        }
+        return new Date().toLocaleString('en-US', options)
       }
 
       const heatmapData = await Promise.all(
         lat_lon.map(async (position) => {
-
           try {
             const requestBody = {
               name: fetched_markers.find(
@@ -447,7 +445,10 @@ export const HomePageMap = (props) => {
               month: new Date(getCurrentTimeInNewYork()).getMonth() + 1
             }
 
-            const response = await axios.post('http://localhost:5001/AttractionPredict', requestBody)
+            const response = await axios.post(
+              'http://localhost:5001/AttractionPredict',
+              requestBody
+            )
 
             const data = response.data
             const busyness = data.prediction[0]
@@ -462,13 +463,11 @@ export const HomePageMap = (props) => {
               month: requestBody.month,
               busyness: busyness
             }
-            console.log(info)
 
-            const [lat, lng] = requestBody.lat_lon.split(',');
+            const [lat, lng] = requestBody.lat_lon.split(',')
             //convert to floats
-            const latitude=parseFloat(lat)
-            const longitude=parseFloat(lng)
-            console.log(lat, lng)
+            const latitude = parseFloat(lat)
+            const longitude = parseFloat(lng)
             return {
               location: new window.google.maps.LatLng(latitude, longitude),
               weight: busyness
@@ -537,7 +536,7 @@ export const HomePageMap = (props) => {
       onLoad={handleMapLoading}
       onCenterChanged={handleCenterChange}
       options={{
-        styles: props.isNowMode ? darkMapStyles : mapStyles,
+        styles: props.isNowMode ? darkMapStyles : mapStyles
       }}
     >
       {mapLoaded &&
@@ -547,7 +546,7 @@ export const HomePageMap = (props) => {
         )}
 
       {props.isNowMode && <HeatmapLayer data={heatmapData} onLoad={handleHeatmapLoad} />}
-      { polylinePath.length > 0 && <Polyline path={polylinePath} /> }
+      {polylinePath.length > 0 && <Polyline path={polylinePath} />}
     </GoogleMap>
   )
 }
