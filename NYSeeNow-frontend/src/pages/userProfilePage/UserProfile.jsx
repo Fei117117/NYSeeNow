@@ -45,11 +45,14 @@ export const UserProfile = () => {
           <>
             <div className={styles.profilePicContainer}>
               <img src={profilePic || '/placeholder.png'} className={styles.profilePic} alt="Profile" />
+              <input type="file" onChange={handleProfilePicChange} className={styles.fileInputBox} />
             </div>
             <p className={styles.profileInfo}>Username: {authUser}</p>
             <p className={styles.profileInfo}>Email: {email}</p>
-            <p className={styles.profileInfo}>Registered: {timeRegistered}</p>
-            <input type="file" onChange={handleProfilePicChange} className={styles.fileInput} />
+            <textarea className={styles.bioInput} placeholder="Short description of you..."></textarea>
+            <input className={styles.locationInput} type="text" placeholder="Add your location" />
+            <input className={styles.interestsInput} type="text" placeholder="Add your interests" />
+            <button className={styles.saveButton}>SAVE</button>
           </>
         )
       case 'Saved Itineraries':
@@ -80,7 +83,7 @@ export const UserProfile = () => {
           </div>
           <div className={styles.content}>
             {renderTabContent()}
-            
+
           </div>
         </div>
       </div>

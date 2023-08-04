@@ -26,13 +26,14 @@ export const Login = (props) => {
       url,
       data,
       (message, status) => {
-        console.log('Failure:', message)
+        console.log('Success:', message)
         console.log('Status:', status)
         setMessage('Logged in.')
         setIsLoggedIn(true)
         localStorage.setItem('isLoggedIn', JSON.stringify(true));
         console.log('Username', data['username'])
         setAuthUser(data['username'])
+        localStorage.setItem('authUser', data['username']); 
       },
       (message, status) => {
         console.log('Failure:', message)
