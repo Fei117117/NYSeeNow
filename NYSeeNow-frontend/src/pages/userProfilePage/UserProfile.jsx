@@ -32,14 +32,24 @@ export const UserProfile = () => {
     navigate('/')
   }
 
+  const [profilePic, setProfilePic] = useState(null);
+
+  const handleProfilePicChange = (event) => {
+    setProfilePic(URL.createObjectURL(event.target.files[0]));
+  };
+
   const renderTabContent = () => {
     switch (selectedTab) {
       case 'My Profile':
         return (
           <>
-            <p>Username: {authUser}</p>
-            <p>Email: {email}</p>
-            <p>Registered: {timeRegistered}</p>
+            <div className={styles.profilePicContainer}>
+              <img src={profilePic || '/placeholder.png'} className={styles.profilePic} alt="Profile" />
+            </div>
+            <p className={styles.profileInfo}>Username: {authUser}</p>
+            <p className={styles.profileInfo}>Email: {email}</p>
+            <p className={styles.profileInfo}>Registered: {timeRegistered}</p>
+            <input type="file" onChange={handleProfilePicChange} className={styles.fileInput} />
           </>
         )
       case 'Saved Itineraries':
@@ -53,6 +63,7 @@ export const UserProfile = () => {
     }
   }
 
+
   if (isLoggedIn) {
     return (
       <div className={styles.pageWrapper}>
@@ -61,14 +72,15 @@ export const UserProfile = () => {
             <h2>{selectedTab}</h2>
           </div>
           <div className={styles.sidebar}>
-            <button onClick={() => setSelectedTab('My Profile')}>My Profile</button>
-            <button onClick={() => setSelectedTab('Saved Itineraries')}>Saved Itineraries</button>
-            <button onClick={() => setSelectedTab('Favorites')}>Favorites</button>
-            <button onClick={() => setSelectedTab('Settings')}>Settings</button>
-            <button onClick={logoutHandler}>Logout</button>
+            <button className={`${styles.button} ${selectedTab === 'My Profile' ? styles.active : ''}`} onClick={() => setSelectedTab('My Profile')}>My Profile</button>
+            <button className={`${styles.button} ${selectedTab === 'Saved Itineraries' ? styles.active : ''}`} onClick={() => setSelectedTab('Saved Itineraries')}>Saved Itineraries</button>
+            <button className={`${styles.button} ${selectedTab === 'Favorites' ? styles.active : ''}`} onClick={() => setSelectedTab('Favorites')}>Favorites</button>
+            <button className={`${styles.button} ${selectedTab === 'Settings' ? styles.active : ''}`} onClick={() => setSelectedTab('Settings')}>Settings</button>
+            <button className={styles.button} onClick={logoutHandler}>Logout</button>
           </div>
           <div className={styles.content}>
             {renderTabContent()}
+            
           </div>
         </div>
       </div>

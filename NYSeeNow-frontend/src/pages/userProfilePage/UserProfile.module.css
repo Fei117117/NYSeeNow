@@ -17,7 +17,7 @@
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    border-bottom: 1px solid lightgray;
+    border-bottom: 2px solid lightgray;
     padding: 10px;
     background-color: #ffffff;
     text-align: center;
@@ -74,3 +74,30 @@ button.active {
     justify-content: center;
     align-items: center;
 }
+
+.profilePic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* This will make the image circular */
+    object-fit: cover; /* This will ensure the image covers the entire circle */
+    position: absolute;
+    top: 20%; /* Adjust this value to move the picture up or down */
+    right: 46%; 
+  }
+  
+  .profileInfo {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .fileInput {
+    display: block;
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  
+  
