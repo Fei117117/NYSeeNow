@@ -17,7 +17,7 @@ nav {
   display: None;
 }
 
-@media (max-width: 653px) {
+@media (max-width: 600px) {
   /* Styles to apply when viewport width is less than 653 vw */
   .changeableNav {
     display: None;

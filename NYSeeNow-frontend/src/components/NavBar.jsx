@@ -23,8 +23,8 @@ export const NavBar = ({ isOpen, set_map_center }) => {
   return (
     <nav style={navStyle}>
       <ul>
-        <li style={logoStyle}>
-          <a href="/home" className={styles.siteTitle}>
+        <div style={logoStyle}>
+          <Link to="/home" className={styles.siteTitle}>
             <div className={styles['logo-section']}>
               <img
                 src="nyseenowLogoLanding.png"
@@ -32,8 +32,8 @@ export const NavBar = ({ isOpen, set_map_center }) => {
                 style={{ maxHeight: '100px', maxWidth: '100%' }}
               />
             </div>
-          </a>
-        </li>
+          </Link>
+        </div>
       </ul>
       <ul>
         <li>

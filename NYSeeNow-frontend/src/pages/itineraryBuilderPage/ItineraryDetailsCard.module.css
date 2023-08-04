@@ -1,16 +1,18 @@
 .ItnDetailsCard {
   border: 1px solid black;
-  padding: 1rem;
+  padding: 1vw;
   margin: auto;
+  border-radius: 2%;
   position: relative;
-  max-width: 70rem;
-  width: 30rem;
+  max-width: 70vw;
+  width: 30vw;
+  box-shadow: 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.3);
 }
 
 .GraphStyle {
-  width: 10rem;
-  height: 2rem;
+  width: 10vw;
+  height: 2vw;
   margin: auto;
   position: relative;
-  padding: 1rem;
+  padding: 1vw;
 }

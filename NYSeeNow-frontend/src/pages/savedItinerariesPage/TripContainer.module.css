@@ -1,10 +1,16 @@
 .tripContainer {
   border: 1px solid black;
-  padding: 1rem;
-  margin: auto;
+  padding: 1rem 2rem;
+  margin: 1rem auto;
   position: relative;
   max-width: 70rem;
-  width: 30rem;
+  width: 50rem;
+  box-shadow: 2rem;
+}
+
+.tripContainer img {
+  width: 5rem;
+  height: 5rem;
 }
 .card-delete-button-trip {
   color: black;
@@ -13,3 +19,8 @@
   cursor: pointer;
 }
 
+.tripDetails {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
