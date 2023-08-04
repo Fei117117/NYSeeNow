@@ -4,44 +4,52 @@ import { post } from '../../net/net'
 import { useAuth } from '../../context/AuthContext'
 
 export const Login = (props) => {
-  const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth()
+    const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth()
 
-  const [username, setUsername] = useState('')
-  const [pass, setPass] = useState('')
-  const [remember, setRemember] = useState(false)
-  const [message, setMessage] = useState('')
+    useEffect(() => {
+        const storedUser = localStorage.getItem('authUser')
+        const storedIsLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn'))
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+        if (storedUser) setAuthUser(storedUser)
+        if (storedIsLoggedIn) setIsLoggedIn(storedIsLoggedIn)
+    }, [])
 
-    const data = {
-      username: username,
-      password: pass,
-      remember: remember
+    const [username, setUsername] = useState('')
+    const [pass, setPass] = useState('')
+    const [remember, setRemember] = useState(false)
+    const [message, setMessage] = useState('')
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        const data = {
+            username: username,
+            password: pass,
+            remember: remember
+        }
+
+        const url = 'api/auth/login'
+
+        post(
+            url,
+            data,
+            (message, status) => {
+                console.log('Success:', message)
+                console.log('Status:', status)
+                setMessage('Logged in.')
+                setIsLoggedIn(true)
+                localStorage.setItem('isLoggedIn', JSON.stringify(true))
+                localStorage.setItem('authUser', data['username'])
+                console.log('Username', data['username'])
+                setAuthUser(data['username'])
+            },
+            (message, status) => {
+                console.log('Failure:', message)
+                console.log('Status:', status)
+                setMessage('Login failed. Please try again.')
+            }
+        )
     }
-
-    const url = 'api/auth/login'
-
-    post(
-      url,
-      data,
-      (message, status) => {
-        console.log('Success:', message)
-        console.log('Status:', status)
-        setMessage('Logged in.')
-        setIsLoggedIn(true)
-        localStorage.setItem('isLoggedIn', JSON.stringify(true));
-        console.log('Username', data['username'])
-        setAuthUser(data['username'])
-        localStorage.setItem('authUser', data['username']); 
-      },
-      (message, status) => {
-        console.log('Failure:', message)
-        console.log('Status:', status)
-        setMessage('Login failed. Please try again.')
-      }
-    )
-  }
 
   return (
     <div className="auth-form-container">
