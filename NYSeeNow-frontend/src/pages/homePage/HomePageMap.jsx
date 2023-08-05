@@ -485,7 +485,8 @@ export const HomePageMap = (props) => {
   }, []);
   */
 
-// This works but it loads the markers for best time endpoint, which is not desired
+
+  // This works but it loads the markers for best time endpoint, which is not desired
 // Code for initial loading
   useEffect(() => {
     const fetchData = async () => {
@@ -526,6 +527,7 @@ export const HomePageMap = (props) => {
             //convert to floats
             const latitude=parseFloat(lat)
             const longitude=parseFloat(lng)
+            console.log(requestBody.name, busyness)
             return {
               location: new window.google.maps.LatLng(latitude, longitude),
               weight: busyness
@@ -540,12 +542,13 @@ export const HomePageMap = (props) => {
     }
 
     fetchData()
-  }, [])
-  
-/* This works for heatmap, but it loads initially, which is not desired
+  }, [fetched_markers])
+
+/*
+ //This works for heatmap, but it loads initially, which is not desired
   //Code for every time the markers change
   useEffect(() => {
-    const fetchBusyness = async () => {
+    const fetchData = async () => {
       const lat_lon = fetched_markers.map(
         (marker) => marker.position.lat + ',' + marker.position.lng
       )
@@ -571,6 +574,8 @@ export const HomePageMap = (props) => {
             //convert to floats
             const latitude = parseFloat(lat)
             const longitude = parseFloat(lng)
+            //load these to cache?
+            console.log(requestBody.name, busyness)
             return {
               location: new window.google.maps.LatLng(latitude, longitude),
               weight: busyness
@@ -584,7 +589,7 @@ export const HomePageMap = (props) => {
       setHeatmapData(heatmapData.filter((entry) => entry !== null))
     }
 
-    fetchBusyness()
+    fetchData()
   }, [fetched_markers])
 */
   
