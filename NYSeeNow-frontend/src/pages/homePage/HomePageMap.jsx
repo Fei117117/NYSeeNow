@@ -213,161 +213,160 @@ export const HomePageMap = (props) => {
 
   const darkMapStyles = [
     {
-        "featureType": "all",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#0a2639"
-            }
-        ]
+      featureType: 'all',
+      elementType: 'geometry',
+      stylers: [
+        {
+          color: '#0a2639'
+        }
+      ]
     },
     {
-        "featureType": "all",
-        "elementType": "labels.text",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
+      featureType: 'all',
+      elementType: 'labels.text',
+      stylers: [
+        {
+          visibility: 'off'
+        }
+      ]
     },
     {
-        "featureType": "all",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "gamma": 0.01
-            },
-            {
-                "lightness": 20
-            }
-        ]
+      featureType: 'all',
+      elementType: 'labels.text.fill',
+      stylers: [
+        {
+          gamma: 0.01
+        },
+        {
+          lightness: 20
+        }
+      ]
     },
     {
-        "featureType": "all",
-        "elementType": "labels.text.stroke",
-        "stylers": [
-            {
-                "saturation": -31
-            },
-            {
-                "lightness": -33
-            },
-            {
-                "weight": 2
-            },
-            {
-                "gamma": 0.8
-            }
-        ]
+      featureType: 'all',
+      elementType: 'labels.text.stroke',
+      stylers: [
+        {
+          saturation: -31
+        },
+        {
+          lightness: -33
+        },
+        {
+          weight: 2
+        },
+        {
+          gamma: 0.8
+        }
+      ]
     },
     {
-        "featureType": "all",
-        "elementType": "labels.icon",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
+      featureType: 'all',
+      elementType: 'labels.icon',
+      stylers: [
+        {
+          visibility: 'off'
+        }
+      ]
     },
     {
-        "featureType": "landscape",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "lightness": 30
-            },
-            {
-                "saturation": 30
-            }
-        ]
+      featureType: 'landscape',
+      elementType: 'geometry',
+      stylers: [
+        {
+          lightness: 30
+        },
+        {
+          saturation: 30
+        }
+      ]
     },
     {
-        "featureType": "landscape",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "saturation": "-19"
-            },
-            {
-                "color": "#003148"
-            }
-        ]
+      featureType: 'landscape',
+      elementType: 'geometry.fill',
+      stylers: [
+        {
+          saturation: '-19'
+        },
+        {
+          color: '#003148'
+        }
+      ]
     },
     {
-        "featureType": "poi",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "saturation": 20
-            }
-        ]
+      featureType: 'poi',
+      elementType: 'geometry',
+      stylers: [
+        {
+          saturation: 20
+        }
+      ]
     },
     {
-        "featureType": "poi.park",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "lightness": 20
-            },
-            {
-                "saturation": -20
-            }
-        ]
+      featureType: 'poi.park',
+      elementType: 'geometry',
+      stylers: [
+        {
+          lightness: 20
+        },
+        {
+          saturation: -20
+        }
+      ]
     },
     {
-        "featureType": "road",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "lightness": 10
-            },
-            {
-                "saturation": -30
-            }
-        ]
+      featureType: 'road',
+      elementType: 'geometry',
+      stylers: [
+        {
+          lightness: 10
+        },
+        {
+          saturation: -30
+        }
+      ]
     },
     {
-        "featureType": "road",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#000000"
-            }
-        ]
+      featureType: 'road',
+      elementType: 'geometry.fill',
+      stylers: [
+        {
+          color: '#000000'
+        }
+      ]
     },
     {
-        "featureType": "road",
-        "elementType": "geometry.stroke",
-        "stylers": [
-            {
-                "saturation": 25
-            },
-            {
-                "lightness": 25
-            }
-        ]
+      featureType: 'road',
+      elementType: 'geometry.stroke',
+      stylers: [
+        {
+          saturation: 25
+        },
+        {
+          lightness: 25
+        }
+      ]
     },
     {
-        "featureType": "road.highway",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#12e1e4"
-            }
-        ]
+      featureType: 'road.highway',
+      elementType: 'geometry.fill',
+      stylers: [
+        {
+          color: '#12e1e4'
+        }
+      ]
     },
     {
-        "featureType": "water",
-        "elementType": "all",
-        "stylers": [
-            {
-                "lightness": -20
-            }
-        ]
+      featureType: 'water',
+      elementType: 'all',
+      stylers: [
+        {
+          lightness: -20
+        }
+      ]
     }
-]
+  ]
 
-  
   const { selectedOptions } = useCategories()
 
   const [fetched_markers, setFetchedMarkers] = useState([])
@@ -391,7 +390,7 @@ export const HomePageMap = (props) => {
   let filtered_types = getSelectedTypes()
   let attractions = null
   let coordinate_json = []
-  
+
   useEffect(() => {
     axios
       .get(attraction_url)
@@ -423,9 +422,9 @@ export const HomePageMap = (props) => {
   function getCurrentTimeInNewYork() {
     const options = {
       timeZone: 'America/New_York',
-      hour12: false, // Use 24-hour format
-    };
-    return new Date().toLocaleString('en-US', options);
+      hour12: false // Use 24-hour format
+    }
+    return new Date().toLocaleString('en-US', options)
   }
 
   useEffect(() => {
@@ -440,7 +439,7 @@ export const HomePageMap = (props) => {
         console.log('Venue name:', venueName, 'has an average dwell time of:', avgDwellTime);
   
         // Split the coordinates string into latitude and longitude
-        const [latitude, longitude] = venueCoordinates.split(' ');
+        const [latitude, longitude] = venueCoordinates.split(' ')
         // Convert latitude and longitude to floating-point numbers
         const latitudeFloat = parseFloat(latitude);
         const longitudeFloat = parseFloat(longitude);
@@ -554,6 +553,65 @@ export const HomePageMap = (props) => {
       const heatmapData = await Promise.all(
         lat_lon.map(async (position) => {
 
+          const dayOfWeekNumber= new Date(getCurrentTimeInNewYork()).getDay()
+          // Array to map the day of week number to a string representation
+          const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+          // Get the day as a string
+          const dayAsString = daysOfWeek[dayOfWeekNumber];
+
+          try {
+            const requestBody = {
+              name: fetched_markers.find(
+                (marker) => marker.position.lat + ',' + marker.position.lng === position)
+              ?.name,
+              day: dayAsString,
+              hour: new Date(getCurrentTimeInNewYork()).getHours().toString()
+            }
+ 
+            const url = 'http://localhost:8080/busyness/get'           
+            const response = await axios.get(url,{
+              params: requestBody,
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            });
+            const data = response.data
+            const busyness = data.busyness
+            console.log(requestBody.name, busyness)
+            const lat_lon=position
+            const [lat, lng] = lat_lon.split(',');
+            //convert to floats
+            const latitude=parseFloat(lat)
+            const longitude=parseFloat(lng)
+            return {
+              location: new window.google.maps.LatLng(latitude, longitude),
+              weight: busyness
+            }
+          } catch (error) {
+            console.error('Name not in best time:', error)
+            return null
+          }
+        })
+      )
+      setHeatmapData(heatmapData.filter((entry) => entry !== null))
+    }
+
+    fetchData()
+  }, [])
+*/
+
+
+
+/* This works for heatmap, but it loads initially, which is not desired
+  //Code for every time the markers change
+  useEffect(() => {
+    const fetchBusyness = async () => {
+      const lat_lon = fetched_markers.map(
+        (marker) => marker.position.lat + ',' + marker.position.lng
+      )
+
+      const heatmapData = await Promise.all(
+        lat_lon.map(async (position) => {
           try {
             const requestBody = {
               name: fetched_markers.find(
@@ -565,15 +623,14 @@ export const HomePageMap = (props) => {
               month: new Date(getCurrentTimeInNewYork()).getMonth() + 1
             }
 
-            const url='http://localhost:5001/AttractionPredict'             
+            const url = 'http://localhost:5001/AttractionPredict'
             const response = await axios.post(url, requestBody)
             const data = response.data
             const busyness = data.prediction[0]
-            console.log(busyness)
-            const [lat, lng] = requestBody.lat_lon.split(',');
+            const [lat, lng] = requestBody.lat_lon.split(',')
             //convert to floats
-            const latitude=parseFloat(lat)
-            const longitude=parseFloat(lng)
+            const latitude = parseFloat(lat)
+            const longitude = parseFloat(lng)
             return {
               location: new window.google.maps.LatLng(latitude, longitude),
               weight: busyness
@@ -644,7 +701,7 @@ export const HomePageMap = (props) => {
       onLoad={handleMapLoading}
       onCenterChanged={handleCenterChange}
       options={{
-        styles: props.isNowMode ? darkMapStyles : mapStyles,
+        styles: props.isNowMode ? darkMapStyles : mapStyles
       }}
     >
       {mapLoaded &&
@@ -654,7 +711,7 @@ export const HomePageMap = (props) => {
         )}
 
       {props.isNowMode && <HeatmapLayer data={heatmapData} onLoad={handleHeatmapLoad} />}
-      { polylinePath.length > 0 && <Polyline path={polylinePath} /> }
+      {polylinePath.length > 0 && <Polyline path={polylinePath} />}
     </GoogleMap>
   )
 }

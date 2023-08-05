@@ -17,9 +17,8 @@ import { LocatorContext } from './context/LocatorContext'
 import LandingPage from './pages/LandingPage/LandingPage'
 import { useLocation } from 'react-router-dom'
 import TripEditPage from './pages/itineraryBuilderPage/ItineraryEdit'
-import { Register } from './pages/authOverlay/Register'; 
-
-import ItineraryEdit from "./pages/itineraryBuilderPage/ItineraryEdit";
+import { Register } from './pages/authOverlay/Register'
+import ItineraryEdit from './pages/itineraryBuilderPage/ItineraryEdit'
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
