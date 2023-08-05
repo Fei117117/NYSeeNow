@@ -5,6 +5,9 @@ import { HomePageMarker } from './HomePageMarker'
 import { useCategories } from '../../context/CategoriesContext'
 import options from '../../assets/attraction_options.json'
 import axios from 'axios'
+import bestTimeData from '../../assets/best_time_ok_data.json'
+
+
 // This function should fetch the code from the backend instead of the json file.
 
 export const HomePageMap = (props) => {
@@ -425,16 +428,12 @@ export const HomePageMap = (props) => {
     return new Date().toLocaleString('en-US', options);
   }
 
-  // Code for initial loading
   useEffect(() => {
     const fetchData = async () => {
-      // Load file best_time_ok.json
-      const response = await fetch('../assets/best_time_ok_data.json');
-      const best_time_data = await response.json();
       const heatmapData = [];
   
-      for (let i = 0; i < best_time_data.length; i++) {
-        const venue=best_time_data[i]
+      for (let i = 0; i < bestTimeData.length; i++) {
+        const venue = bestTimeData[i];
         const venueName = venue["Venue Name"];
         const venueCoordinates = venue["Venue Coordinates"];
         const avgDwellTime = venue["Average Dwell Time"];
@@ -446,37 +445,108 @@ export const HomePageMap = (props) => {
         const latitudeFloat = parseFloat(latitude);
         const longitudeFloat = parseFloat(longitude);
   
-        const requestBody = {
-          name: venueName,
-          hour: new Date(getCurrentTimeInNewYork()).getHours(),
-          day: new Date(getCurrentTimeInNewYork()).getDay()
-        };
+        const dayOfWeekNumber = new Date(getCurrentTimeInNewYork()).getDay();
+        // Array to map the day of the week number to a string representation
+        const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        // Get the day as a string
+        const dayAsString = daysOfWeek[dayOfWeekNumber];
   
         try {
-          const url = 'busyness/get';
-          const response = await axios.post(url, requestBody);
+          const requestBody = {
+            name: venueName,
+            day: dayAsString,
+            hour: new Date(getCurrentTimeInNewYork()).getHours().toString()
+          }
+          const url = 'http://localhost:8080/busyness/get';
+          const response = await axios.get(url, {
+            params: requestBody,
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
           const data = response.data;
-          const busyness = data.prediction[0];
-          console.log('Busyness prediction for besttimes:', busyness);
+          const busyness = data.busyness;
+          console.log(requestBody.name, busyness);
   
           heatmapData.push({
             location: new window.google.maps.LatLng(latitudeFloat, longitudeFloat),
             weight: busyness
           });
+  
         } catch (error) {
-          console.error('Error fetching busyness data:', error);
+          console.error('Name not in best time:', error);
         }
       }
-      setHeatmapData(heatmapData.filter((entry) => entry !== null));
-    };
+      setHeatmapData(heatmapData);
+    }
   
     fetchData();
-  }, [fetched_markers]);
+  }, []);
 
-
-  //Code for every time the markers change
+  /*Works but calls the markers not the best time data
+  // Code for initial loading
   useEffect(() => {
     const fetchData = async () => {
+      const lat_lon = fetched_markers.map(
+        (marker) => marker.position.lat + ',' + marker.position.lng
+      )
+
+      const heatmapData = await Promise.all(
+        lat_lon.map(async (position) => {
+
+          const dayOfWeekNumber= new Date(getCurrentTimeInNewYork()).getDay()
+          // Array to map the day of week number to a string representation
+          const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+          // Get the day as a string
+          const dayAsString = daysOfWeek[dayOfWeekNumber];
+
+          try {
+            const requestBody = {
+              name: fetched_markers.find(
+                (marker) => marker.position.lat + ',' + marker.position.lng === position)
+              ?.name,
+              day: dayAsString,
+              hour: new Date(getCurrentTimeInNewYork()).getHours().toString()
+            }
+ 
+            const url = 'http://localhost:8080/busyness/get'           
+            const response = await axios.get(url,{
+              params: requestBody,
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            });
+            const data = response.data
+            const busyness = data.busyness
+            console.log(requestBody.name, busyness)
+            const lat_lon=position
+            const [lat, lng] = lat_lon.split(',');
+            //convert to floats
+            const latitude=parseFloat(lat)
+            const longitude=parseFloat(lng)
+            return {
+              location: new window.google.maps.LatLng(latitude, longitude),
+              weight: busyness
+            }
+          } catch (error) {
+            console.error('Name not in best time:', error)
+            return null
+          }
+        })
+      )
+      setHeatmapData(heatmapData.filter((entry) => entry !== null))
+    }
+
+    fetchData()
+  }, [])
+*/
+
+
+
+/* This works for heatmap, but it loads initially, which is not desired
+  //Code for every time the markers change
+  useEffect(() => {
+    const fetchBusyness = async () => {
       const lat_lon = fetched_markers.map(
         (marker) => marker.position.lat + ',' + marker.position.lng
       )
@@ -514,12 +584,14 @@ export const HomePageMap = (props) => {
           }
         })
       )
-
       setHeatmapData(heatmapData.filter((entry) => entry !== null))
     }
 
-    fetchData()
+    fetchBusyness()
   }, [fetched_markers])
+*/
+  
+  
 
   const handleHeatmapLoad = (heatmapLayer) => {
     // Handle the loaded heatmapLayer instance
