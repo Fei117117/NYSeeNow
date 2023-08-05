@@ -427,8 +427,8 @@ export const HomePageMap = (props) => {
     return new Date().toLocaleString('en-US', options)
   }
 
-/* Currently not working by loading in best time data, goes initially
-
+ //Currently working by loading in best time data, goes initially
+  //Using best time intially, again will want it properly to load once and then cache
   useEffect(() => {
     const fetchData = async () => {
       const heatmapData = [];
@@ -466,8 +466,8 @@ export const HomePageMap = (props) => {
             },
           });
           const data = response.data;
-          const busyness = data.busyness;
-          console.log(requestBody.name, busyness);
+          const busyness = parseInt(data.busyness);
+          //console.log(requestBody.name, busyness);
   
           heatmapData.push({
             location: new window.google.maps.LatLng(latitudeFloat, longitudeFloat),
@@ -482,12 +482,12 @@ export const HomePageMap = (props) => {
     }
   
     fetchData();
-  }, []);
-  */
+  }, [fetched_markers]);
 
 
-  // This works but it loads the markers for best time endpoint, which is not desired
-// Code for initial loading
+
+/*  // This works but it loads the markers for best time endpoint, which is not desired
+// Code for initial loading of some markers, again want to load it to cache instead of reloading
   useEffect(() => {
     const fetchData = async () => {
       const lat_lon = fetched_markers.map(
@@ -543,7 +543,7 @@ export const HomePageMap = (props) => {
 
     fetchData()
   }, [fetched_markers])
-
+*/
 /*
  //This works for heatmap, but it loads initially, which is not desired
   //Code for every time the markers change
