@@ -427,6 +427,8 @@ export const HomePageMap = (props) => {
     return new Date().toLocaleString('en-US', options)
   }
 
+/* Currently not working by loading in best time data
+
   useEffect(() => {
     const fetchData = async () => {
       const heatmapData = [];
@@ -481,8 +483,9 @@ export const HomePageMap = (props) => {
   
     fetchData();
   }, []);
+  */
 
-  /*Works but calls the markers not the best time data
+  //Works but calls the markers not the best time data
   // Code for initial loading
   useEffect(() => {
     const fetchData = async () => {
@@ -538,7 +541,7 @@ export const HomePageMap = (props) => {
 
     fetchData()
   }, [])
-*/
+
 
 
 
