@@ -3,7 +3,6 @@ body {
   padding: 0;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial,
     sans-serif;
-    overflow: hidden; 
 }
 
 * {
@@ -321,4 +320,108 @@ aside.side-bar.open {
   opacity: 0.5;
   max-width: 100%;
   max-height: 600px;
+}
+
+
+.bottom-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  transition: height 0.3s ease;
+  background-color: #fff;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  padding: 0 15px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.close-icon i {
+  font-size: 20px;
+}
+
+.bottom-bar.open {
+  height: calc(90% - 70px); /* Subtract the height of the .bottom-bar-icons from 90% */
+  z-index: 1000; 
+}
+
+.bottom-bar-icons {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+  /* z-index: 1; */
+}
+
+.hamburger-icon i {
+  line-height: 3; /* Adjust this value as needed */
+  vertical-align: middle; /* Adjust this value as needed */
+}
+
+.bottom-bar-link, .locator-icon, .question-mark-icon, .hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #212529;
+  text-decoration: none;
+  flex: 1; /* Add this line */
+  margin: 0; /* Remove margins */
+  padding: 0; /* Remove padding */
+  line-height: 1; /* Set line-height */
+  font-size: 20px; /* Set font-size for icon fonts */
+}
+
+.sidebar-content-wrapper {
+  position: relative;
+  overflow-y: auto;
+  height: calc(100% - 70px); /* Adjust this value based on the height of your bottom bar */
+  padding-bottom: 70px; /* Adjust this value based on the height of your bottom bar */
+}
+
+.bottom-bar-link i, .locator-icon i, .question-mark-icon i {
+  font-size: 20px;
+}
+
+.bottom-bar-link p, .locator-icon p, .question-mark-icon p {
+  margin-top: 4px;
+  font-size: 12px;
+}
+
+/* Hide the sidebar on small screens and show the bottom bar */
+@media (max-width: 768px) {
+  aside.side-bar {
+    display: none !important;
+  }
+  .bottom-bar {
+    display: flex !important;
+  }
+
+  .map-container {
+    left: 0;
+    width: 100vw;
+  }
+}
+
+/* Hide the bottom bar on large screens and show the sidebar */
+@media (min-width: 769px) {
+  aside.side-bar {
+    display: flex !important;
+  }
+  .bottom-bar {
+    display: none !important;
+  }
 }

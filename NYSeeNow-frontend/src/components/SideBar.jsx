@@ -25,10 +25,35 @@ export const SideBar = ({ mapRef }) => {
   const logo = "/nyseenowLogoOnly.png";
   const skyline = "/skyline.png"; 
 
-  // Use the showLocator and setShowLocator from LocatorContext
+  const [counterBottom, setCounterBottom] = useState('10px');
+
+  useEffect(() => {
+    const updateSidebarPosition = () => {
+      if (window.innerWidth >= 768) {
+        setCounterLeft(isOpen ? 'calc(50% + 60px)' : '60px');
+        setCounterBottom('10px');
+      } else {
+        setCounterLeft('10px');
+        setCounterBottom(isOpen ? 'calc(50% + 60px)' : '60px');
+      }
+    };
+
+    // Updates the position when the component mounts
+    updateSidebarPosition();
+
+    // Updates the position whenever the window size changes
+    window.addEventListener('resize', updateSidebarPosition);
+
+    // Cleans up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('resize', updateSidebarPosition);
+    };
+  }, [isOpen]);
+
+  // Uses the showLocator and setShowLocator from LocatorContext
   const { showLocator, setShowLocator } = useContext(LocatorContext)
 
-  // Handle locator button click
+  // Handles locator button click
   const handleLocatorClick = () => {
     setIsOpen(false)
     setShowLocator(true)
@@ -125,7 +150,7 @@ export const SideBar = ({ mapRef }) => {
           <p>Help</p>
         </Link>
       </div>
-      <AttractionCounter left={counterLeft} />
+      <AttractionCounter left={counterLeft} bottom={counterBottom} />
     </aside>
   )
 }
