@@ -18,7 +18,7 @@ import LandingPage from './pages/LandingPage/LandingPage'
 import { useLocation } from 'react-router-dom'
 import TripEditPage from './pages/itineraryBuilderPage/ItineraryEdit'
 import { Register } from './pages/authOverlay/Register'; 
-import BottomBar from './components/bottomBar';
+
 
 
 import ItineraryEdit from "./pages/itineraryBuilderPage/ItineraryEdit";
@@ -44,7 +44,7 @@ function App() {
               <TripDataProvider>
                 {location.pathname !== '/' && <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />}
                 {location.pathname !== '/' && <NavBar isOpen={isOpen} set_map_center={setMapCenter} />}
-                {location.pathname !== '/' && <BottomBar isOpen handleLocatorClick={handleLocatorClick} />}
+            
                 
                 <div className="route-container">
                   <Routes>
@@ -71,7 +71,6 @@ function App() {
                     <Route path="/ItineraryEdit" element={<ItineraryEdit />} />
                     </Routes>
                 </div>
-                {location.pathname !== '/' && <BottomBar isOpen={isOpen} handleLocatorClick={handleLocatorClick} />}
               </TripDataProvider>
             </LocatorContext.Provider>
           </CategoriesProvider>

@@ -6,7 +6,7 @@ import Locator from '../../components/Locator';
 import { useSelection } from '../../context/SelectionContext'; // Import the useSelection hook
 import { LocatorContext } from '../../context/LocatorContext';
 import { SideBar } from '../../components/SideBar';
-import BottomBar from '../../components/bottomBar';
+
 
 const libraries = ['visualization'];
 

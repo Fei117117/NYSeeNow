@@ -23,7 +23,7 @@ export const SideBar = ({ mapRef }) => {
   const { tripData, setTripData } = useTripData()
   const navigate = useNavigate()
   const logo = "/nyseenowLogoOnly.png";
-  const skyline = "/skyline.png"; 
+  const skyline = "/skyline.png";
 
   const [counterBottom, setCounterBottom] = useState('10px');
 
@@ -128,22 +128,20 @@ export const SideBar = ({ mapRef }) => {
         {isOpen && <img src={skyline} alt="Skyline" className="sidebar-skyline" />}
       </div>
       <div className={`sidebar-icons ${isOpen ? 'sidebar-open' : ''}`}>
-        <div className="top-icons">
-          <div
-            className="hamburger-icon"
-            onClick={() => setIsOpen(!isOpen)}
-            style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}
-          >
-            <i className="fas fa-bars"></i>
-          </div>
-          <Link to="/itineraries" className="calendar-icon sidebar-link">
-            <i className="far fa-calendar-alt"></i>
-            <p>My Itineraries</p>
-          </Link>
-          <div className="locator-icon" onClick={handleLocatorClick} style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
-            <i className="fas fa-map-marker-alt"></i>
-            <p>Locator</p>
-          </div>
+        <div
+          className="hamburger-icon"
+          onClick={() => setIsOpen(!isOpen)}
+          style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}
+        >
+          <i className="fas fa-bars"></i>
+        </div>
+        <Link to="/itineraries" className="calendar-icon sidebar-link">
+          <i className="far fa-calendar-alt"></i>
+          <p>My Itineraries</p>
+        </Link>
+        <div className="locator-icon" onClick={handleLocatorClick} style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+          <i className="fas fa-map-marker-alt"></i>
+          <p>Locator</p>
         </div>
         <Link to="/" className="question-mark-icon" style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
           <i className="fas fa-question-circle"></i>

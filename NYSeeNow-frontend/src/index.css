@@ -103,7 +103,10 @@ aside.side-bar.open {
   display: flex;
   flex-direction: column;
   justify-content: space-between; /* Distribute the buttons evenly */
-  align-items: center; /* Horizontally center the buttons */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; /* Center the text */
   height: 100%;
   padding: 1rem 0; /* Add some padding to the top and bottom */
   order: 2; /* Make sure icons are displayed after the content */
@@ -322,106 +325,95 @@ aside.side-bar.open {
   max-height: 600px;
 }
 
-
-.bottom-bar {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 70px;
-  transition: height 0.3s ease;
-  background-color: #fff;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.15);
-  z-index: 1000;
-  padding: 0 15px;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.close-icon {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-}
-
-.close-icon i {
-  font-size: 20px;
-}
-
-.bottom-bar.open {
-  height: calc(90% - 70px); /* Subtract the height of the .bottom-bar-icons from 90% */
-  z-index: 1000; 
-}
-
-.bottom-bar-icons {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 15px;
-  /* z-index: 1; */
-}
-
-.hamburger-icon i {
-  line-height: 3; /* Adjust this value as needed */
-  vertical-align: middle; /* Adjust this value as needed */
-}
-
-.bottom-bar-link, .locator-icon, .question-mark-icon, .hamburger-icon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #212529;
-  text-decoration: none;
-  flex: 1; /* Add this line */
-  margin: 0; /* Remove margins */
-  padding: 0; /* Remove padding */
-  line-height: 1; /* Set line-height */
-  font-size: 20px; /* Set font-size for icon fonts */
-}
-
-.sidebar-content-wrapper {
-  position: relative;
-  overflow-y: auto;
-  height: calc(100% - 70px); /* Adjust this value based on the height of your bottom bar */
-  padding-bottom: 70px; /* Adjust this value based on the height of your bottom bar */
-}
-
-.bottom-bar-link i, .locator-icon i, .question-mark-icon i {
-  font-size: 20px;
-}
-
-.bottom-bar-link p, .locator-icon p, .question-mark-icon p {
-  margin-top: 4px;
-  font-size: 12px;
-}
-
-/* Hide the sidebar on small screens and show the bottom bar */
 @media (max-width: 768px) {
-  aside.side-bar {
-    display: none !important;
-  }
-  .bottom-bar {
-    display: flex !important;
-  }
-
   .map-container {
-    left: 0;
-    width: 100vw;
+    height: calc(100vh - 100px); /* Adjust the map height to accommodate the bottom bar */
+    width: 100vw; /* Make it span the full width */
+    position: absolute;
+    top: 100px;
+    left: 0; /* Adjust left to 0 */
+    z-index: 1; 
   }
+
+  aside.side-bar {
+    top: auto; /* Remove the top positioning */
+    bottom: 0; /* Position it at the bottom */
+    height: 70px; /* Adjust the height to match your bottom bar */
+    width: 100%; /* Make it span the full width */
+    flex-direction: row; /* Arrange content and icons horizontally */
+    justify-content: space-around; /* Distribute the buttons evenly */
+    z-index: 2; /* Make sure the sidebar is above the map */
+  }
+
+  .sidebar-icons {
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    padding-right: 0; 
+  }
+
+  .sidebar-content {
+    display: none; 
+  }
+
+  .side-bar.open {
+    height: 50%;
+    bottom: 0;
+    overflow-y: auto;
+  }
+
+  .hamburger-icon, .locator-icon, .calendar-icon, .question-mark-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px; /* Match the height of the sidebar */
+    flex: 1; /* Distribute space evenly */
+  }
+
+  .top-icons {
+    order: 2; /* Make sure icons are displayed after the content */
+  }
+
+  .hamburger-icon i, .locator-icon i, .calendar-icon i, .question-mark-icon i {
+    font-size: 24px; /* Adjust as needed */
+  }
+
+  /* Style for the text within the buttons */
+  .hamburger-icon p, .locator-icon p, .calendar-icon p, .question-mark-icon p {
+    font-size: 12px; /* Adjust as needed */
+    margin-top: 4px; /* Adjust as needed */
+  }
+
+  .hamburger-icon {
+    order: 1; /* Make sure hamburger icon is displayed first */
+  }
+
+  .locator-icon {
+    order: 3; /* Make sure locator icon is displayed third */
+  }
+
+  .calendar-icon {
+    order: 2; /* Make sure calendar icon is displayed second */
+  }
+
+  .question-mark-icon {
+    order: 4; /* Make sure question mark icon is displayed fourth */
+  }
+  .now-mode-button {
+    position: fixed;
+    right: 50px;
+    bottom: 100px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    z-index: 3;
+    cursor: pointer;
+  }
+
+
 }
 
-/* Hide the bottom bar on large screens and show the sidebar */
-@media (min-width: 769px) {
-  aside.side-bar {
-    display: flex !important;
-  }
-  .bottom-bar {
-    display: none !important;
-  }
-}
