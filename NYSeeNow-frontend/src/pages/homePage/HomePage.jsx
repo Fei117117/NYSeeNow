@@ -7,6 +7,7 @@ import { useSelection } from '../../context/SelectionContext'; // Import the use
 import { LocatorContext } from '../../context/LocatorContext';
 import { SideBar } from '../../components/SideBar';
 
+
 const libraries = ['visualization'];
 
 export const HomePage = ({ map_center, setMapCenter, zoom, setZoom }) => {  

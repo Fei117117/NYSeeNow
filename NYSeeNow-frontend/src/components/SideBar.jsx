@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react' // import useContext
+import React, { useState, useEffect, useContext } from 'react'
 import SidebarContent from './SidebarContent'
 import AttractionCounter from './AttractionCounter'
 import { Link } from 'react-router-dom'
@@ -23,12 +23,43 @@ export const SideBar = ({ mapRef }) => {
   const { tripData, setTripData } = useTripData()
   const navigate = useNavigate()
   const logo = "/nyseenowLogoOnly.png";
-  const skyline = "/skyline.png"; 
+  const skyline = "/skyline.png";
 
-  // Use the showLocator and setShowLocator from LocatorContext
+  const [counterBottom, setCounterBottom] = useState('10px');
+
+  useEffect(() => {
+    setCounterLeft(isOpen ? 'calc(100% - 60px)' : '60px')
+  }, [isOpen])
+
+
+  useEffect(() => {
+    const updateSidebarPosition = () => {
+      if (window.innerWidth >= 768) {
+        setCounterLeft(isOpen ? 'calc(50% + 60px)' : '60px');
+        setCounterBottom('10px');
+      } else {
+        setCounterLeft('10px');
+        setCounterBottom(isOpen ? 'calc(50% + 60px)' : '60px');
+      }
+    };
+
+
+    // Updates the position when the component mounts
+    updateSidebarPosition();
+
+    // Updates the position whenever the window size changes
+    window.addEventListener('resize', updateSidebarPosition);
+
+    // Cleans up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('resize', updateSidebarPosition);
+    };
+  }, [isOpen]);
+
+  // Uses the showLocator and setShowLocator from LocatorContext
   const { showLocator, setShowLocator } = useContext(LocatorContext)
 
-  // Handle locator button click
+  // Handles locator button click
   const handleLocatorClick = () => {
     setIsOpen(false)
     setShowLocator(true)
@@ -88,7 +119,19 @@ export const SideBar = ({ mapRef }) => {
     setCounterLeft(isOpen ? 'calc(50% + 60px)' : '60px') // update the position according to sidebar's state
   }, [isOpen])
 
+  useEffect(() => {
+    const sidebar = document.querySelector(".side-bar.open");
+    const arrowDiv = document.querySelector(".close-arrow");
+    if (sidebar && arrowDiv) {
+      arrowDiv.addEventListener("click", () => {
+        setIsOpen(false);
+      });
+    }
+  }, [isOpen]);
+  
+
   return (
+    
     <aside className={`side-bar ${isOpen ? 'open' : ''}`}>
       {isOpen && <img src={logo} alt="Logo" className="sidebar-logo" />}
       <div className="sidebar-content">
@@ -103,29 +146,28 @@ export const SideBar = ({ mapRef }) => {
         {isOpen && <img src={skyline} alt="Skyline" className="sidebar-skyline" />}
       </div>
       <div className={`sidebar-icons ${isOpen ? 'sidebar-open' : ''}`}>
-        <div className="top-icons">
-          <div
-            className="hamburger-icon"
-            onClick={() => setIsOpen(!isOpen)}
-            style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}
-          >
-            <i className="fas fa-bars"></i>
-          </div>
-          <Link to="/itineraries" className="calendar-icon sidebar-link">
-            <i className="far fa-calendar-alt"></i>
-            <p>My Itineraries</p>
-          </Link>
-          <div className="locator-icon" onClick={handleLocatorClick} style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
-            <i className="fas fa-map-marker-alt"></i>
-            <p>Locator</p>
-          </div>
+        <div
+          className="hamburger-icon"
+          onClick={() => setIsOpen(!isOpen)}
+          style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}
+        >
+          <i className="fas fa-bars"></i>
+        </div>
+        <Link to="/itineraries" className="calendar-icon sidebar-link">
+          <i className="far fa-calendar-alt"></i>
+          <p>My Itineraries</p>
+        </Link>
+        <div className="locator-icon" onClick={handleLocatorClick} style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+          <i className="fas fa-map-marker-alt"></i>
+          <p>Locator</p>
         </div>
         <Link to="/" className="question-mark-icon" style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
           <i className="fas fa-question-circle"></i>
           <p>Help</p>
         </Link>
       </div>
-      <AttractionCounter left={counterLeft} />
+      {isOpen && <div className="close-arrow"><i className="fas fa-chevron-down"></i></div>}
+      <AttractionCounter left="450px" bottom="10px" right="0px" />
     </aside>
   )
 }
