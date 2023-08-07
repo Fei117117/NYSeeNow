@@ -27,6 +27,11 @@ function App() {
   const [showLocator, setShowLocator] = useState(false)
   const location = useLocation()
 
+  const handleLocatorClick = () => {
+    setIsOpen(false)
+    setShowLocator(true)
+  }
+
   return (
     <>
       <AuthProvider>
@@ -35,9 +40,9 @@ function App() {
             <LocatorContext.Provider value={{ showLocator, setShowLocator }}>
               <TripDataProvider>
                 {location.pathname !== '/' && <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />}
-                {location.pathname !== '/' && (
-                  <NavBar isOpen={isOpen} set_map_center={setMapCenter} />
-                )}
+                {location.pathname !== '/' && <NavBar isOpen={isOpen} set_map_center={setMapCenter} />}
+            
+                
                 <div className="route-container">
                   <Routes>
                     <Route path="/" element={<LandingPage />} />
@@ -61,7 +66,7 @@ function App() {
                       element={<HomePage map_center={center} setMapCenter={setMapCenter} />}
                     />
                     <Route path="/ItineraryEdit" element={<ItineraryEdit />} />
-                  </Routes>
+                    </Routes>
                 </div>
               </TripDataProvider>
             </LocatorContext.Provider>

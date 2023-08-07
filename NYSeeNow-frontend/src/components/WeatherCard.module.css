@@ -12,7 +12,7 @@
     bottom: 10px; /* Add some space at the bottom */
     left: 50%; /* Center the container */
     transform: translateX(-50%); /* Center the container */
-    z-index: 5; /* Ensure the weather data appears above everything else */
+    z-index: 1; /* Ensure the weather data appears above everything else */
   }
   
   .weatherItem {
@@ -36,5 +36,33 @@
   .today {
     font-size: 0.8em; /* Make the font size the same as the other text */
     text-align: center; /* Center the text */
+  }
+  
+  @media (max-width: 768px) {
+    .currentWeather {
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Make the grid items smaller */
+      padding: 3px; /* Reduce padding */
+      width: 80%; /* Reduce width */
+      bottom: auto; /* Remove bottom positioning */
+      top: 120px; /* Position it at the top of the map */
+    }
+  
+    .weatherItem {
+      font-size: 0.6em; /* Reduce font size */
+    }
+  
+    .weatherItemImg {
+      width: 10px; /* Reduce image size */
+      height: 10px; /* Reduce image size */
+    }
+  
+    .weatherIcon {
+      width: 30px; /* Reduce icon size */
+      height: 30px; /* Reduce icon size */
+    }
+  
+    .today {
+      font-size: 0.6em; /* Reduce font size */
+    }
   }
   
