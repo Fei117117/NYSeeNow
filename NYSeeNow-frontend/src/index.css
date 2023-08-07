@@ -11,15 +11,29 @@ body {
 
 
 .NYSEENOW-LOGO {
-  display: flex;
-  align-items: center;
+  position: relative;
+  display: inline-block;
+}
+
+.NYSEENOW-LOGO::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(70, 130, 180, 0.5); /* Light blue color */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.NYSEENOW-LOGO:hover::after {
+  opacity: 1;
 }
 
 
-.NYSEENOW-LOGO img {
-  max-height: 100px;
-  max-width: 100%;
-}
+
 .site-title {
   font-size: 2rem;
 }
@@ -235,7 +249,7 @@ aside.side-bar.open {
 
 .attraction-counter {
   background-color:#007991;
-  position: fixed;
+  position: absolute;
   bottom: 10px;
   left: 60px;
   width: 50px;
@@ -293,7 +307,7 @@ aside.side-bar.open {
 
 .now-mode-button {
   position: fixed;
-  right: 50px;
+  right: 60px;
   bottom: 20px;
   width: 100px;
   height: 100px;
@@ -330,7 +344,7 @@ aside.side-bar.open {
     height: calc(100vh - 100px); /* Adjust the map height to accommodate the bottom bar */
     width: 100vw; /* Make it span the full width */
     position: absolute;
-    top: 100px;
+    top: 60px;
     left: 0; /* Adjust left to 0 */
     z-index: 1; 
   }
@@ -343,6 +357,7 @@ aside.side-bar.open {
     flex-direction: row; /* Arrange content and icons horizontally */
     justify-content: space-around; /* Distribute the buttons evenly */
     transition: height 0.3s ease;
+    box-shadow: 10px 0 15px -10px rgba(0, 0, 0, 0.15);
     z-index: 2; /* Make sure the sidebar is above the map */
     
   }
@@ -358,7 +373,9 @@ aside.side-bar.open {
     display: none; 
   }
 
-  
+  aside.side-bar.open .sidebar-content {
+    display: block; /* Show the content when the sidebar is open */
+  }
 
   aside.side-bar.open {
     height: calc(100vh - 30px); /* Adjust the height to extend up to the nav bar */
@@ -412,9 +429,17 @@ aside.side-bar.open {
     order: 4; /* Make sure question mark icon is displayed fourth */
     left: 75%; 
   }
+
+  .top-icons div:hover, .question-mark-icon:hover, .hamburger-icon:hover, .locator-icon:hover, .calendar-icon:hover {
+    background-color: #f5f5f5; /* Change the background color on hover */
+    border-radius: 10px; /* Add some border radius */
+    transition: background-color 0.3s ease; /* Add transition for smooth hover effect */
+  }
+  
+  
   .now-mode-button {
     position: fixed;
-    right: 50px;
+    right: 60px;
     bottom: 90px;
     width: 100px;
     height: 100px;
@@ -426,7 +451,5 @@ aside.side-bar.open {
     z-index: 1;
     cursor: pointer;
   }
-
-
 }
 

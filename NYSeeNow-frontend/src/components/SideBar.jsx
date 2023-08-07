@@ -28,6 +28,11 @@ export const SideBar = ({ mapRef }) => {
   const [counterBottom, setCounterBottom] = useState('10px');
 
   useEffect(() => {
+    setCounterLeft(isOpen ? 'calc(100% - 60px)' : '60px') 
+  }, [isOpen])
+  
+
+  useEffect(() => {
     const updateSidebarPosition = () => {
       if (window.innerWidth >= 768) {
         setCounterLeft(isOpen ? 'calc(50% + 60px)' : '60px');
@@ -37,6 +42,7 @@ export const SideBar = ({ mapRef }) => {
         setCounterBottom(isOpen ? 'calc(50% + 60px)' : '60px');
       }
     };
+    
 
     // Updates the position when the component mounts
     updateSidebarPosition();
@@ -148,7 +154,7 @@ export const SideBar = ({ mapRef }) => {
           <p>Help</p>
         </Link>
       </div>
-      <AttractionCounter left={counterLeft} bottom={counterBottom} />
+      <AttractionCounter left="450px" bottom="10px" right="0px" />
     </aside>
   )
 }
