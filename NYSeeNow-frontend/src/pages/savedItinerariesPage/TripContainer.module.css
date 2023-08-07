@@ -10,11 +10,15 @@
   box-shadow: 2vw;
   overflow: scroll;
   gap: 10vw;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .tripContainer img {
-  width: 5vw;
-  height: 5vw;
+  width: 8vw;
+  height: 8vw;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 .card-delete-button-trip {
   color: black;
