@@ -342,7 +342,9 @@ aside.side-bar.open {
     width: 100%; /* Make it span the full width */
     flex-direction: row; /* Arrange content and icons horizontally */
     justify-content: space-around; /* Distribute the buttons evenly */
+    transition: height 0.3s ease;
     z-index: 2; /* Make sure the sidebar is above the map */
+    
   }
 
   .sidebar-icons {
@@ -356,8 +358,11 @@ aside.side-bar.open {
     display: none; 
   }
 
-  .side-bar.open {
-    height: 50%;
+  
+
+  aside.side-bar.open {
+    height: calc(100vh - 30px); /* Adjust the height to extend up to the nav bar */
+    width: 100%; /* Make it span the full width */
     bottom: 0;
     overflow-y: auto;
   }
@@ -368,6 +373,9 @@ aside.side-bar.open {
     justify-content: center;
     height: 70px; /* Match the height of the sidebar */
     flex: 1; /* Distribute space evenly */
+    position: absolute; /* Position the buttons absolutely */
+    bottom: 0; /* Stick them to the bottom */
+    width: 25%; /* Divide the width evenly among the buttons */
   }
 
   .top-icons {
@@ -386,23 +394,28 @@ aside.side-bar.open {
 
   .hamburger-icon {
     order: 1; /* Make sure hamburger icon is displayed first */
+    left: 0;
   }
 
   .locator-icon {
     order: 3; /* Make sure locator icon is displayed third */
+    left: 50%;
   }
 
   .calendar-icon {
     order: 2; /* Make sure calendar icon is displayed second */
+    left: 25%;
+  
   }
 
   .question-mark-icon {
     order: 4; /* Make sure question mark icon is displayed fourth */
+    left: 75%; 
   }
   .now-mode-button {
     position: fixed;
     right: 50px;
-    bottom: 100px;
+    bottom: 90px;
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -410,7 +423,7 @@ aside.side-bar.open {
     align-items: center;
     justify-content: center;
     color: black;
-    z-index: 3;
+    z-index: 1;
     cursor: pointer;
   }
 
