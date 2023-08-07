@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import styles from './ItineraryBuilder.module.css';
+import styles from './ItineraryEdit.module.css';
+
+
 import { Bar } from 'react-chartjs-2';
 import {
     Chart,
@@ -145,35 +146,31 @@ const ItineraryEdit = () => {
     };
 
     return (
-        <div>
+        <div className={styles.editContainer}>
             <h1>Itinerary Edit Page</h1>
-            <Carousel
-                className={styles.CarouselCard}
-                showArrows={true}
-                showThumbs={false}
-                centerSlidePercentage={50}
-            >
-                {tripAttractions.map((tripAttraction, index) => {
-                    const matchedAttraction = attractions.find(attraction => attraction.attractionId === tripAttraction.attractionId);
-                    return (
-                        <div key={index} className={styles.CarouselElement}>
-                            <div>{matchedAttraction ? matchedAttraction.name : 'Attraction not found'}</div>
-                            <div>Date: {tripAttraction.date}</div>
-                            <label>
-                                Time:
-                                <input
-                                    type="time"
-                                    name="time"
-                                    value={tripAttraction.time}
-                                    onChange={event => handleInputChange(index, event)}
-                                />
-                            </label>
-                            <Bar data={data(tripAttraction.prediction)} options={options} />
+            {tripAttractions.map((tripAttraction, index) => {
+                const matchedAttraction = attractions.find(attraction => attraction.attractionId === tripAttraction.attractionId);
+                return (
+                    <div key={index} className={styles.attractionContainer}>
+                        <div className={styles.attractionName}>
+                            {matchedAttraction ? matchedAttraction.name : 'Attraction not found'}
                         </div>
-                    );
-                })}
-            </Carousel>
-            <button onClick={handleSubmit}>Submit</button>
+                        <div>Date: {tripAttraction.date}</div>
+                        <label className={styles.timeLabel}>
+                            Time:
+                            <input
+                                className={styles.timeInput}
+                                type="time"
+                                name="time"
+                                value={tripAttraction.time}
+                                onChange={event => handleInputChange(index, event)}
+                            />
+                        </label>
+                        <Bar data={data(tripAttraction.prediction)} options={options} />
+                    </div>
+                );
+            })}
+            <button className={styles.submitButton} onClick={handleSubmit}>Submit</button>
         </div>
     );
 };
