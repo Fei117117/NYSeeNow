@@ -339,6 +339,8 @@ aside.side-bar.open {
   max-height: 600px;
 }
 
+
+/* Responsive Code */
 @media (max-width: 768px) {
   .map-container {
     height: calc(100vh - 100px); /* Adjust the map height to accommodate the bottom bar */
@@ -451,5 +453,14 @@ aside.side-bar.open {
     z-index: 1;
     cursor: pointer;
   }
-}
 
+  .close-arrow {
+    position: absolute;
+    top: 50px;
+    right: 13px;
+    font-size: 25px;
+    cursor: pointer;
+    z-index: 1000;
+  }
+    
+}

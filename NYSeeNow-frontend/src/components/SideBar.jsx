@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react' // import useContext
+import React, { useState, useEffect, useContext } from 'react'
 import SidebarContent from './SidebarContent'
 import AttractionCounter from './AttractionCounter'
 import { Link } from 'react-router-dom'
@@ -28,9 +28,9 @@ export const SideBar = ({ mapRef }) => {
   const [counterBottom, setCounterBottom] = useState('10px');
 
   useEffect(() => {
-    setCounterLeft(isOpen ? 'calc(100% - 60px)' : '60px') 
+    setCounterLeft(isOpen ? 'calc(100% - 60px)' : '60px')
   }, [isOpen])
-  
+
 
   useEffect(() => {
     const updateSidebarPosition = () => {
@@ -42,7 +42,7 @@ export const SideBar = ({ mapRef }) => {
         setCounterBottom(isOpen ? 'calc(50% + 60px)' : '60px');
       }
     };
-    
+
 
     // Updates the position when the component mounts
     updateSidebarPosition();
@@ -119,7 +119,19 @@ export const SideBar = ({ mapRef }) => {
     setCounterLeft(isOpen ? 'calc(50% + 60px)' : '60px') // update the position according to sidebar's state
   }, [isOpen])
 
+  useEffect(() => {
+    const sidebar = document.querySelector(".side-bar.open");
+    const arrowDiv = document.querySelector(".close-arrow");
+    if (sidebar && arrowDiv) {
+      arrowDiv.addEventListener("click", () => {
+        setIsOpen(false);
+      });
+    }
+  }, [isOpen]);
+  
+
   return (
+    
     <aside className={`side-bar ${isOpen ? 'open' : ''}`}>
       {isOpen && <img src={logo} alt="Logo" className="sidebar-logo" />}
       <div className="sidebar-content">
@@ -154,6 +166,7 @@ export const SideBar = ({ mapRef }) => {
           <p>Help</p>
         </Link>
       </div>
+      {isOpen && <div className="close-arrow"><i className="fas fa-chevron-down"></i></div>}
       <AttractionCounter left="450px" bottom="10px" right="0px" />
     </aside>
   )
