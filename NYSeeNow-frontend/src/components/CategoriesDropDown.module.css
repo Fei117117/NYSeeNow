@@ -44,6 +44,29 @@
   justify-content: center;
 }
 
+.optionWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.colorCircle {
+  width: 20px; /* Adjust as needed */
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 10px; /* Space between the circle and the checkbox */
+}
+
+.optionLabel {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Space between each option */
+}
+
+input[type="checkbox"] {
+  margin-right: 10px; /* Space between the checkbox and the label */
+}
+
+
 @media (max-width: 653px) {
   .dropdownContainer {
     width: 50vw;
