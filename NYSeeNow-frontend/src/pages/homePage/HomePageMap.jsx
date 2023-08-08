@@ -369,6 +369,7 @@ export const HomePageMap = (props) => {
 
   const { selectedOptions } = useCategories()
 
+  const [initialLoad, setInitialLoad] = useState(true)
   const [fetched_markers, setFetchedMarkers] = useState([])
   const [mapLoaded, setMapLoaded] = useState(false) // New state for map loading
   const [heatmapData, setHeatmapData] = useState([]) // Declare heatmapData state variable
@@ -428,170 +429,117 @@ export const HomePageMap = (props) => {
   }
 
  //Currently working by loading in best time data, goes initially
-  //Using best time intially, again will want it properly to load once and then cache
+  //Using best time for initial load
   useEffect(() => {
-    const fetchData = async () => {
-      const heatmapData = [];
-  
-      for (let i = 0; i < bestTimeData.length; i++) {
-        const venue = bestTimeData[i];
-        const venueName = venue["Venue Name"];
-        const venueCoordinates = venue["Venue Coordinates"];
-        const avgDwellTime = venue["Average Dwell Time"];
-        console.log('Venue name:', venueName, 'has an average dwell time of:', avgDwellTime);
-  
-        // Split the coordinates string into latitude and longitude
-        const [latitude, longitude] = venueCoordinates.split(' ')
-        // Convert latitude and longitude to floating-point numbers
-        const latitudeFloat = parseFloat(latitude);
-        const longitudeFloat = parseFloat(longitude);
-  
-        const dayOfWeekNumber = new Date(getCurrentTimeInNewYork()).getDay();
-        // Array to map the day of the week number to a string representation
-        const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        // Get the day as a string
-        const dayAsString = daysOfWeek[dayOfWeekNumber];
-  
-        try {
-          const requestBody = {
-            name: venueName,
-            day: dayAsString,
-            hour: new Date(getCurrentTimeInNewYork()).getHours().toString()
-          }
-          const url = 'http://localhost:8080/busyness/get';
-          const response = await axios.get(url, {
-            params: requestBody,
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          });
-          const data = response.data;
-          const busyness = parseInt(data.busyness);
-          //console.log(requestBody.name, busyness);
-  
-          heatmapData.push({
-            location: new window.google.maps.LatLng(latitudeFloat, longitudeFloat),
-            weight: busyness
-          });
-  
-        } catch (error) {
-          console.error('Name not in best time:', error);
-        }
-      }
-      setHeatmapData(heatmapData);
-    }
-  
-    fetchData();
-  }, [fetched_markers]);
+    if(initialLoad){
 
-
-
-/*  // This works but it loads the markers for best time endpoint, which is not desired
-// Code for initial loading of some markers, again want to load it to cache instead of reloading
-  useEffect(() => {
-    const fetchData = async () => {
-      const lat_lon = fetched_markers.map(
-        (marker) => marker.position.lat + ',' + marker.position.lng
-      )
-
-      const heatmapData = await Promise.all(
-        lat_lon.map(async (position) => {
-
-          const dayOfWeekNumber= new Date(getCurrentTimeInNewYork()).getDay()
-          // Array to map the day of week number to a string representation
+      const fetchData = async () => {
+        const heatmapData = [];
+    
+        for (let i = 0; i < bestTimeData.length; i++) {
+          const venue = bestTimeData[i];
+          var venueName = venue["Venue Name"];
+          const venueCoordinates = venue["Venue Coordinates"];
+          const avgDwellTime = venue["Average Dwell Time"];
+          //console.log('Venue name:', venueName, 'has an average dwell time of:', avgDwellTime);
+    
+          // Split the coordinates string into latitude and longitude
+          const [latitude, longitude] = venueCoordinates.split(' ')
+          // Convert latitude and longitude to floating-point numbers
+          const latitudeFloat = parseFloat(latitude);
+          const longitudeFloat = parseFloat(longitude);
+    
+          const dayOfWeekNumber = new Date(getCurrentTimeInNewYork()).getDay();
+          // Array to map the day of the week number to a string representation
           const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
           // Get the day as a string
           const dayAsString = daysOfWeek[dayOfWeekNumber];
-
+    
           try {
             const requestBody = {
-              name: fetched_markers.find(
-                (marker) => marker.position.lat + ',' + marker.position.lng === position)
-              ?.name,
+              name: venueName,
               day: dayAsString,
               hour: new Date(getCurrentTimeInNewYork()).getHours().toString()
             }
-
-            const url = 'http://localhost:8080/busyness/get'           
-            const response = await axios.get(url,{
+            const url = 'http://localhost:8080/busyness/get';
+            const response = await axios.get(url, {
               params: requestBody,
               headers: {
                 'Content-Type': 'application/json',
               },
             });
-            const data = response.data
-            const busyness = data.busyness
-            console.log(requestBody.name, busyness)
-            const lat_lon=position
-            const [lat, lng] = lat_lon.split(',');
-            //convert to floats
-            const latitude=parseFloat(lat)
-            const longitude=parseFloat(lng)
-            console.log(requestBody.name, busyness)
-            return {
-              location: new window.google.maps.LatLng(latitude, longitude),
-              weight: busyness
-            }
-          } catch (error) {
-            console.error('Name not in best time:', error)
-            return null
-          }
-        })
-      )
-      setHeatmapData(heatmapData.filter((entry) => entry !== null))
-    }
+            const data = response.data;
+            const busyness = parseInt(data.busyness);
+            //console.log(requestBody.name, busyness);
 
-    fetchData()
-  }, [fetched_markers])
-*/
-/*
- //This works for heatmap, but it loads initially, which is not desired
+            heatmapData.push({
+              location: new window.google.maps.LatLng(latitudeFloat, longitudeFloat),
+              weight: busyness
+            });
+    
+          } catch (error) {
+          }
+        }
+        console.log(heatmapData);
+        console.log("Best Time Data has been loaded when you see this message")
+        setHeatmapData(heatmapData);
+        setInitialLoad(false);
+      }
+      fetchData();
+    }
+  }, [initialLoad]);
+
+ //This works for heatmap when markers have been selected
+ // make sure it calls from cache if it has already been called
   //Code for every time the markers change
   useEffect(() => {
-    const fetchData = async () => {
-      const lat_lon = fetched_markers.map(
-        (marker) => marker.position.lat + ',' + marker.position.lng
-      )
 
-      const heatmapData = await Promise.all(
-        lat_lon.map(async (position) => {
-          try {
-            const requestBody = {
-              name: fetched_markers.find(
-                (marker) => marker.position.lat + ',' + marker.position.lng === position
-              )?.name,
-              lat_lon: position,
-              hour: new Date(getCurrentTimeInNewYork()).getHours(),
-              day: new Date(getCurrentTimeInNewYork()).getDay(),
-              month: new Date(getCurrentTimeInNewYork()).getMonth() + 1
-            }
+    if (!initialLoad){
 
-            const url = 'http://localhost:5001/AttractionPredict'
-            const response = await axios.post(url, requestBody)
-            const data = response.data
-            const busyness = data.prediction[0]
-            const [lat, lng] = requestBody.lat_lon.split(',')
-            //convert to floats
-            const latitude = parseFloat(lat)
-            const longitude = parseFloat(lng)
-            //load these to cache?
-            console.log(requestBody.name, busyness)
-            return {
-              location: new window.google.maps.LatLng(latitude, longitude),
-              weight: busyness
+      const fetchData = async () => {
+        const lat_lon = fetched_markers.map(
+          (marker) => marker.position.lat + ',' + marker.position.lng
+        )
+
+        const heatmapData = await Promise.all(
+          lat_lon.map(async (position) => {
+            try {
+              const requestBody = {
+                name: fetched_markers.find(
+                  (marker) => marker.position.lat + ',' + marker.position.lng === position
+                )?.name,
+                lat_lon: position,
+                hour: new Date(getCurrentTimeInNewYork()).getHours(),
+                day: new Date(getCurrentTimeInNewYork()).getDay(),
+                month: new Date(getCurrentTimeInNewYork()).getMonth() + 1
+              }
+
+              const url = 'http://localhost:5001/AttractionPredict'
+              const response = await axios.post(url, requestBody)
+              const data = response.data
+              const busyness = data.prediction[0]
+              const [lat, lng] = requestBody.lat_lon.split(',')
+              //convert to floats
+              const latitude = parseFloat(lat)
+              const longitude = parseFloat(lng)
+              //load these to cache?
+              console.log(requestBody.name, busyness, requestBody.hour, requestBody.day, requestBody.month)
+              return {
+                location: new window.google.maps.LatLng(latitude, longitude),
+                weight: busyness
+              }
+            } catch (error) {
+              //console.error('Error fetching busyness data:', error)
+              return null
             }
-          } catch (error) {
-            console.error('Error fetching busyness data:', error)
-            return null
-          }
-        })
-      )
-      setHeatmapData(heatmapData.filter((entry) => entry !== null))
+          })
+        )
+        setHeatmapData(heatmapData.filter((entry) => entry !== null))
+        console.log(heatmapData);
+      }
+      fetchData();
     }
-
-    fetchData()
   }, [fetched_markers])
-*/
   
   const handleHeatmapLoad = (heatmapLayer) => {
     // Handle the loaded heatmapLayer instance
