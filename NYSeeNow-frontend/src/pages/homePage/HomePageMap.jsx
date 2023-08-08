@@ -428,33 +428,33 @@ export const HomePageMap = (props) => {
     return new Date().toLocaleString('en-US', options)
   }
 
- //Currently working by loading in best time data, goes initially
+  //Currently working by loading in best time data, goes initially
   //Using best time for initial load
   useEffect(() => {
-    if(initialLoad){
+    if (initialLoad) {
 
       const fetchData = async () => {
         const heatmapData = [];
-    
+
         for (let i = 0; i < bestTimeData.length; i++) {
           const venue = bestTimeData[i];
           var venueName = venue["Venue Name"];
           const venueCoordinates = venue["Venue Coordinates"];
           const avgDwellTime = venue["Average Dwell Time"];
           //console.log('Venue name:', venueName, 'has an average dwell time of:', avgDwellTime);
-    
+
           // Split the coordinates string into latitude and longitude
           const [latitude, longitude] = venueCoordinates.split(' ')
           // Convert latitude and longitude to floating-point numbers
           const latitudeFloat = parseFloat(latitude);
           const longitudeFloat = parseFloat(longitude);
-    
+
           const dayOfWeekNumber = new Date(getCurrentTimeInNewYork()).getDay();
           // Array to map the day of the week number to a string representation
           const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
           // Get the day as a string
           const dayAsString = daysOfWeek[dayOfWeekNumber];
-    
+
           try {
             const requestBody = {
               name: venueName,
@@ -476,7 +476,7 @@ export const HomePageMap = (props) => {
               location: new window.google.maps.LatLng(latitudeFloat, longitudeFloat),
               weight: busyness
             });
-    
+
           } catch (error) {
           }
         }
@@ -489,28 +489,28 @@ export const HomePageMap = (props) => {
     }
   }, [initialLoad]);
 
- //This works for heatmap when markers have been selected
- // make sure it calls from cache if it has already been called
+  //This works for heatmap when markers have been selected
+  // make sure it calls from cache if it has already been called
   //Code for every time the markers change
 
   var cached = {}; // Use an object to cache data
 
   useEffect(() => {
 
-    if(!initialLoad){
+    if (!initialLoad) {
       const fetchData = async () => {
         const lat_lon = fetched_markers.map(
           (marker) => marker.position.lat + ',' + marker.position.lng
         );
-    
+
         const markersToFetch = lat_lon.filter(position => !cached[position]);
         // Get positions that are not cached
-    
+
         if (markersToFetch.length === 0) {
           // All data is cached, no need to fetch
           return;
         }
-    
+
         const heatmapData = await Promise.all(
           markersToFetch.map(async (position) => {
             try {
@@ -523,7 +523,7 @@ export const HomePageMap = (props) => {
                 day: new Date(getCurrentTimeInNewYork()).getDay(),
                 month: new Date(getCurrentTimeInNewYork()).getMonth() + 1
               };
-    
+
               const url = 'attraction/predict';
               const response = await axios.post(url, requestBody);
               const data = response.data;
@@ -531,7 +531,7 @@ export const HomePageMap = (props) => {
               const [lat, lng] = requestBody.lat_lon.split(',');
               const latitude = parseFloat(lat);
               const longitude = parseFloat(lng);
-    
+
               cached[position] = lat_lon; // Cache the busyness value
               //console.log(requestBody.name, 'has busyness', busyness)
               return {
@@ -552,7 +552,7 @@ export const HomePageMap = (props) => {
       fetchData();
     }
   }, [fetched_markers]);
-  
+
   const handleHeatmapLoad = (heatmapLayer) => {
     // Handle the loaded heatmapLayer instance
     //define the gradient, opaque, green, yellow, red
@@ -608,9 +608,8 @@ export const HomePageMap = (props) => {
       }}
     >
       {mapLoaded &&
-        fetched_markers.map(
-          (marker_details, index) =>
-            !props.isNowMode && <HomePageMarker key={index} markerDetails={marker_details} />
+        fetched_markers.map((marker_details, index) =>
+          !props.isNowMode && <HomePageMarker key={index} markerDetails={{ ...marker_details, id: index }} />
         )}
 
       {props.isNowMode && <HeatmapLayer data={heatmapData} onLoad={handleHeatmapLoad} />}

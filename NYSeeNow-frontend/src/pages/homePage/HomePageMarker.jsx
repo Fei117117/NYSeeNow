@@ -1,6 +1,7 @@
 import { InfoBox, OverlayView } from '@react-google-maps/api';
 import { useEffect, useState } from 'react'
 import { MarkerHoverCard } from './MarkerHoverCard'
+import { useOpenCard } from '../../context/OpenCardProvider';
 
 const attractionSVG = "/attractions.svg";
 const museumSVG = "/museums.svg";
@@ -28,6 +29,7 @@ const getCustomMarker = (type) => {
     </div>
   `;
 }
+
 
 
 
@@ -72,51 +74,32 @@ const getTypeIconURL = (type) => {
 }
 
 
-
 export const HomePageMarker = (props) => {
-  const [isHovered, setIsHovered] = useState(false)
-  const [isClicked, setIsClicked] = useState(false)
-
-
-  useEffect(() => {
-    if (isHovered) {
-      const timer = setTimeout(() => {
-        handleMarkerHoveredOut()
-      }, 1500)
-
-      return () => clearTimeout(timer)
-    }
-  }, [isHovered])
-
-  const handleMarkerHoveredIn = () => {
-    setIsHovered(true)
-  }
-
-  const handleMarkerHoveredOut = () => {
-    if (!isClicked) {
-      setIsHovered(false)
-    }
-  }
+  const { openCardId, setOpenCardId } = useOpenCard(); 
+  const [isClicked, setIsClicked] = useState(false);
 
   const handleMarkerClicked = () => {
-    setIsClicked(true)
-  }
+    console.log("Clicked marker ID:", props.markerDetails.id);
+    console.log("Current openCardId:", openCardId);
+    if (openCardId === props.markerDetails.id) {
+      setOpenCardId(null); // Close the card if it's already open
+    } else {
+      setOpenCardId(props.markerDetails.id); // Open the card and close others
+    }
+  };
 
   const handleCardClose = () => {
-    setIsClicked(false)
-    setIsHovered(false)
-  }
+    setIsClicked(false);
+  };
 
-  const onLoad = (infoBox) => { }
+  const onLoad = (infoBox) => {};
 
-  const options = { closeBoxURL: '', enableEventPropagation: true }
+  const options = { closeBoxURL: '', enableEventPropagation: true };
 
   const icon = {
     url: getTypeIconURL(props.markerDetails.tourism),
-    scaledSize: new google.maps.Size(40, 40)
+    scaledSize: new google.maps.Size(40, 40),
   };
-
-
 
   return (
     <>
@@ -126,19 +109,16 @@ export const HomePageMarker = (props) => {
       >
         <div
           dangerouslySetInnerHTML={{ __html: getCustomMarker(props.markerDetails.tourism) }}
-          onMouseOver={handleMarkerHoveredIn}
           onClick={handleMarkerClicked}
         />
       </OverlayView>
 
-      {(isHovered || isClicked) && (
+      {openCardId === props.markerDetails.id && (
         <InfoBox onLoad={onLoad} options={options} position={props.markerDetails['position']}>
           <MarkerHoverCard
             place={props.markerDetails}
-            onClose={handleCardClose}
+            onClose={() => setOpenCardId(null)}
             markerInfo={props.markerDetails}
-            onMouseOut={handleMarkerHoveredOut}
-            isHovered={isHovered}
           ></MarkerHoverCard>
         </InfoBox>
       )}

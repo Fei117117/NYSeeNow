@@ -19,6 +19,7 @@ import { useLocation } from 'react-router-dom'
 import TripEditPage from './pages/itineraryBuilderPage/ItineraryEdit'
 import { Register } from './pages/authOverlay/Register'
 import ItineraryEdit from './pages/itineraryBuilderPage/ItineraryEdit'
+import { OpenCardProvider } from './context/OpenCardProvider';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -39,6 +40,7 @@ function App() {
           <CategoriesProvider>
             <LocatorContext.Provider value={{ showLocator, setShowLocator }}>
               <TripDataProvider>
+                <OpenCardProvider>
                 {location.pathname !== '/' && <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />}
                 {location.pathname !== '/' && <NavBar isOpen={isOpen} set_map_center={setMapCenter} />}
             
@@ -68,6 +70,7 @@ function App() {
                     <Route path="/ItineraryEdit" element={<ItineraryEdit />} />
                     </Routes>
                 </div>
+                </OpenCardProvider>
               </TripDataProvider>
             </LocatorContext.Provider>
           </CategoriesProvider>

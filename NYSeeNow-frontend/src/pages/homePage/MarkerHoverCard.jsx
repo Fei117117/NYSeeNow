@@ -22,12 +22,12 @@ export const MarkerHoverCard = (props) => {
         `https://api.unsplash.com/search/photos?query=${placeName}&client_id=aqKawDJQSON-VdRqYv7Go4eY44nlRSflcZsgIveDcIU`
       )
 
-      // Add this to check the response status
+      // Added this line to check the response status
       console.log(`Response status: ${response.status}`)
 
       const responseJson = await response.json()
 
-      // Log the entire response as well
+      // Logs the entire response as well
       console.log('Response:', responseJson)
 
       if (responseJson && responseJson.results && responseJson.results.length > 0) {
@@ -45,7 +45,7 @@ export const MarkerHoverCard = (props) => {
   }, [props.place])
 
   return (
-    <div className="hover-card-container" onMouseLeave={props.onClose}>
+    <div className="hover-card-container">
       {/* Display the image if available */}
       {imageUrl && (
         <div className="hover-card-image">
@@ -58,5 +58,5 @@ export const MarkerHoverCard = (props) => {
         <button onClick={props.onClose}>Close</button>
       </div>
     </div>
-  )
+  );
 }

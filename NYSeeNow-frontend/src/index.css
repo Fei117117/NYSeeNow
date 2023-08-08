@@ -222,23 +222,64 @@ aside.side-bar.open {
   height: 50px; /* adjust as necessary */
 }
 
+/* ... (existing styles) ... */
 
-.hover-card-info {
-  flex-basis: 40%; /* Adjust this value as needed */
-}
-
-.hover-card-image {
-  flex-basis: 55%; /* Adjust this value as needed */
+/* Hover Card Styles */
+.hover-card-container {
+  position: relative;
+  width: 250px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
 }
 
 .hover-card-image img {
   width: 100%;
   height: auto;
+  max-height: 150px;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
+.hover-card-info {
+  padding: 10px;
+}
+
+.hover-card-info h3 {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.hover-card-info button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+  background-color: #007BFF;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.hover-card-info button:hover {
+  background-color: #0056b3;
+}
+
+.hover-card-info button:last-child {
+  background-color: #dc3545;
+}
+
+.hover-card-info button:last-child:hover {
+  background-color: #c82333;
+}
 
 .attraction-card {
-  background: radial-gradient(circle at top left, #6EA2DE, black);
+  background: radial-gradient(circle at top left, white, black);
   border: 1px solid gray;
   padding: 30px;
   margin: 10px 0;
