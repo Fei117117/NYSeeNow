@@ -459,7 +459,7 @@ export const HomePageMap = (props) => {
             const requestBody = {
               name: venueName,
               day: dayAsString,
-              hour: new Date(getCurrentTimeInNewYork()).getHours().toString()
+              hour: '19'//new Date(getCurrentTimeInNewYork()).getHours().toString()
             }
             const url = '/busyness/get';
             const response = await axios.get(url, {
@@ -492,17 +492,26 @@ export const HomePageMap = (props) => {
  //This works for heatmap when markers have been selected
  // make sure it calls from cache if it has already been called
   //Code for every time the markers change
+
+  var cached = {}; // Use an object to cache data
+
   useEffect(() => {
-
-    if (!initialLoad){
-
+    if(!initialLoad){
       const fetchData = async () => {
         const lat_lon = fetched_markers.map(
           (marker) => marker.position.lat + ',' + marker.position.lng
-        )
-
+        );
+    
+        const markersToFetch = lat_lon.filter(position => !cached[position]);
+        // Get positions that are not cached
+    
+        if (markersToFetch.length === 0) {
+          // All data is cached, no need to fetch
+          return;
+        }
+    
         const heatmapData = await Promise.all(
-          lat_lon.map(async (position) => {
+          markersToFetch.map(async (position) => {
             try {
               const requestBody = {
                 name: fetched_markers.find(
@@ -512,34 +521,36 @@ export const HomePageMap = (props) => {
                 hour: new Date(getCurrentTimeInNewYork()).getHours(),
                 day: new Date(getCurrentTimeInNewYork()).getDay(),
                 month: new Date(getCurrentTimeInNewYork()).getMonth() + 1
-              }
-
-              const url = 'attraction/predict'
-              const response = await axios.post(url, requestBody)
-              const data = response.data
-              const busyness = data.prediction[0]
-              const [lat, lng] = requestBody.lat_lon.split(',')
-              //convert to floats
-              const latitude = parseFloat(lat)
-              const longitude = parseFloat(lng)
-              //load these to cache?
-              console.log(requestBody.name, busyness, requestBody.hour, requestBody.day, requestBody.month)
+              };
+    
+              const url = 'attraction/predict';
+              const response = await axios.post(url, requestBody);
+              const data = response.data;
+              const busyness = data.prediction[0];
+              const [lat, lng] = requestBody.lat_lon.split(',');
+              const latitude = parseFloat(lat);
+              const longitude = parseFloat(lng);
+    
+              cached[position] = busyness; // Cache the busyness value
+    
               return {
                 location: new window.google.maps.LatLng(latitude, longitude),
                 weight: busyness
-              }
+              };
             } catch (error) {
-              //console.error('Error fetching busyness data:', error)
-              return null
+              return null;
             }
           })
-        )
-        setHeatmapData(heatmapData.filter((entry) => entry !== null))
-        console.log(heatmapData);
+        );
+    
+        setHeatmapData(prevHeatmapData => [
+          ...prevHeatmapData,
+          ...heatmapData.filter((entry) => entry !== null)
+        ]);
       }
       fetchData();
     }
-  }, [fetched_markers])
+  }, [fetched_markers]);
   
   const handleHeatmapLoad = (heatmapLayer) => {
     // Handle the loaded heatmapLayer instance
