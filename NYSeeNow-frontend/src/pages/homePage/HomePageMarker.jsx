@@ -1,5 +1,5 @@
 import { MarkerF, InfoBox } from '@react-google-maps/api'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { MarkerHoverCard } from './MarkerHoverCard'
 
 const getTypeColor = (type) => {
@@ -21,6 +21,16 @@ const getTypeColor = (type) => {
 export const HomePageMarker = (props) => {
   const [isHovered, setIsHovered] = useState(false)
   const [isClicked, setIsClicked] = useState(false)
+
+  useEffect(() => {
+    if (isHovered) {
+      const timer = setTimeout(() => {
+        handleMarkerHoveredOut()
+      }, 1500)
+
+      return () => clearTimeout(timer)
+    }
+  }, [isHovered])
 
   const handleMarkerHoveredIn = () => {
     setIsHovered(true)
@@ -69,6 +79,7 @@ export const HomePageMarker = (props) => {
             onClose={handleCardClose}
             markerInfo={props.markerDetails}
             onMouseOut={handleMarkerHoveredOut}
+            isHovered={isHovered}
           ></MarkerHoverCard>
         </InfoBox>
       )}

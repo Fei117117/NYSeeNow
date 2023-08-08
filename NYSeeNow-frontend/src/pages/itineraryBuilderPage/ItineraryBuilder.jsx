@@ -23,6 +23,16 @@ export const ItineraryBuilder = () => {
   }, [])
 
   const saveItinerary = () => {
+    // Check if every attraction has a visitTime
+    const allHaveVisitTime = Object.values(tripMap).flat().every(attraction => attraction.visitTime);
+
+    if (!allHaveVisitTime) {
+      // Inform the user that they need to set a visit time for each attraction
+      alert('Please set a visit time for each attraction before saving the itinerary.');
+      return;
+    }
+
+    // If all attractions have a visitTime, continue with the saving process
     console.log('The request to save')
 
     let req_obj = { user: authUser }

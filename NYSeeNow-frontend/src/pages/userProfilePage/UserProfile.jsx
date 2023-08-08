@@ -82,48 +82,60 @@ export const UserProfile = () => {
 
   if (isLoggedIn) {
     return (
-      <div className={styles.pageWrapper}>
-        <div className={styles.container}>
-          <div className={styles.header}>
-            <h2>{selectedTab}</h2>
-          </div>
-          <div className={styles.sidebar}>
-            <button
-              className={`${styles.button} ${selectedTab === 'My Profile' ? styles.active : ''}`}
-              onClick={() => setSelectedTab('My Profile')}
-            >
-              My Profile
-            </button>
-            <button
-              className={`${styles.button} ${
-                selectedTab === 'Saved Itineraries' ? styles.active : ''
-              }`}
-              onClick={() => setSelectedTab('Saved Itineraries')}
-            >
-              Saved Itineraries
-            </button>
-            <button
-              className={`${styles.button} ${selectedTab === 'Favorites' ? styles.active : ''}`}
-              onClick={() => setSelectedTab('Favorites')}
-            >
-              Favorites
-            </button>
-            <button
-              className={`${styles.button} ${selectedTab === 'Settings' ? styles.active : ''}`}
-              onClick={() => setSelectedTab('Settings')}
-            >
-              Settings
-            </button>
-            <button className={styles.button} onClick={logoutHandler}>
-              Logout
-            </button>
-            <button className={styles.button} onClick={gobackFunc}>
-              Go back
-            </button>
-          </div>
-          <div className={styles.content}>{renderTabContent()}</div>
+      <div className={styles.userProfileContainer}>
+        <div className={styles.profilePicContainer}>
+          <img src={profilePic || '/placeholder.png'} className={styles.profilePic} alt="Profile" />
+          <input type="file" onChange={handleProfilePicChange} className={styles.fileInputBox} />
         </div>
+        <p className={styles.profileInfo}>Username: {authUser}</p>
+        <p className={styles.profileInfo}>Email: {email}</p>
+        <textarea className={styles.bioInput} placeholder="Short description of you..."></textarea>
+        <input className={styles.locationInput} type="text" placeholder="Add your location" />
+        <input className={styles.interestsInput} type="text" placeholder="Add your interests" />
+        <button className={styles.saveButton}>SAVE</button>
       </div>
+      // <div className={styles.pageWrapper}>
+      //   <div className={styles.container}>
+      //     <div className={styles.header}>
+      //       <h2>{selectedTab}</h2>
+      //     </div>
+      //     <div className={styles.sidebar}>
+      //       <button
+      //         className={`${styles.button} ${selectedTab === 'My Profile' ? styles.active : ''}`}
+      //         onClick={() => setSelectedTab('My Profile')}
+      //       >
+      //         My Profile
+      //       </button>
+      //       <button
+      //         className={`${styles.button} ${
+      //           selectedTab === 'Saved Itineraries' ? styles.active : ''
+      //         }`}
+      //         onClick={() => setSelectedTab('Saved Itineraries')}
+      //       >
+      //         Saved Itineraries
+      //       </button>
+      //       <button
+      //         className={`${styles.button} ${selectedTab === 'Favorites' ? styles.active : ''}`}
+      //         onClick={() => setSelectedTab('Favorites')}
+      //       >
+      //         Favorites
+      //       </button>
+      //       <button
+      //         className={`${styles.button} ${selectedTab === 'Settings' ? styles.active : ''}`}
+      //         onClick={() => setSelectedTab('Settings')}
+      //       >
+      //         Settings
+      //       </button>
+      //       <button className={styles.button} onClick={logoutHandler}>
+      //         Logout
+      //       </button>
+      //       <button className={styles.button} onClick={gobackFunc}>
+      //         Go back
+      //       </button>
+      //     </div>
+      //     <div className={styles.content}>{renderTabContent()}</div>
+      //   </div>
+      // </div>
     )
   } else {
     return <AuthOverlay></AuthOverlay>
