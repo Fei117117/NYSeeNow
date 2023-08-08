@@ -140,13 +140,6 @@
     "Average Dwell Time": 30
   },
   {
-    "Venue Name": "Intrepid Sea, Air & Space Museum",
-    "Venue Address": "Pier 86 W 46th St New York, NY 10036 United States",
-    "Venue Coordinates": "40.7645 -73.9996",
-    "Venue Types": "museum, historic_site, historical_landmark, tourist_attraction",
-    "Average Dwell Time": 90
-  },
-  {
     "Venue Name": "Vanderbilt YMCA",
     "Venue Address": "224 E 47th St New York, NY 10017 United States",
     "Venue Coordinates": "40.7533 -73.9711",
@@ -889,13 +882,6 @@
     "Average Dwell Time": 60
   },
   {
-    "Venue Name": "Cooper Hewitt, Smithsonian Design Museum",
-    "Venue Address": "2 E 91st St New York, NY 10128 United States",
-    "Venue Coordinates": "40.7844 -73.9579",
-    "Venue Types": "museum, art_museum, historical_landmark, tourist_attraction",
-    "Average Dwell Time": 60
-  },
-  {
     "Venue Name": "Morris-Jumel Mansion",
     "Venue Address": "65 Jumel Terrace New York, NY 10032 United States",
     "Venue Coordinates": "40.8345 -73.9386",
@@ -921,13 +907,6 @@
     "Venue Address": "East 64th Street New York, NY 10021 United States",
     "Venue Coordinates": "40.7678 -73.9718",
     "Venue Types": "zoo, tourist_attraction",
-    "Average Dwell Time": 0
-  },
-  {
-    "Venue Name": "New York Studio School of Drawing, Painting and Sculpture",
-    "Venue Address": "8 W 8th St New York, NY 10011 United States",
-    "Venue Coordinates": "40.7325 -73.9972",
-    "Venue Types": "art_school, school",
     "Average Dwell Time": 0
   },
   {
@@ -1160,13 +1139,6 @@
     "Venue Coordinates": "40.7183 -74.0094",
     "Venue Types": "tourist_attraction",
     "Average Dwell Time": 15
-  },
-  {
-    "Venue Name": "Richard Gilder Center for Science, Education, and Innovation",
-    "Venue Address": "415 Columbus Ave New York, NY 10024 United States",
-    "Venue Coordinates": "40.7819 -73.9754",
-    "Venue Types": "museum",
-    "Average Dwell Time": 0
   },
   {
     "Venue Name": "Rose Center for Earth and Space",
