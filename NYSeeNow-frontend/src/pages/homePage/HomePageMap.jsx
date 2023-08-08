@@ -496,6 +496,7 @@ export const HomePageMap = (props) => {
   var cached = {}; // Use an object to cache data
 
   useEffect(() => {
+
     if(!initialLoad){
       const fetchData = async () => {
         const lat_lon = fetched_markers.map(
@@ -531,8 +532,8 @@ export const HomePageMap = (props) => {
               const latitude = parseFloat(lat);
               const longitude = parseFloat(lng);
     
-              cached[position] = busyness; // Cache the busyness value
-    
+              cached[position] = lat_lon; // Cache the busyness value
+              //console.log(requestBody.name, 'has busyness', busyness)
               return {
                 location: new window.google.maps.LatLng(latitude, longitude),
                 weight: busyness
@@ -542,7 +543,7 @@ export const HomePageMap = (props) => {
             }
           })
         );
-    
+        console.log('Busyness prediction data has loaded from the Backend')
         setHeatmapData(prevHeatmapData => [
           ...prevHeatmapData,
           ...heatmapData.filter((entry) => entry !== null)
