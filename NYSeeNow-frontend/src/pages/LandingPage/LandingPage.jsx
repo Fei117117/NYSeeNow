@@ -36,7 +36,7 @@ const LandingPage = () => {
         </nav>
       </header>
       <section className={styles.hero}>
-        <h1 className={styles['hero-heading']}>Live your NYC dream trip, NOW!</h1>
+        <h1 className={styles['hero-heading']}>Welcome!Live your NYC dream trip, NOW!</h1>
         <p className={styles['hero-subheading']}>
           Find top attractions, build an itinerary, and decide what suits you here and NOW. Using
           our 'NOW mode' you can check busyness levels, weather info and directions between
