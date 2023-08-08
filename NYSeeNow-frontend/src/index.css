@@ -287,13 +287,18 @@ aside.side-bar.open {
   max-width: 530px;
 }
 
-
-.svgIcon {
-  width: 20px; /* same as the colored circles */
-  height: 20px;
-  margin-right: 10px; /* space between the SVG and the label */
-  vertical-align: middle; /* align with the text */
+.busyness-indicator {
+  display: flex;
+  align-items: center;
 }
+
+.busyness-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
 
 .attraction-counter {
   background-color:#007991;
