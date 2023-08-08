@@ -461,7 +461,7 @@ export const HomePageMap = (props) => {
               day: dayAsString,
               hour: new Date(getCurrentTimeInNewYork()).getHours().toString()
             }
-            const url = 'http://localhost:8080/busyness/get';
+            const url = '/busyness/get';
             const response = await axios.get(url, {
               params: requestBody,
               headers: {
@@ -514,7 +514,7 @@ export const HomePageMap = (props) => {
                 month: new Date(getCurrentTimeInNewYork()).getMonth() + 1
               }
 
-              const url = 'http://localhost:5001/AttractionPredict'
+              const url = 'attraction/predict'
               const response = await axios.post(url, requestBody)
               const data = response.data
               const busyness = data.prediction[0]
