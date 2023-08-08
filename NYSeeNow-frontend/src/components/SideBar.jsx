@@ -67,7 +67,17 @@ export const SideBar = ({ mapRef }) => {
   }
 
   const handleSubmitButton = () => {
+    // Check if all attractions have a 'day' value of "Not Selected" or don't have 'day' value at all
+    const isAnyAttractionNotSelected = selectedList.some(attraction =>
+        !attraction.day || attraction.day === "Not Selected");
+
+    if (!startDate || !endDate || !selectedList.length || isAnyAttractionNotSelected) {
+      alert('Please fill in the start date, end date, and select a day for each attraction.');
+      return;
+    }
+    
     console.log('calling submit funtion')
+
     console.log('SENDING REQUEST')
     const request_obj = {
       start_date: startDate,
