@@ -287,6 +287,14 @@ aside.side-bar.open {
   max-width: 530px;
 }
 
+
+.svgIcon {
+  width: 20px; /* same as the colored circles */
+  height: 20px;
+  margin-right: 10px; /* space between the SVG and the label */
+  vertical-align: middle; /* align with the text */
+}
+
 .attraction-counter {
   background-color:#007991;
   position: absolute;

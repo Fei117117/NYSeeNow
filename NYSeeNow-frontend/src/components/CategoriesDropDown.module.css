@@ -66,6 +66,13 @@ input[type="checkbox"] {
   margin-right: 10px; /* Space between the checkbox and the label */
 }
 
+.svgIcon {
+  width: 20px; /* same as the colored circles */
+  height: 20px;
+  margin-right: 10px; /* space between the SVG and the label */
+  vertical-align: middle; /* align with the text */
+}
+
 
 @media (max-width: 653px) {
   .dropdownContainer {
@@ -82,3 +89,4 @@ input[type="checkbox"] {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   }
 }
+
