@@ -33,19 +33,19 @@ const getCustomMarker = (type) => {
 
 export const getTypeColor = (type) => {
   const typeColorMap = {
-    attraction: '#A8E0FFcc',
-    museum: '#C9E3ACcc',
-    artwork: '#FFE19Ccc',
-    gallery: '#E0D3EEcc',
-    sightseeing: '#EEE1B3cc',
-    aquarium: '#33B4EBcc',
-    camp_site: '#A3BFA8cc',
-    view_point: '#E5D0CCcc'
-    // Add other types and colors as needed
+    attraction: '#7DB2E8',  
+    museum: '#FF847B',      
+    artwork: '#FFB75A',     
+    gallery: '#C89BF1',     
+    sightseeing: '#B5DA92', 
+    aquarium: '#27D4C9',    
+    camp_site: '#CF9958',   
+    view_point: '#BAC2BE',  
   }
 
-  return typeColorMap[type] || '#A8E0FFcc' // blue will be the default color if the type is not found
+  return typeColorMap[type] || '#7DB2E8' // The mixed blue will be the default color if the type is not found
 }
+
 
 const getTypeIconURL = (type) => {
   const color = getTypeColor(type)

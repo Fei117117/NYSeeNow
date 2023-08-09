@@ -28,10 +28,6 @@ function App() {
   const [showLocator, setShowLocator] = useState(false)
   const location = useLocation()
 
-  const handleLocatorClick = () => {
-    setIsOpen(false)
-    setShowLocator(true)
-  }
 
   return (
     <>
