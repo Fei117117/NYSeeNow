@@ -124,6 +124,7 @@ aside.side-bar.open {
   order: 2; /* Make sure icons are displayed after the content */
   width: 55px; /* Set a fixed width for the icons */
   padding-right: 60px; /* Add left padding to move icons to the left */
+  margin-left: -4.2px;
 }
 
 .sidebar-logo {
@@ -134,6 +135,7 @@ aside.side-bar.open {
   max-width: 100%;
   max-height: 400px;
 }
+
 
 
 /* Target the link inside the button */
@@ -385,12 +387,6 @@ aside.side-bar.open {
     
   }
 
-  .sidebar-icons {
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 100%;
-    padding-right: 0; 
-  }
 
   .sidebar-content {
     display: none; 
