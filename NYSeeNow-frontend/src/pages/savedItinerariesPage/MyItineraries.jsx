@@ -21,18 +21,31 @@ export const MyItineraries = () => {
       .catch((error) => {
         console.log(error)
       })
-  }, [])
+  }, [isLoggedIn])
+
+  console.log('Is logged in ? ')
+  console.log(isLoggedIn)
+  console.log('My Trips')
+  console.log(myTrips)
 
   return (
     <div>
-      <h2>Upcoming Trips</h2>
-      {isLoggedIn &&
-        myTrips &&
-        Object.entries(myTrips).map(([key, value]) => (
-          <div className={styles.tripPage}>
-            <TripContainer key={key} trip_details={key} attraction_details={value}></TripContainer>
-          </div>
-        ))}
+      {isLoggedIn && myTrips && (
+        <div>
+          {' '}
+          <h2>Upcoming Trips</h2>
+          {Object.entries(myTrips).map(([key, value]) => (
+            <div className={styles.tripPage}>
+              <TripContainer
+                key={key}
+                trip_details={key}
+                attraction_details={value}
+              ></TripContainer>
+            </div>
+          ))}
+        </div>
+      )}
+      {!isLoggedIn && <AuthOverlay></AuthOverlay>}
     </div>
   )
 }

@@ -43,8 +43,10 @@ export const TripContainer = (props) => {
 
   if (tripObj) {
     const id_val = tripObj['trip_id']
-    const random_gen = id_val % 4
+    const random_gen = (id_val % 3) + 1
     const nyc_string = `/nyc${random_gen}.png`
+    console.log('Trip image')
+    console.log(nyc_string)
 
     return (
       <>

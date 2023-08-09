@@ -1,38 +1,34 @@
-import React, { useState } from 'react';
-import styles from './CategoriesDropDown.module.css';
-import options from '../assets/attraction_options.json';
-import { useCategories } from '../context/CategoriesContext';
-import { getTypeColor } from '../pages/homePage/HomePageMarker';
+import React, { useState } from 'react'
+import styles from './CategoriesDropDown.module.css'
+import options from '../assets/attraction_options.json'
+import { useCategories } from '../context/CategoriesContext'
+import { getTypeColor } from '../pages/homePage/HomePageMarker'
 
-
-const attractionSVG = "/attractions.svg";
-const museumSVG = "/museums.svg";
-const artworkSVG = "/artworks.svg";
-const aquariumSVG = "/aquariums.svg";
-const campsiteSVG = "/campsites.svg";
-const gallerySVG = "/galleries.svg";
-const sightseeingSVG = "/sightseeing.svg";
-
-
+const attractionSVG = '/attractions.svg'
+const museumSVG = '/museums.svg'
+const artworkSVG = '/artworkSVG.svg'
+const aquariumSVG = '/aquariums.svg'
+const campsiteSVG = '/campsites.svg'
+const gallerySVG = '/galleries.svg'
+const sightseeingSVG = '/sightseeing.svg'
 
 const CategoryDropDown = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const { selectedOptions, setSelectedOptions } = useCategories();
+  const [isOpen, setIsOpen] = useState(false)
+  const { selectedOptions, setSelectedOptions } = useCategories()
 
   const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
+    setIsOpen(!isOpen)
+  }
 
   const handleOptionChange = (optionId) => {
-    const isSelected = selectedOptions.includes(optionId);
+    const isSelected = selectedOptions.includes(optionId)
 
     if (isSelected) {
-      setSelectedOptions(selectedOptions.filter((id) => id !== optionId));
+      setSelectedOptions(selectedOptions.filter((id) => id !== optionId))
     } else {
-      setSelectedOptions([...selectedOptions, optionId]);
+      setSelectedOptions([...selectedOptions, optionId])
     }
-  };
-
+  }
 
   const getSVGIcon = (type) => {
     const icons = {
@@ -43,23 +39,23 @@ const CategoryDropDown = () => {
       camp_site: campsiteSVG,
       gallery: gallerySVG,
       sightseeing: sightseeingSVG
-    };
-    return icons[type] || attractionSVG; // default to attractionSVG if type not found
-  };
+    }
+    return icons[type] || attractionSVG // default to attractionSVG if type not found
+  }
 
   const getSvgPath = (type) => {
     const svgMap = {
-      attraction: "/attractions.svg",
-      museum: "/museums.svg",
-      artwork: "/artworks.svg",
-      aquarium: "/aquariums.svg",
-      camp_site: "/campsites.svg",
-      gallery: "/galleries.svg",
-      sightseeing: "/sightseeing.svg"
-    };
-  
-    return svgMap[type] || "/attractions.svg"; // default to attractions.svg if type is not found
-  };
+      attraction: '/attractions.svg',
+      museum: '/museums.svg',
+      artwork: '/artworkSVG.svg',
+      aquarium: '/aquariums.svg',
+      camp_site: '/campsites.svg',
+      gallery: '/galleries.svg',
+      sightseeing: '/sightseeing.svg'
+    }
+
+    return svgMap[type] || '/attractions.svg' // default to attractions.svg if type is not found
+  }
 
   return (
     <div className={styles.categoryBlock}>
@@ -69,7 +65,11 @@ const CategoryDropDown = () => {
           {options.map((option) => (
             <label key={option.id} className={styles.optionLabel}>
               {/* Add SVG to the label */}
-              <img src={getSvgPath(option.types[0])} alt={option.label} className={styles.svgIcon} />
+              <img
+                src={getSvgPath(option.types[0])}
+                alt={option.label}
+                className={styles.svgIcon}
+              />
               <span
                 className={styles.colorCircle}
                 style={{ backgroundColor: getTypeColor(option.types[0]) }}
@@ -85,7 +85,7 @@ const CategoryDropDown = () => {
         </div>
       )}
     </div>
-  );
-}; 
-  
-export default CategoryDropDown;  
+  )
+}
+
+export default CategoryDropDown
