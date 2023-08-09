@@ -5,10 +5,12 @@ export const MarkerHoverCard = (props) => {
   const { selectedList, setSelectedList } = useSelection()
   const [imageUrl, setImageUrl] = useState(null)
   const [busyness, setBusyness] = useState(null); // State to store busyness
+  const [isAdded, setIsAdded] = useState(false);
+
 
 
   const add_attraction = () => {
-    console.log('PLACE:', props.place) // Add this line to inspect the properties of a place
+    console.log('PLACE:', props.place) // Inspects the properties of a place
     const attractionWithImage = { ...props.place, imgUrl: imageUrl }
 
     if (selectedList == null) {
@@ -16,6 +18,9 @@ export const MarkerHoverCard = (props) => {
     } else {
       setSelectedList([...selectedList, attractionWithImage])
     }
+
+    setIsAdded(true); // Set the attraction as added
+    props.onClose(); // Close the card
   }
 
   const fetchImage = async (placeName) => {
@@ -51,7 +56,7 @@ export const MarkerHoverCard = (props) => {
     }
     return { color: 'green', text: 'Not Busy' };
   }
-  
+
 
   const getCircleColor = () => {
     console.log("Busyness:", busyness); // Log the busyness value
@@ -90,29 +95,34 @@ export const MarkerHoverCard = (props) => {
 
   const busynessStatus = getBusynessStatus();
 
-return (
-  <div className="hover-card-container">
-    {/* Display the image if available */}
-    {imageUrl && (
-      <div className="hover-card-image">
-        <img src={imageUrl} alt={props.place['name']} />
+
+  return (
+    <div className="hover-card-container">
+      {/* Display the image if available */}
+      {imageUrl && (
+        <div className="hover-card-image">
+          <img src={imageUrl} alt={props.place['name']} />
+        </div>
+      )}
+      <div className="hover-card-info">
+        <h3>{props.place['name']}</h3>
+
+        {/* Display busyness circle and text */}
+        <div className="busyness-indicator">
+          <div
+            className="busyness-circle"
+            style={{ backgroundColor: busynessStatus.color }}
+          ></div>
+          <i style={{ marginLeft: '5px' }}>{busynessStatus.text}</i>
+        </div>
+
+        <button
+          onClick={add_attraction}
+          style={{ backgroundColor: isAdded ? 'green' : '#007BFF' }}>
+          {isAdded ? 'Added' : 'Add to itinerary'}
+        </button>
+        <button onClick={props.onClose}>Close</button>
       </div>
-    )}
-    <div className="hover-card-info">
-      <h3>{props.place['name']}</h3>
-      
-      {/* Display busyness circle and text */}
-      <div className="busyness-indicator">
-        <div 
-          className="busyness-circle" 
-          style={{ backgroundColor: busynessStatus.color }}
-        ></div>
-        <i style={{ marginLeft: '5px' }}>{busynessStatus.text}</i>
-      </div>
-      
-      <button onClick={add_attraction}>Add to itinerary</button>
-      <button onClick={props.onClose}>Close</button>
     </div>
-  </div>
   );
 }
