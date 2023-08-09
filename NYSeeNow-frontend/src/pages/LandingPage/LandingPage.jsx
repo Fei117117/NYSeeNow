@@ -52,16 +52,47 @@ const LandingPage = () => {
           </Link>
         </div>
       </section>
-      <section className={styles['app-usage']}>
-        {/* <img src={AppUsageImg1} alt="App Usage 1" />
-                <img src={AppUsageImg2} alt="App Usage 2" />
-                <img src={AppUsageImg3} alt="App Usage 3" /> */}
+
+      {/* User Flow Section */}
+      <section className={styles['user-flow-section']}>
+        <div className={styles['user-flow-item']} style={{ backgroundColor: 'grey' }}>
+          <img src="/userFlow1.png" alt="User Flow 1" />
+          <h2>Header Text for User Flow 1</h2>
+          <p>Explanation for User Flow 1...</p>
+        </div>
+        <div className={styles['user-flow-item']} style={{ backgroundColor: 'white' }}>
+          <img src="/userFlow2.png" alt="User Flow 2" />
+          <h2>Header Text for User Flow 2</h2>
+          <p>Explanation for User Flow 2...</p>
+        </div>
+        <div className={styles['user-flow-item']} style={{ backgroundColor: 'grey' }}>
+          <img src="/userFlow3.png" alt="User Flow 3" />
+          <h2>Header Text for User Flow 3</h2>
+          <p>Explanation for User Flow 3...</p>
+        </div>
+        <div className={styles['user-flow-item']} style={{ backgroundColor: 'white' }}>
+          <img src="/userFlow4.png" alt="User Flow 4" />
+          <h2>Header Text for User Flow 4</h2>
+          <p>Explanation for User Flow 4...</p>
+        </div>
+        <div className={styles['user-flow-item']} style={{ backgroundColor: 'grey' }}>
+          <img src="/userFlow5.png" alt="User Flow 5" />
+          <h2>Header Text for User Flow 5</h2>
+          <p>Explanation for User Flow 5...</p>
+        </div>
+        <div className={styles['user-flow-item']} style={{ backgroundColor: 'white' }}>
+          <img src="/userFlow6.png" alt="User Flow 6" />
+          <h2>Header Text for User Flow 6</h2>
+          <p>Explanation for User Flow 6...</p>
+        </div>
       </section>
+
       <section className={styles.cta}>
-        <Link to="/plan" className={styles.button}>
-          Plan a trip
+        <Link to="/explore" className={styles.button}>
+          Explore NOW!
         </Link>
       </section>
+
       <footer>
         <p>© 2023 NYSeeNOW</p>
         <div className={styles['social-icons']}>

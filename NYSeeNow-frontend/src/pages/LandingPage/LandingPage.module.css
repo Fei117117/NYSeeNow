@@ -185,3 +185,34 @@ footer a {
     margin-left: auto; /* These two lines will center the text block */
     margin-right: auto;
 }
+
+.user-flow-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .user-flow-item {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .user-flow-item img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .user-flow-item h2 {
+    font-size: 2rem;
+    margin-top: 10px;
+  }
+  
+  .user-flow-item p {
+    font-size: 1rem;
+    text-align: center;
+    width: 70%;
+  }
