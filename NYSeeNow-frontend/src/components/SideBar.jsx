@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
 import SidebarContent from './SidebarContent'
-import AttractionCounter from './AttractionCounter'
 import { Link } from 'react-router-dom'
 import { useSelection } from '../context/SelectionContext'
 import { useNavigate } from 'react-router-dom'
@@ -8,7 +7,6 @@ import { post_itinerary } from '../net/net'
 import { useTripData } from '../context/TripDataContext'
 import axios from 'axios'
 import { LocatorContext } from '../context/LocatorContext'
-import Locator from './Locator'
 
 
 export const SideBar = ({ mapRef }) => {
@@ -126,10 +124,6 @@ export const SideBar = ({ mapRef }) => {
   }
 
   useEffect(() => {
-    setCounterLeft(isOpen ? 'calc(50% + 60px)' : '60px') // update the position according to sidebar's state
-  }, [isOpen])
-
-  useEffect(() => {
     const sidebar = document.querySelector(".side-bar.open");
     const arrowDiv = document.querySelector(".close-arrow");
     if (sidebar && arrowDiv) {
@@ -177,7 +171,6 @@ export const SideBar = ({ mapRef }) => {
         </Link>
       </div>
       {isOpen && <div className="close-arrow"><i className="fas fa-chevron-down"></i></div>}
-      <AttractionCounter left="450px" bottom="10px" right="0px" />
     </aside>
   )
 }
