@@ -349,13 +349,9 @@ aside.side-bar.open {
   cursor: pointer;
 }
 
-.now-mode-button p {
-  margin: 0;
-}
 
 .now-mode-button:hover {
-  transform: scale(1.05); 
-  transition: transform 0.3s ease-in-out;
+  transform: translateY(2px); /* Slightly move the button downwards to simulate a press effect */
 }
 
 
@@ -469,22 +465,6 @@ aside.side-bar.open {
     transition: background-color 0.3s ease; /* Add transition for smooth hover effect */
   }
   
-  
-  .now-mode-button {
-    position: fixed;
-    right: 60px;
-    bottom: 90px;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: black;
-    z-index: 1;
-    cursor: pointer;
-  }
-
   .close-arrow {
     position: absolute;
     top: 50px;
