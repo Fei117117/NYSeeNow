@@ -93,6 +93,9 @@ export const UserProfile = () => {
         <input className={styles.locationInput} type="text" placeholder="Add your location" />
         <input className={styles.interestsInput} type="text" placeholder="Add your interests" />
         <button className={styles.saveButton}>SAVE</button>
+        <button className={styles.button} onClick={logoutHandler}>
+          Logout
+        </button>
       </div>
       // <div className={styles.pageWrapper}>
       //   <div className={styles.container}>

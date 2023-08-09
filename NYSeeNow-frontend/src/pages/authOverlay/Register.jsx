@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import './Login.css'
 import { post } from '../../net/net'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
 
 export const Register = (props) => {
   const [username, setUsername] = useState('')
@@ -9,8 +10,10 @@ export const Register = (props) => {
   const [confirm, setConfirm] = useState('')
   const [email, setEmail] = useState('')
   const [errors, setErrors] = useState({})
-  const [message, setMessage] = useState('') 
-  const navigate = useNavigate();
+  const [message, setMessage] = useState('')
+  const navigate = useNavigate()
+
+  const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth()
 
   const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
   const NAME_REGEX = /^[a-zA-Z0-9._-]{4,20}$/
@@ -61,6 +64,8 @@ export const Register = (props) => {
       userData,
       (message, status) => {
         // Handle success
+        setIsLoggedIn(true)
+        setAuthUser(username)
         console.log('Registration successful:', message, status)
         setMessage('Registration successful')
       },
@@ -74,6 +79,8 @@ export const Register = (props) => {
 
   return (
     <div className="auth-form-container">
+      <h2>Register</h2>
+
       <form onSubmit={handleSubmit} className="auth-form">
         <label htmlFor="email">Email</label>
         <input
@@ -114,9 +121,9 @@ export const Register = (props) => {
         <button>Create Account</button>
         {message && <p>{message}</p>}
       </form>
-      <button onClick={() => navigate('/userprofile')}>
+      <button onClick={() => props.onFormSwitch('login')}>
         Already have an account? Login here.
       </button>
     </div>
-  );
-};
+  )
+}

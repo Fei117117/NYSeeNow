@@ -1,65 +1,64 @@
-import { InfoBox, OverlayView } from '@react-google-maps/api';
+import { InfoBox, OverlayView } from '@react-google-maps/api'
 import { useEffect, useState } from 'react'
 import { MarkerHoverCard } from './MarkerHoverCard'
-import { useOpenCard } from '../../context/OpenCardProvider';
+import { useOpenCard } from '../../context/OpenCardProvider'
 
-const attractionSVG = "/attractions.svg";
-const museumSVG = "/museums.svg";
-const artworkSVG = "/artworks.svg";
-const aquariumSVG = "/aquariums.svg";
-const campsiteSVG = "/campsites.svg";
-const gallerySVG = "/galleries.svg";
-const sightseeingSVG = "/sightseeing.svg";
+const attractionSVG = '/attractions.svg'
+const museumSVG = '/museums.svg'
+const artworkSVG = '/artworkSVG.svg'
+const aquariumSVG = '/aquariums.svg'
+const campsiteSVG = '/campsites.svg'
+const gallerySVG = '/galleries.svg'
+const sightseeingSVG = '/sightseeing.svg'
 
 const getCustomMarker = (type) => {
-  const color = getTypeColor(type);
-  const svgIcon = {
-    attraction: attractionSVG,
-    museum: museumSVG,
-    artwork: artworkSVG,
-    aquarium: aquariumSVG,
-    camp_site: campsiteSVG,
-    gallery: gallerySVG,
-    sightseeing: sightseeingSVG
-  }[type] || attractionSVG;
+  const color = getTypeColor(type)
+  const svgIcon =
+    {
+      attraction: attractionSVG,
+      museum: museumSVG,
+      artwork: artworkSVG,
+      aquarium: aquariumSVG,
+      camp_site: campsiteSVG,
+      gallery: gallerySVG,
+      sightseeing: sightseeingSVG
+    }[type] || attractionSVG
 
   return `
-    <div style="background-color: ${color}; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-      <img src="${svgIcon}" style="width: 30px; height: 30px;" />
+    <div style="background-color: ${color}; width: 1.5rem; height: 1.5rem; border-radius: 20%; display: flex; box-shadow: 3px 3px 3px #353535; align-items: center; justify-content: center;">
+      <img src="${svgIcon}" style="width: 1rem; height: 1rem;" />
     </div>
-  `;
+  `
 }
-
-
-
 
 export const getTypeColor = (type) => {
   const typeColorMap = {
-    attraction: 'blue',
-    museum: 'red',
-    artwork: 'green',
-    gallery: 'yellow',
-    sightseeing: 'purple',
-    aquarium: 'cyan',
-    camp_site: 'magenta',
-    view_point: 'orange'
+    attraction: '#A8E0FFcc',
+    museum: '#C9E3ACcc',
+    artwork: '#FFE19Ccc',
+    gallery: '#E0D3EEcc',
+    sightseeing: '#EEE1B3cc',
+    aquarium: '#33B4EBcc',
+    camp_site: '#A3BFA8cc',
+    view_point: '#E5D0CCcc'
     // Add other types and colors as needed
   }
 
-  return typeColorMap[type] || 'blue' // blue will be the default color if the type is not found
+  return typeColorMap[type] || '#A8E0FFcc' // blue will be the default color if the type is not found
 }
 
 const getTypeIconURL = (type) => {
-  const color = getTypeColor(type);
-  const svgIcon = {
-    attraction: attractionSVG,
-    museum: museumSVG,
-    artwork: artworkSVG,
-    aquarium: aquariumSVG,
-    camp_site: campsiteSVG,
-    gallery: gallerySVG,
-    sightseeing: sightseeingSVG
-  }[type] || attractionSVG;
+  const color = getTypeColor(type)
+  const svgIcon =
+    {
+      attraction: attractionSVG,
+      museum: museumSVG,
+      artwork: artworkSVG,
+      aquarium: aquariumSVG,
+      camp_site: campsiteSVG,
+      gallery: gallerySVG,
+      sightseeing: sightseeingSVG
+    }[type] || attractionSVG
 
   // Create an SVG string with a colored circle and the attraction SVG as its background
   const svgString = `
@@ -67,39 +66,38 @@ const getTypeIconURL = (type) => {
       <circle cx="20" cy="20" r="20" fill="${color}" stroke="black" stroke-width="1"/>
       <image href="${svgIcon}" x="5" y="5" height="30" width="30"/>
     </svg>
-  `;
+  `
 
   // Convert the SVG string to a data URL
-  return `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`
 }
 
-
 export const HomePageMarker = (props) => {
-  const { openCardId, setOpenCardId } = useOpenCard(); 
-  const [isClicked, setIsClicked] = useState(false);
+  const { openCardId, setOpenCardId } = useOpenCard()
+  const [isClicked, setIsClicked] = useState(false)
 
   const handleMarkerClicked = () => {
-    console.log("Clicked marker ID:", props.markerDetails.id);
-    console.log("Current openCardId:", openCardId);
+    console.log('Clicked marker ID:', props.markerDetails.id)
+    console.log('Current openCardId:', openCardId)
     if (openCardId === props.markerDetails.id) {
-      setOpenCardId(null); // Close the card if it's already open
+      setOpenCardId(null) // Close the card if it's already open
     } else {
-      setOpenCardId(props.markerDetails.id); // Open the card and close others
+      setOpenCardId(props.markerDetails.id) // Open the card and close others
     }
-  };
+  }
 
   const handleCardClose = () => {
-    setIsClicked(false);
-  };
+    setIsClicked(false)
+  }
 
-  const onLoad = (infoBox) => {};
+  const onLoad = (infoBox) => {}
 
-  const options = { closeBoxURL: '', enableEventPropagation: true };
+  const options = { closeBoxURL: '', enableEventPropagation: true }
 
   const icon = {
     url: getTypeIconURL(props.markerDetails.tourism),
-    scaledSize: new google.maps.Size(40, 40),
-  };
+    scaledSize: new google.maps.Size(40, 40)
+  }
 
   return (
     <>
@@ -123,5 +121,5 @@ export const HomePageMarker = (props) => {
         </InfoBox>
       )}
     </>
-  );
+  )
 }
