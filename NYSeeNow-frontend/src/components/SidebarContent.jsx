@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import AttractionCard from './AttractionCard'
 import { useSelection } from '../context/SelectionContext'
 import SideBarDate from './SideBarDate'
@@ -18,7 +18,6 @@ const SidebarContent = ({
     setSelectedList(selectedList.filter((attraction) => attraction['name'] !== attractionName))
   }
 
-  // Iterate over the selectedList and create a div for each attraction
   return (
     <div className={`sidebar-content ${!open ? 'closed' : ''}`}>
       <SideBarDate startDateSetter={getStartDate} endDateSetter={getEndDate}></SideBarDate>
@@ -27,16 +26,20 @@ const SidebarContent = ({
           <u>Attractions</u>
         </h2>
       )}
-      {selectedList &&
-        selectedList.map((attraction, index) => (
-          <AttractionCard
-            key={index}
-            attraction={attraction}
-            onDelete={handleDelete}
-            startDate={currStartDate}
-            endDate={currEndDate}
-          />
-        ))}
+      {/* Scrollable container for attraction cards */}
+      <div className={styles['attraction-container']}>
+        {selectedList &&
+          selectedList.map((attraction, index) => (
+            <AttractionCard
+              key={index}
+              attraction={attraction}
+              onDelete={handleDelete}
+              startDate={currStartDate}
+              endDate={currEndDate}
+            />
+          ))}
+      </div>
+      {/* Plan Trip button outside of the scrollable container */}
       {selectedList && (
         <div className={styles.buttonContainer}>
           <button onClick={submitHandler}>Plan Trip</button>

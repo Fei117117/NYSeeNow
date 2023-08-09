@@ -26,24 +26,18 @@ const AttractionCard = ({ attraction, onDelete, startDate, endDate }) => {
   }
 
   return (
-    <div className="attraction-card">
-      <div className="card-header">
+    <div className={styles['attraction-card']}>
+      <div className={styles['card-header']}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <img
             src={attraction.imgUrl}
             alt={attraction.name}
             style={{ marginRight: '10px', width: '80px', height: '80px', objectFit: 'cover' }}
           />
-
           <h2>{attraction.name}</h2>
         </div>
-        <button className="card-delete-button" onClick={() => onDelete(attraction.name)}>
-          X
-        </button>
       </div>
-      <p className="card-content">
-        This is a placeholder for your attraction details. Replace this text with the actual
-        details.
+      <p className={styles['card-content']}>
       </p>
       <div className={styles['day-selector']}>
         <label htmlFor="visitDay">Select the day:</label>
@@ -57,8 +51,11 @@ const AttractionCard = ({ attraction, onDelete, startDate, endDate }) => {
             ))}
         </select>
       </div>
+      <button className={styles['card-delete-button']} onClick={() => onDelete(attraction.name)}>
+        X
+      </button>
     </div>
-  )
+)
 }
 
 export default AttractionCard
