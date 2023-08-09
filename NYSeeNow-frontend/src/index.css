@@ -225,8 +225,6 @@ aside.side-bar.open {
   height: 50px; /* adjust as necessary */
 }
 
-/* ... (existing styles) ... */
-
 /* Hover Card Styles */
 .hover-card-container {
   position: relative;
@@ -433,6 +431,8 @@ aside.side-bar.open {
     bottom: 0;
     overflow-y: auto;
   }
+
+  
 
   .hamburger-icon, .locator-icon, .calendar-icon, .question-mark-icon {
     display: flex;

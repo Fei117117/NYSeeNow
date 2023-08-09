@@ -13,11 +13,51 @@ nav {
   position: relative; /* Added */
 }
 
+.navItemsContainer {
+  display: flex;
+  align-items: center;
+  gap: 5rem; /* Adjust the gap between items as needed */
+  margin-left: 325px;
+}
+
+.changeableNav li {
+  margin-left: 4rem; /* Adjust the margin as needed */
+}
+
+
 .navHamburger {
   display: None;
 }
+.navbarImageContainer {
+  display: flex;
+  align-items: center;
+  margin-left: -10px; /* Move to the left */
+  margin-top: 10px;   /* Move downward */
+  position: absolute; /* Position it absolutely */
+  right: 10px;        /* Adjust as needed to position the image on the right */
+}
 
-@media (max-width: 600px) {
+.navbarPlaceholderImage {
+  max-height: 50px; /* Adjust as needed */
+  max-width: 100%;
+}
+
+.dropdownImageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 1rem; /* Space between the image and the next item in the dropdown */
+}
+
+.dropdownPlaceholderImage {
+  max-height: 50px; /* Adjust as needed */
+  max-width: 100%;
+  margin-left: -10px; /* Move to the left */
+  margin-top: 10px;   /* Move downward */
+}
+
+
+@media (max-width: 1000px) {
   /* Styles to apply when viewport width is less than 653 vw */
   .changeableNav {
     display: None;
@@ -34,6 +74,46 @@ nav {
     align-items: center;
     padding: 1rem;
     position: relative;
+  }
+  .navItemsContainer {
+    display: block; /* Reset to default block display */
+    gap: 0; /* Remove the gap */
+    margin-left: 0; /* Reset the margin */
+  }
+
+  .changeableNav li {
+    margin-left: 0; /* Reset the margin */
+  }
+
+  .changeableNav {
+    display: None;
+  }
+
+  .navHamburger {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .navHamburger div a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    position: relative;
+  }
+
+  .navbarImageContainer {
+    display: none; /* Hide the larger image in small screen mode */
+  }
+
+  .dropdownImageContainer {
+    display: none; /* Hide the image outside the dropdown in small screen mode */
+  }
+
+  .dropdownPlaceholderImage {
+    max-height: 30px; /* Adjust as needed */
+    max-width: 100%;
   }
 }
 
