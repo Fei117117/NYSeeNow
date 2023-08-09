@@ -28,11 +28,6 @@ body {
   transition: opacity 0.3s ease;
 }
 
-.NYSEENOW-LOGO:hover::after {
-  opacity: 1;
-}
-
-
 
 .site-title {
   font-size: 2rem;
@@ -154,21 +149,7 @@ aside.side-bar.open {
   text-align: center; /* Center the text */
 }
 
-.top-icons div, .question-mark-icon {
-  cursor: pointer; /* Change cursor on hover */
-  padding: 10px; 
-}
 
-.top-icons div:hover, .question-mark-icon:hover {
-  background-color: #e0e0e0; 
-  border-radius: 10px; /* Add some border radius */
-  transition: background-color 0.3s ease; /* Add transition for smooth hover effect */
-}
-
-.top-icons div p, .question-mark-icon p {
-  margin-top: 0.5rem; /* Add some margin to the top of the text */
-  font-size: 0.8rem; /* Adjust the font size of the text */
-}
 
 /* Style for the link button */
 .calendar-icon {
@@ -189,14 +170,8 @@ aside.side-bar.open {
   flex-direction: column;
   align-items: center;
   text-align: center; /* Center the text */
-  cursor: pointer; /* Change cursor on hover */
 }
 
-.top-icons div:hover, .question-mark-icon:hover {
-  background-color: #f5f5f5; /* Change the background color on hover */
-  border-radius: 10px; /* Add some border radius */
-  transition: background-color 0.3s ease; /* Add transition for smooth hover effect */
-}
 
 .top-icons div p, .question-mark-icon p {
   margin-top: 0.5rem; /* Add some margin to the top of the text */
@@ -364,6 +339,27 @@ aside.side-bar.open {
   max-height: 600px;
 }
 
+/* Ensures consistent styling for all sidebar icons */
+.sidebar-icons div, .sidebar-icons a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 1.3rem; /* Sets a consistent font size for the text */
+}
+
+.locator-icon p {
+  font-size: 0.8rem;
+}
+
+/* Add hover effect to sidebar icons */
+.sidebar-icons div:hover, .sidebar-icons a:hover {
+  background-color: #f0f0f0; /* Background color on hover */
+  border-radius: 10px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
 
 /* Responsive Code */
 @media (max-width: 768px) {
@@ -457,12 +453,6 @@ aside.side-bar.open {
   .question-mark-icon {
     order: 4; /* Make sure question mark icon is displayed fourth */
     left: 75%; 
-  }
-
-  .top-icons div:hover, .question-mark-icon:hover, .hamburger-icon:hover, .locator-icon:hover, .calendar-icon:hover {
-    background-color: #f5f5f5; /* Change the background color on hover */
-    border-radius: 10px; /* Add some border radius */
-    transition: background-color 0.3s ease; /* Add transition for smooth hover effect */
   }
   
   .close-arrow {
