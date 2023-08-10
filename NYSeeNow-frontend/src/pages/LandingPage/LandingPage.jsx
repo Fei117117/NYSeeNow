@@ -8,6 +8,7 @@ const LandingPage = () => {
   const location = useLocation()
   const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth()
 
+
   return (
     <div className={styles['landing-page']}>
       <header>
@@ -22,13 +23,11 @@ const LandingPage = () => {
 
           {!isLoggedIn && (
             <div className={styles['nav-links']}>
-              <Link to="/about">About Us</Link>
               <Link to="/userprofile">Sign In</Link>
             </div>
           )}
           {isLoggedIn && (
             <div className={styles['nav-links']}>
-              <Link to="/about">About Us</Link>
               <Link to="/userprofile">UserProfile</Link>
             </div>
           )}
@@ -122,9 +121,9 @@ const LandingPage = () => {
           <i className="fab fa-youtube"></i>
         </div>
         <div className={styles['footer-links']}>
-          <Link to="/about">About</Link>
-          <Link to="/privacy">Privacy</Link>
-          <Link to="/terms">Terms</Link>
+          <Link to="">About</Link>
+          <Link to="">Privacy</Link>
+          <Link to="">Terms</Link>
         </div>
       </footer>
     </div>

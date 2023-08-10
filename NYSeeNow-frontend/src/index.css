@@ -137,7 +137,6 @@ aside.side-bar.open {
 }
 
 
-
 /* Target the link inside the button */
 .sidebar-icons a {
   color: inherit; /* Inherit the color from the parent */
@@ -364,7 +363,7 @@ aside.side-bar.open {
 }
 
 /* Responsive Code */
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .map-container {
     height: calc(100vh - 100px); /* Adjust the map height to accommodate the bottom bar */
     width: 100vw; /* Make it span the full width */
@@ -449,6 +448,21 @@ aside.side-bar.open {
   .question-mark-icon {
     order: 4; /* Make sure question mark icon is displayed fourth */
     left: 75%; 
+  }
+
+  .now-mode-button {
+    position: fixed;
+    right: 60px;
+    bottom: 90px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    z-index: 1;
+    cursor: pointer;
   }
   
   .close-arrow {
