@@ -55,7 +55,7 @@ const LandingPage = () => {
       <section className={styles['user-flow-section']}>
         <div className={styles['user-flow-item']} style={{ backgroundColor: ' #eaedfe' }}>
           <img src="/userFlow1.png" alt="User Flow 1" />
-          <h2>Discover now!</h2>
+          <h2>Discover NOW!</h2>
           <p>Dive into our interactive map and explore the heart of NYC. Browse and pinpoint your favorite attractions at your own pace.</p>
         </div>
         <div className={styles['user-flow-item']} style={{ backgroundColor: 'white' }}>
