@@ -33,6 +33,7 @@ const getCustomMarker = (type) => {
 
 export const getTypeColor = (type) => {
   const typeColorMap = {
+
     attraction: '#7DB2E8',  
     museum: '#FF847B',      
     artwork: '#FFB75A',     
@@ -44,6 +45,7 @@ export const getTypeColor = (type) => {
   }
 
   return typeColorMap[type] || '#7DB2E8' // The mixed blue will be the default color if the type is not found
+
 }
 
 
