@@ -25,7 +25,7 @@ const Locator = ({ selectedAttractions, path, setPath, setTotalTime, setMapCente
                     destination: waypoints[waypoints.length - 1].location,
                     waypoints: waypoints.slice(1, -1),
                     optimizeWaypoints: true,
-                    travelMode: 'DRIVING'
+                    travelMode: 'WALKING'
                 }, (result, status) => {
                     console.log('Status: ', status);
                     if (status === 'OK') {

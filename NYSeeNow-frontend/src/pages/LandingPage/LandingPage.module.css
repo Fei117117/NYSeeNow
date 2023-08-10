@@ -5,6 +5,7 @@
 body {
     margin: 0;
     font-family: 'Helvetica', sans-serif;
+    overflow-x: hidden;
 }
 
 .landing-page {
@@ -61,6 +62,9 @@ header {
     background-position: center;
     text-align: center;
     color: white; /* Change this line */
+    background-color: rgba(255, 255, 255, 0.7);
+    padding-top: 300px; 
+    padding-bottom: 300px;
 }
 
 
@@ -171,17 +175,86 @@ footer a {
     font-family: 'Helvetica', sans-serif; 
     font-size: 4rem; 
     text-align: center;
-    color: #212529; /* Change this line */
+    color: #212529;
 }
 
 .hero-subheading {
-    font-family: 'Helvetica', sans-serif; /* or 'Helvetica', sans-serif; */
-    font-size: 1.5rem; /* Adjust this value to make the text larger or smaller */
+    font-family: 'Helvetica', sans-serif; 
+    font-size: 1.5rem; 
     text-align: center;
-    color: #212529; /* Adjust this value to change the color of the text */
-    margin: 20px 0; /* Add some margin to separate this text from the other elements */
-    width: 60%; /* Adjust this value to make the text block wider or narrower */
-    line-height: 1.5; /* Adjust this value to increase or decrease the spacing between lines */
-    margin-left: auto; /* These two lines will center the text block */
+    color: #212529; 
+    margin: 20px 0; 
+    width: 60%; 
+    line-height: 1.5; 
+    margin-left: auto; 
     margin-right: auto;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+}
+
+p {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+.hero-heading, .hero-subheading {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-flow-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+
+.user-flow-item img {
+    width: 80%;
+    max-width: 1800px; 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.user-flow-item h2, .user-flow-item p {
+    max-width: 80%; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.user-flow-item[style*="backgroundColor: #eaedfe"] p {
+    color: #fff;
+}
+
+.user-flow-item[style*="backgroundColor: white"] p {
+    color: #333;
+}
+
+.user-flow-section {
+    padding: 50px 0; 
+}
+
+.landing-page section h2 {
+    font-size: 2.5rem; 
+}
+
+.cta {
+    padding-bottom: 50px; 
+}
+
+.cta .button {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: background-color .15s ease-in-out, border-color .15s ease-in-out;
+}
+
+.cta .button:hover {
+    background-color: #0056b3;
+    border-color: #004085;
 }

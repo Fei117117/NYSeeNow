@@ -6,8 +6,9 @@ const NowModeButton = ({ isNowMode, toggleNowMode }) => {
 
   const buttonStyleWithBackground = {
     backgroundImage: `linear-gradient(${
-      isNowMode ? 'rgba(0, 255, 0, 0.02)' : 'rgba(255, 0, 0, 0.02)'
-    }, ${isNowMode ? 'rgba(0, 255, 0, 0.5)' : 'rgba(255, 0, 0, 0.5)'}), url(${
+
+      isNowMode ? 'rgba(249, 185, 195, 0.02)' : 'rgba(249, 185, 195, 0.02)'
+    }, ${isNowMode ? 'rgba(249, 185, 195, 0.5)' : 'rgba(249, 185, 195, 0.5)'}), url(${
       isNowMode ? '/nyseenowLogoNowModeGreen.png' : '/nyseenowLogoNowModeRed.png'
     })`,
 
