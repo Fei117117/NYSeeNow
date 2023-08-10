@@ -13,3 +13,9 @@
   background: rgb(255, 255, 255, 0.6);
   overflow: scroll;
 }
+
+.BuilderButton {
+  display: block;
+  margin: 1rem auto;
+  background: #44bcec;
+}
