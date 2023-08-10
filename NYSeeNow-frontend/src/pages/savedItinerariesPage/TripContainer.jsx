@@ -51,30 +51,33 @@ export const TripContainer = (props) => {
     return (
       <>
         <div className={styles.tripContainer}>
-          <div className={styles.tripDetails}>
-            <img src={nyc_string}></img>
-            <div>Id: {tripObj['trip_id']}</div>
-            <div>Attractions: {tripObj['number_of_attractions']}</div>
-            <div>Start Date: {tripObj['start_date']}</div>
-            <div>End Date: {tripObj['end_date']}</div>
-          </div>
-          <div className={styles.buttonContainer}>
-            <button className={styles.cardButtontrip} onClick={props.onClick}>
-              View
-            </button>
+          <img src={nyc_string}></img>
+          <div className={styles.detailsAndButtons}>
+            {' '}
+            <div className={styles.tripDetails}>
+              <div>Id: {tripObj['trip_id']}</div>
+              <div>Attractions: {tripObj['number_of_attractions']}</div>
+              <div>Start Date: {tripObj['start_date']}</div>
+              <div>End Date: {tripObj['end_date']}</div>
+            </div>
+            <div className={styles.buttonContainer}>
+              <button className={styles.cardButtontrip} onClick={props.onClick}>
+                View
+              </button>
 
-            <button
-              className={styles.cardButtontrip}
-              onClick={() => {
-                console.log(authUser)
-                handleDelete()
-              }}
-            >
-              Delete
-            </button>
-            <button className={styles.cardButtontrip} onClick={handleEdit}>
-              Edit
-            </button>
+              <button
+                className={styles.cardButtontrip}
+                onClick={() => {
+                  console.log(authUser)
+                  handleDelete()
+                }}
+              >
+                Delete
+              </button>
+              <button className={styles.cardButtontrip} onClick={handleEdit}>
+                Edit
+              </button>
+            </div>
           </div>
         </div>
       </>

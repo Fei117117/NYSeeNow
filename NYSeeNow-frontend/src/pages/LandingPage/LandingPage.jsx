@@ -9,7 +9,6 @@ const LandingPage = () => {
   const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth()
 
 
-
   return (
     <div className={styles['landing-page']}>
       <header>
@@ -25,7 +24,6 @@ const LandingPage = () => {
           {!isLoggedIn && (
             <div className={styles['nav-links']}>
               <Link to="/userprofile">Sign In</Link>
-              <Link to="/register">Sign Up</Link>
             </div>
           )}
           {isLoggedIn && (
@@ -36,7 +34,11 @@ const LandingPage = () => {
         </nav>
       </header>
       <section className={styles.hero}>
-        <h1 className={styles['hero-heading']}>Welcome!<br />Live your NYC dream trip, NOW!</h1>
+        <h1 className={styles['hero-heading']}>
+          Welcome!
+          <br />
+          Live your NYC dream trip, NOW!
+        </h1>
         <p className={styles['hero-subheading']}>
           Find top attractions, build an itinerary, and decide what suits you here and NOW. Using
           our 'NOW mode' you can check busyness levels, weather info and directions between
@@ -55,39 +57,59 @@ const LandingPage = () => {
         <div className={styles['user-flow-item']} style={{ backgroundColor: ' #eaedfe' }}>
           <img src="/userFlow1.png" alt="User Flow 1" />
           <h2>Discover NOW!</h2>
-          <p>Dive into our interactive map and explore the heart of NYC. Browse and pinpoint your favorite attractions at your own pace.</p>
+          <p>
+            Dive into our interactive map and explore the heart of NYC. Browse and pinpoint your
+            favorite attractions at your own pace.
+          </p>
         </div>
         <div className={styles['user-flow-item']} style={{ backgroundColor: 'white' }}>
           <img src="/userFlow2.png" alt="User Flow 2" />
           <h2>Plan Your Trip...</h2>
-          <p>Select attractions that catch your eye and add them to a personalised itinerary. Whether it's for a future adventure or for right NOW, tailor your journey to what you want.</p>
+          <p>
+            Select attractions that catch your eye and add them to a personalised itinerary. Whether
+            it's for a future adventure or for right NOW, tailor your journey to what you want.
+          </p>
         </div>
         <div className={styles['user-flow-item']} style={{ backgroundColor: '#eaedfe' }}>
           <img src="/userFlow3.png" alt="User Flow 3" />
           <h2>Create your experiences NOW...</h2>
-          <p>After setting up your profile, save your planned trips. Revisit and modify them anytime, ensuring your adventures are always up-to-date.</p>
+          <p>
+            After setting up your profile, save your planned trips. Revisit and modify them anytime,
+            ensuring your adventures are always up-to-date.
+          </p>
         </div>
         <div className={styles['user-flow-item']} style={{ backgroundColor: 'white' }}>
           <img src="/userFlow4.png" alt="User Flow 4" />
           <h2>Personalise Your Adventure</h2>
-          <p>Choose from a diverse range of attractions, each color and symbol-coded for accessibility. Tailor your trip to match your unique interests.</p>
+          <p>
+            Choose from a diverse range of attractions, each color and symbol-coded for
+            accessibility. Tailor your trip to match your unique interests.
+          </p>
         </div>
         <div className={styles['user-flow-item']} style={{ backgroundColor: '#eaedfe' }}>
           <img src="/userFlow5.png" alt="User Flow 5" />
           <h2>Use our Locator feature for the here & NOW...</h2>
-          <p>Stay informed with real-time locations of selected attractions. Plot walking routes and navigate the city with ease.</p>
+          <p>
+            Stay informed with real-time locations of selected attractions. Plot walking routes and
+            navigate the city with ease.
+          </p>
         </div>
         <div className={styles['user-flow-item']} style={{ backgroundColor: 'white' }}>
           <img src="/userFlow6.png" alt="User Flow 6" />
           <h2>NOW Mode!</h2>
-          <p>Experience NYC in real-time. Activate NOW Mode to view a heat map of the city's busyness levels and stay updated with the current weather.</p>
+          <p>
+            Experience NYC in real-time. Activate NOW Mode to view a heat map of the city's busyness
+            levels and stay updated with the current weather.
+          </p>
         </div>
       </section>
       <section className={styles.cta}>
         <Link to="/home" className={`${styles.button} ${styles['button-plan']}`}>
           Explore NOW!
         </Link>
-        <p><i>There's no time like NOW!</i></p>
+        <p>
+          <i>There's no time like NOW!</i>
+        </p>
       </section>
 
       <footer>
