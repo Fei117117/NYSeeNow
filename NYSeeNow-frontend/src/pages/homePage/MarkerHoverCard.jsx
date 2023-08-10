@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useSelection } from '../../context/SelectionContext'
+import axios from 'axios'
 
 export const MarkerHoverCard = (props) => {
   const { selectedList, setSelectedList } = useSelection()
@@ -81,6 +82,7 @@ export const MarkerHoverCard = (props) => {
     try {
       const response = await axios.post(url, requestBody);
       const data = response.data;
+      console.log('Busyness:', data.prediction[0]);
       setBusyness(data.prediction[0]);
     } catch (error) {
       console.error(`Failed to fetch busyness for ${props.place.name}`, error);

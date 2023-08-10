@@ -430,6 +430,7 @@ export const HomePageMap = (props) => {
 
   //Currently working by loading in best time data, goes initially
   //Using best time for initial load
+  /*
   useEffect(() => {
     if (initialLoad) {
 
@@ -488,6 +489,7 @@ export const HomePageMap = (props) => {
       fetchData();
     }
   }, [initialLoad]);
+  */
 
   //This works for heatmap when markers have been selected
   // make sure it calls from cache if it has already been called
@@ -497,7 +499,7 @@ export const HomePageMap = (props) => {
 
   useEffect(() => {
 
-    if (!initialLoad) {
+    if (initialLoad) {
       const fetchData = async () => {
         const lat_lon = fetched_markers.map(
           (marker) => marker.position.lat + ',' + marker.position.lng
