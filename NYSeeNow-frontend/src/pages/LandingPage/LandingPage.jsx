@@ -61,7 +61,7 @@ const LandingPage = () => {
         <div className={styles['user-flow-item']} style={{ backgroundColor: 'white' }}>
           <img src="/userFlow2.png" alt="User Flow 2" />
           <h2>Plan Your Trip...</h2>
-          <p>Select attractions that catch your eye and add them to a personalized itinerary. Whether it's for a future adventure or for right NOW, tailor your journey to your desires.</p>
+          <p>Select attractions that catch your eye and add them to a personalised itinerary. Whether it's for a future adventure or for right NOW, tailor your journey to what you want.</p>
         </div>
         <div className={styles['user-flow-item']} style={{ backgroundColor: '#eaedfe' }}>
           <img src="/userFlow3.png" alt="User Flow 3" />
@@ -70,7 +70,7 @@ const LandingPage = () => {
         </div>
         <div className={styles['user-flow-item']} style={{ backgroundColor: 'white' }}>
           <img src="/userFlow4.png" alt="User Flow 4" />
-          <h2>Personalize Your Adventure</h2>
+          <h2>Personalise Your Adventure</h2>
           <p>Choose from a diverse range of attractions, each color and symbol-coded for accessibility. Tailor your trip to match your unique interests.</p>
         </div>
         <div className={styles['user-flow-item']} style={{ backgroundColor: '#eaedfe' }}>
@@ -88,6 +88,7 @@ const LandingPage = () => {
         <Link to="/home" className={`${styles.button} ${styles['button-plan']}`}>
           Explore NOW!
         </Link>
+        <p><i>There's no time like NOW!</i></p>
       </section>
 
       <footer>
