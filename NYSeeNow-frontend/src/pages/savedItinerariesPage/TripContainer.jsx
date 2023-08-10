@@ -59,6 +59,10 @@ export const TripContainer = (props) => {
             <div>End Date: {tripObj['end_date']}</div>
           </div>
           <div className={styles.buttonContainer}>
+            <button className={styles.cardButtontrip} onClick={props.onClick}>
+              View
+            </button>
+
             <button
               className={styles.cardButtontrip}
               onClick={() => {
@@ -76,6 +80,6 @@ export const TripContainer = (props) => {
       </>
     )
   } else {
-    return <div>Nothing in this.</div>
+    return <div></div>
   }
 }
