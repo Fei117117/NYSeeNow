@@ -55,7 +55,7 @@ const LandingPage = () => {
       {/* User Flow Section */}
       <section className={styles['user-flow-section']}>
         <div className={styles['user-flow-item']} style={{ backgroundColor: ' #eaedfe' }}>
-          <img src="/userFlow1.png" alt="User Flow 1" />
+          <img src="/UserFlow1.png" alt="User Flow 1" />
           <h2>Discover NOW!</h2>
           <p>
             Dive into our interactive map and explore the heart of NYC. Browse and pinpoint your
@@ -63,7 +63,7 @@ const LandingPage = () => {
           </p>
         </div>
         <div className={styles['user-flow-item']} style={{ backgroundColor: 'white' }}>
-          <img src="/userFlow2.png" alt="User Flow 2" />
+          <img src="/UserFlow2.png" alt="User Flow 2" />
           <h2>Plan Your Trip...</h2>
           <p>
             Select attractions that catch your eye and add them to a personalised itinerary. Whether
@@ -71,7 +71,7 @@ const LandingPage = () => {
           </p>
         </div>
         <div className={styles['user-flow-item']} style={{ backgroundColor: '#eaedfe' }}>
-          <img src="/userFlow3.png" alt="User Flow 3" />
+          <img src="/UserFlow3.png" alt="User Flow 3" />
           <h2>Create your experiences NOW...</h2>
           <p>
             After setting up your profile, save your planned trips. Revisit and modify them anytime,
@@ -79,7 +79,7 @@ const LandingPage = () => {
           </p>
         </div>
         <div className={styles['user-flow-item']} style={{ backgroundColor: 'white' }}>
-          <img src="/userFlow4.png" alt="User Flow 4" />
+          <img src="/UserFlow4.png" alt="User Flow 4" />
           <h2>Personalise Your Adventure</h2>
           <p>
             Choose from a diverse range of attractions, each color and symbol-coded for
@@ -87,7 +87,7 @@ const LandingPage = () => {
           </p>
         </div>
         <div className={styles['user-flow-item']} style={{ backgroundColor: '#eaedfe' }}>
-          <img src="/userFlow5.png" alt="User Flow 5" />
+          <img src="/UserFlow5.png" alt="User Flow 5" />
           <h2>Use our Locator feature for the here & NOW...</h2>
           <p>
             Stay informed with real-time locations of selected attractions. Plot walking routes and
@@ -95,7 +95,7 @@ const LandingPage = () => {
           </p>
         </div>
         <div className={styles['user-flow-item']} style={{ backgroundColor: 'white' }}>
-          <img src="/userFlow6.png" alt="User Flow 6" />
+          <img src="/UserFlow6.png" alt="User Flow 6" />
           <h2>NOW Mode!</h2>
           <p>
             Experience NYC in real-time. Activate NOW Mode to view a heat map of the city's busyness
