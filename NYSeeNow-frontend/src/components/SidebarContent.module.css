@@ -28,3 +28,7 @@
   position: relative; /* Change this to relative */
   left: 6%; /* Center the button */
 }
+
+.buttonContainer button:hover {
+  background: #304d6d;
+}

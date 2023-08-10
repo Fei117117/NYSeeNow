@@ -138,7 +138,7 @@ button.active {
   width: 100%;
   height: 50px;
   margin-top: 20px;
-  background-color: blue;
+  background-color: #44bcec;
   color: white;
   border: none;
   border-radius: 4px;
@@ -147,7 +147,7 @@ button.active {
 }
 
 .saveButton:hover {
-  background-color: darkblue;
+  background-color: #304d6d;
 }
 
 /* Added by Aarya for presentation purposes */

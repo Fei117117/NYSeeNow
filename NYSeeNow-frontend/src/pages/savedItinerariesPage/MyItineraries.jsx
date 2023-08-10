@@ -72,6 +72,7 @@ export const MyItineraries = () => {
           ))}
         </div>
       )}
+      {isLoggedIn && !myTrips && <h2>No Upcoming Trips</h2>}
       {!isLoggedIn && <AuthOverlay></AuthOverlay>}
       {tripSelected && <TripInfo onClick={showAllTrips} trip_details={selectedTrip}></TripInfo>}
     </div>
